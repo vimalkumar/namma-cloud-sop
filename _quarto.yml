@@ -61,11 +61,4 @@ format:
     highlight-style: github
     mermaid:
       theme: neutral
-  pdf:
-    documentclass: scrbook
-    papersize: a4
-    toc: true
-    number-sections: true
-    colorlinks: true
-    highlight-style: github
 
