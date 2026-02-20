@@ -1,0 +1,507 @@
+# Appendix C: One Point Lessons (OPL) {#sec-appendix-opl .unnumbered}
+
+## What Are One Point Lessons?
+
+**One Point Lesson (OPL)** = A single-page visual quick-reference card that teaches one concept clearly.
+
+**Key principles:**
+- **One page maximum** — can be printed and posted at workstations
+- **80% visual, 20% text** — diagrams, flowcharts, comparisons dominate
+- **One concept** — focused on a single learning point
+- **Quick reference** — glance at it during work, faster than reading full SOP
+
+**Origin:** Manufacturing best practice from Toyota Production System / Lean methodology
+
+---
+
+## Three Types of OPLs
+
+| Type | Purpose | Example |
+|------|---------|---------|
+| **Basic Knowledge (BK)** | Teach fundamental concepts | "How to read a PDU display" |
+| **Problem Case (PC)** | Document a problem + solution | "Cable doesn't fit? Don't force it!" |
+| **Improvement Case (IC)** | Show before/after improvement | "Proper cable labeling" |
+
+: OPL Types {.striped}
+
+---
+
+## How to Use OPLs
+
+**At workstations:**
+- Print and laminate OPLs
+- Post on walls near relevant equipment
+- Glance at them during tasks for quick reminders
+
+**During training:**
+- Use OPLs to introduce concepts before reading full SOPs
+- Visual format helps new workers learn faster
+- Review OPLs after completing tasks
+
+**Creating your own:**
+- Use the blank template at the end of this appendix
+- Focus on problems you see repeatedly
+- Keep it visual — use diagrams, not paragraphs
+- Get Team Lead approval before posting
+
+---
+
+## Template OPLs
+
+The following are example OPLs for common datacenter tasks. Print these and customize for your team.
+
+---
+
+## OPL-BK-01: Cable Type Identification {.unnumbered}
+
+**Category:** Basic Knowledge
+**Created:** 2026-02-20
+**Purpose:** Quickly identify which cable type you're holding
+
+### Visual Identification Flowchart
+
+```{mermaid}
+%%| label: fig-opl-cable-id
+%%| fig-cap: "Cable identification decision tree"
+flowchart TD
+    A[Holding a cable] --> B{What's the<br/>connector?}
+
+    B -->|3 rectangular prongs| C{How wide?}
+    C -->|Standard width| D[C13/C14<br/>Standard power]
+    C -->|Noticeably wider| E[C19/C20<br/>High-power]
+
+    B -->|Clear plastic clip<br/>8 wires visible| F[RJ45<br/>Network cable]
+
+    B -->|Metal module<br/>thumb-size| G{How does<br/>cable feel?}
+    G -->|STIFF<br/>hard to bend| H[DAC<br/>Copper, short runs]
+    G -->|FLEXIBLE<br/>easy to bend| I[AOC<br/>Fiber, long runs]
+
+    style D fill:#e1ffe1
+    style E fill:#e1ffe1
+    style F fill:#e1f0ff
+    style H fill:#fff4e1
+    style I fill:#fff4e1
+```
+
+### Key Points
+
+| Cable | Quick ID | Where Used |
+|-------|----------|------------|
+| **C13/C14** | 3 prongs, standard size | Server PSU → PDU |
+| **C19/C20** | 3 prongs, WIDER | High-power equipment → PDU |
+| **RJ45** | Clear plastic clip | Management ports, switches |
+| **DAC** | Metal modules, STIFF | Server ↔ switch (same rack) |
+| **AOC** | Metal modules, FLEXIBLE | Between racks (long distance) |
+
+: Cable Quick Reference {.striped}
+
+::: {.callout-warning}
+## Never Force a Cable
+If it doesn't slide in easily, you have the wrong type. Forcing = damaged port.
+:::
+
+**Related:** [Hardware Visual Guide — Cables & Connectors](#sec-hardware-visual-guide)
+
+---
+
+<div style="page-break-after: always;"></div>
+
+## OPL-BK-02: Reading a PDU Display {.unnumbered}
+
+**Category:** Basic Knowledge
+**Created:** 2026-02-20
+**Purpose:** Understand what PDU display numbers mean
+
+### What You See on the PDU
+
+```
+┌─────────────────────────┐
+│      PDU DISPLAY        │
+│                         │
+│      15.2 A   ← AMPS    │
+│      240 V    ← VOLTS   │
+│      3.6 kW   ← POWER   │
+│                         │
+└─────────────────────────┘
+```
+
+### What Each Number Means
+
+| Display | Meaning | Why It Matters |
+|---------|---------|----------------|
+| **15.2 A** | Current draw in amps | Shows how much electricity is flowing RIGHT NOW |
+| **240 V** | Voltage | Electric "pressure" — usually 208V or 240V |
+| **3.6 kW** | Total power in kilowatts | Total electricity being used (1 kW = 1000 watts) |
+
+: PDU Display Readings {.striped}
+
+### The 80% Rule
+
+**Never load a PDU past 80% of its maximum capacity.**
+
+**Example calculation:**
+```
+PDU max: 20A × 240V = 4,800W
+80% safe limit: 4,800W × 0.80 = 3,840W
+Current display: 3.6kW = 3,600W ✓ OK (under 80%)
+```
+
+::: {.callout-important}
+## Before Adding Equipment
+1. Read PDU display
+2. Check equipment power rating (on label)
+3. Calculate: Current load + New equipment
+4. If total > 80% of PDU max → Use different PDU
+:::
+
+**Related:** [Power Basics — Reading a PDU Display](#sec-power-basics)
+
+---
+
+<div style="page-break-after: always;"></div>
+
+## OPL-BK-03: Server LED Meanings {.unnumbered}
+
+**Category:** Basic Knowledge
+**Created:** 2026-02-20
+**Purpose:** Know what LED colors mean and what to do
+
+### Universal LED Guide
+
+| LED Color | Meaning | Your Action |
+|-----------|---------|-------------|
+| **Solid Green** | Everything OK | Proceed normally ✓ |
+| **Blinking Green** | Activity (data transfer, disk read/write) | Normal — this is expected ✓ |
+| **Solid Amber/Orange** | Warning — something needs attention | Note it, report to Team Lead ⚠ |
+| **Blinking Amber** | **Critical fault** — hardware failure | **STOP. Do not proceed. Notify Team Lead immediately.** ❌ |
+| **Off (No Light)** | No power or no connection | Check cable seating, check power switch |
+
+: LED Status Indicators {.striped}
+
+### Visual Quick Reference
+
+```{mermaid}
+%%| label: fig-opl-led
+%%| fig-cap: "LED color decision guide"
+flowchart TD
+    A[See an LED] --> B{What color?}
+
+    B -->|Green<br/>solid or blinking| C[Normal<br/>Proceed ✓]
+    B -->|Amber solid| D[Warning<br/>Report to Team Lead ⚠]
+    B -->|Amber BLINKING| E[CRITICAL<br/>STOP work<br/>Notify Team Lead ❌]
+    B -->|Off| F[Check power<br/>and cables]
+
+    style C fill:#e1ffe1
+    style D fill:#fff4e1
+    style E fill:#ffe1e1
+    style F fill:#e1f0ff
+```
+
+::: {.callout-important}
+## Blinking Amber = STOP
+This means hardware failure. Do NOT continue working on that equipment. Tag it and notify Team Lead.
+:::
+
+**Related:** [Hardware Visual Guide — LED Color Guide](#sec-hardware-visual-guide)
+
+---
+
+<div style="page-break-after: always;"></div>
+
+## OPL-PC-01: Cable Doesn't Fit — DON'T Force It! {.unnumbered}
+
+**Category:** Problem Case
+**Created:** 2026-02-20
+**Problem:** Cable won't go into port
+
+### What NOT to Do
+
+```
+     ✗  WRONG                    ✓  CORRECT
+
+  [Forcing cable]           [Checking cable type]
+   into port                  against chart
+      ↓                            ↓
+  Damaged port             Found correct cable
+  $500 repair cost          Works perfectly
+```
+
+### Troubleshooting Steps
+
+```{mermaid}
+%%| label: fig-opl-cable-fit
+%%| fig-cap: "Cable fitting troubleshooting"
+flowchart TD
+    A[Cable won't fit] --> B[STOP — Don't force]
+    B --> C[Check: Do I have the right cable type?]
+    C --> D[Use OPL-BK-01 to identify cable]
+    D --> E{Correct type?}
+    E -->|No| F[Get correct cable type]
+    E -->|Yes| G[Check: Is connector oriented correctly?]
+    G --> H[Rotate 180° and try]
+    H --> I{Fits now?}
+    I -->|Yes| J[Connect and verify link LED ✓]
+    I -->|No| K[Ask Team Lead — port may be damaged]
+```
+
+### DO This
+
+✓ **Check cable type** against identification chart
+✓ **Try rotating** connector 180°
+✓ **Inspect port** for bent pins or damage
+✓ **Ask Team Lead** if still unsure
+
+### DON'T Do This
+
+✗ **Force the cable** — you'll damage the port
+✗ **Use excessive pressure** — it should slide in easily
+✗ **Wiggle or twist** — gentle insertion only
+✗ **Assume "it will work"** — wrong cable = broken equipment
+
+::: {.callout-warning}
+## Cost of Forcing
+Damaged server port = $500–2000 repair cost + server downtime. Take 30 seconds to verify cable type.
+:::
+
+**Related:** [Hardware Visual Guide — Cables & Connectors](#sec-hardware-visual-guide)
+
+---
+
+<div style="page-break-after: always;"></div>
+
+## OPL-PC-02: Server Won't Power On {.unnumbered}
+
+**Category:** Problem Case
+**Created:** 2026-02-20
+**Problem:** Pressed power button but server doesn't start
+
+### Troubleshooting Flowchart
+
+```{mermaid}
+%%| label: fig-opl-power-on
+%%| fig-cap: "Server power-on troubleshooting"
+flowchart TD
+    A[Server won't<br/>power on] --> B[Check: PSU LEDs on rear]
+
+    B --> C{Both LEDs<br/>green?}
+    C -->|No| D[Check power cables<br/>seated properly]
+    D --> E[Check PDU outlets<br/>are ON]
+    E --> F[Check circuit breaker<br/>not tripped]
+    F --> G{PSU LEDs<br/>green now?}
+    G -->|No| H[Power supply failed<br/>Notify Team Lead ❌]
+    G -->|Yes| I[Try power button again]
+
+    C -->|Yes| J[Check: Front panel<br/>power button cable<br/>connected inside?]
+    J --> K[Check: Any amber<br/>LEDs on server?]
+    K -->|Yes| L[Hardware fault detected<br/>Check iLO, notify Team Lead ❌]
+    K -->|No| M[Try holding power<br/>button 3 seconds]
+    M --> N{Powers on?}
+    N -->|Yes| O[Success ✓]
+    N -->|No| P[Motherboard issue<br/>Notify Team Lead ❌]
+
+    style O fill:#e1ffe1
+    style H fill:#ffe1e1
+    style L fill:#ffe1e1
+    style P fill:#ffe1e1
+```
+
+### Quick Checks (Do These First)
+
+| Check | What to Look For |
+|-------|------------------|
+| **1. PSU LEDs** | Rear of server — should be GREEN on both PSUs |
+| **2. Power cables** | Firmly seated at both ends (server and PDU) |
+| **3. PDU outlets** | Outlets are switched ON (not all PDUs have switches) |
+| **4. Front LEDs** | Any AMBER LEDs indicate hardware problems |
+
+: Power-On Checklist {.striped}
+
+::: {.callout-tip}
+## Most Common Causes
+1. Power cable not fully seated (60% of cases)
+2. PDU outlet switched off (25% of cases)
+3. Failed PSU (10% of cases)
+4. Hardware fault — amber LED visible (5% of cases)
+:::
+
+**Related:** [SOP: Server Verification — POST Success Check](#sec-sop-verify)
+
+---
+
+<div style="page-break-after: always;"></div>
+
+## OPL-IC-01: Cable Labeling — Before vs After {.unnumbered}
+
+**Category:** Improvement Case
+**Created:** 2026-02-20
+**Improvement:** Proper cable labeling prevents mistakes during maintenance
+
+### Before (Unlabeled Cables) ❌
+
+```
+┌──────────────────────────────────────┐
+│  Rear of rack — Cable chaos:        │
+│                                      │
+│  [Server]  [Server]  [Server]        │
+│     |||      |||      |||            │
+│     |||______|||______|||            │
+│          ↓                            │
+│    Which cable goes                  │
+│    to which server?                  │
+│    ❌ Unknown!                        │
+│                                      │
+│  [PDU]                               │
+│   |||                                 │
+│   No labels on cables                │
+└──────────────────────────────────────┘
+
+Problems:
+• Disconnecting wrong cable during maintenance
+• 30 minutes wasted tracing cables
+• Accidental server outage
+• Frustration and mistakes
+```
+
+### After (Properly Labeled) ✓
+
+```
+┌──────────────────────────────────────┐
+│  Rear of rack — Organized:           │
+│                                      │
+│  [SRV-001]  [SRV-002]  [SRV-003]     │
+│   ① ②       ① ②       ① ②           │
+│   │ │       │ │       │ │            │
+│   │ └───────┼─┼───────┼─┘            │
+│   └─────────┼─┴───────┘              │
+│             ↓                         │
+│  Labels at BOTH ends:                │
+│  "SRV-001-PSU1 → PDU-A-08"            │
+│  "SRV-001-PSU2 → PDU-B-08"            │
+│                                      │
+│  [PDU-A]        [PDU-B]              │
+│   [08][09]      [08][09]             │
+│    ①             ②                   │
+│                                      │
+│  Each outlet labeled with server ID  │
+└──────────────────────────────────────┘
+
+Benefits:
+✓ Instant cable identification
+✓ 5 minutes to find right cable (was 30)
+✓ Zero accidental disconnections
+✓ Confident, fast maintenance
+```
+
+### Labeling Standard
+
+**Format:** `[SOURCE] → [DESTINATION]`
+
+**Examples:**
+- Power: `SRV-042-PSU1 → PDU-A-12`
+- Network: `SRV-042-NIC1 → SW01-P24`
+- Management: `SRV-042-iLO → MGT-SW-P08`
+
+### Implementation Checklist
+
+- [ ] Label maker available at workstation
+- [ ] Labels applied at **BOTH ends** of cable (server end AND PDU/switch end)
+- [ ] Label format follows inventory sheet
+- [ ] Labels weatherproof (won't peel or fade)
+- [ ] Photo taken after labeling (for documentation)
+
+::: {.callout-tip}
+## Time Investment
+- Labeling during installation: +5 minutes per server
+- Time saved during maintenance: -25 minutes per task
+- Return on investment: Pays back after 1st maintenance task
+:::
+
+**Related:** [SOP: Power & Network — Cable Management](#sec-sop-power-network)
+
+---
+
+<div style="page-break-after: always;"></div>
+
+## Blank OPL Template {.unnumbered}
+
+**Use this template to create your own One Point Lessons.**
+
+Copy this structure and fill in with your specific content:
+
+```markdown
+## OPL-[TYPE]-[NUMBER]: [TITLE] {.unnumbered}
+
+**Category:** Basic Knowledge / Problem Case / Improvement Case
+**Created:** [DATE]
+**Purpose:** [One sentence describing what this OPL teaches]
+
+### [Section Title — Visual Content]
+
+[Your Mermaid diagram, comparison table, or ASCII art here]
+
+### Key Points
+
+| Point | Description |
+|-------|-------------|
+| **First key point** | Brief explanation |
+| **Second key point** | Brief explanation |
+| **Third key point** | Brief explanation |
+
+### DO This ✓
+
+✓ [Correct action]
+✓ [Another correct action]
+✓ [Third correct action]
+
+### DON'T Do This ✗
+
+✗ [Wrong action that causes problems]
+✗ [Another wrong action]
+✗ [Third wrong action]
+
+::: {.callout-[tip/warning/important]}
+## [Callout Title]
+[Key message — most important takeaway]
+:::
+
+**Related:** [Link to full SOP chapter if applicable]
+
+---
+
+<div style="page-break-after: always;"></div>
+```
+
+### Tips for Creating Effective OPLs
+
+**Keep it visual:**
+- Use Mermaid flowcharts for decision trees
+- Use tables for comparisons
+- Use ASCII art for simple diagrams
+- Use before/after for improvements
+
+**Keep it focused:**
+- One concept per OPL
+- 3-5 key points maximum
+- One page when printed
+
+**Keep it actionable:**
+- Include DO/DON'T lists
+- Show consequences of wrong actions
+- Link to detailed SOP for more info
+
+**Get feedback:**
+- Show draft to Team Lead
+- Test with new worker — can they understand it?
+- Revise based on questions you get
+
+---
+
+::: {.callout-note}
+## Contributing OPLs
+
+If you create a useful OPL:
+1. Get Team Lead approval
+2. File a ticket to add it to this appendix
+3. Include: Title, category, Mermaid diagram code, key points
+4. We'll add it in the next SOP book update
+:::

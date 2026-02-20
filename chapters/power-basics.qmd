@@ -1,0 +1,419 @@
+# Power & Electrical Basics {#sec-power-basics}
+
+## Purpose
+
+This chapter explains electricity and power distribution in simple terms. You'll learn how power flows from the wall to the server, what the numbers on a PDU mean, and critical safety rules.
+
+::: {.callout-warning}
+## Safety First
+Electricity can kill. Follow every safety rule in this chapter. If unsure, **STOP and ask your Team Lead.**
+:::
+
+---
+
+## What Is Electricity? — The Water Pipe Analogy
+
+Think of electricity like water flowing through pipes.
+
+```{mermaid}
+%%| label: fig-water-analogy
+%%| fig-cap: "Electricity is like water in pipes"
+flowchart LR
+    A[Water Tank<br/>HIGH pressure] --> B[Pipe<br/>water flows through]
+    B --> C[Faucet<br/>controls FLOW]
+    C --> D[Bucket<br/>receives water]
+
+    A2[Power Source<br/>HIGH voltage] --> B2[Wire<br/>electricity flows through]
+    B2 --> C2[Circuit<br/>controls CURRENT]
+    C2 --> D2[Device<br/>uses power]
+
+    style A fill:#e1f5ff
+    style A2 fill:#ffe1e1
+    style D fill:#e1f5ff
+    style D2 fill:#ffe1e1
+```
+
+### The Three Key Measurements
+
+| Term | Water Analogy | What It Measures | Unit |
+|------|--------------|------------------|------|
+| **Voltage (V)** | Water pressure | Electrical "push" force | Volts (V) |
+| **Current (A)** | Amount of water flowing | How much electricity flows | Amps (A) |
+| **Power (W)** | Pressure × Flow = total work done | Total energy used | Watts (W) |
+
+: Electricity Measurements {.striped}
+
+### Simple Math
+
+**Power = Voltage × Current**
+
+```
+W = V × A
+```
+
+**Example:** A server drawing 5 amps at 240 volts uses:
+```
+240V × 5A = 1,200W (1.2 kW)
+```
+
+::: {.callout-note}
+## Relatable Example
+- One LED light bulb = ~10W
+- One server = ~500–2000W
+- **One server = 50 to 200 light bulbs running at once**
+:::
+
+---
+
+## The Power Path — Wall to Server
+
+Power flows through several stages before reaching the server. Each stage has a purpose.
+
+```{mermaid}
+%%| label: fig-power-path
+%%| fig-cap: "How power reaches the server"
+flowchart TD
+    A[Utility Power<br/>from electric company] --> B[UPS<br/>giant battery backup]
+    B --> C[PDU<br/>rack's smart power strip]
+    C --> D[Power Cable<br/>C13 or C19 connector]
+    D --> E[Server PSU<br/>converts to DC power]
+    E --> F[Server Components<br/>CPU, RAM, disks]
+
+    style A fill:#fff4e1
+    style B fill:#e1f0ff
+    style C fill:#e1ffe1
+    style D fill:#ffe1f0
+    style E fill:#f0e1ff
+    style F fill:#ffe1e1
+```
+
+### What Each Component Does
+
+| Component | What It Is | Why It Matters |
+|-----------|-----------|----------------|
+| **Utility Power** | Electricity from the power company | Can fail during outages |
+| **UPS** | Uninterruptible Power Supply — giant battery backup | Keeps power flowing during outages (15–30 minutes) |
+| **PDU** | Power Distribution Unit — rack's smart power strip | Distributes power to servers, shows usage |
+| **Power Cable** | C13/C14 or C19/C20 cable | Connects PDU to server PSU |
+| **PSU** | Power Supply Unit — server's power converter | Converts AC (from wall) to DC (for server), like laptop charger |
+
+: Power Path Components {.striped}
+
+::: {.callout-tip}
+## Analogy
+- **UPS** = A water tank that keeps supplying water when the main pipe shuts off
+- **PDU** = A power strip, but industrial-strength with monitoring
+- **PSU** = Like the charger for your phone, but for a server
+:::
+
+---
+
+**Photo: UPS Unit (Battery Backup)**
+
+![Uninterruptible Power Supply (UPS) - large battery backup system](../images/ups-unit.jpg){width=500px}
+
+*UPS unit. Notice: (1) Large cabinet housing batteries, (2) Control panel with display, (3) Multiple output connections, (4) Keeps power flowing during outages.*
+
+---
+
+**Photo: Server Power Supply (PSU)**
+
+![Server PSU internal view showing circuit board and connectors](../images/server-psu.jpg){width=500px}
+
+*Server PSU (Power Supply Unit). Notice: (1) Converts AC power to DC, (2) Slides into rear of server, (3) Has connector for power cable, (4) Like a laptop charger but much larger.*
+
+---
+
+## Redundant Power — Why Two of Everything
+
+Servers have **two power supplies (PSUs)**. Each connects to a **different PDU**. Each PDU connects to a **different UPS**.
+
+### Redundancy Diagram
+
+```{mermaid}
+%%| label: fig-redundancy
+%%| fig-cap: "Redundant power ensures no single point of failure"
+flowchart TD
+    A[Utility Feed A] --> B[UPS A]
+    B --> C[PDU A]
+    C --> E[Server PSU #1<br/>LEFT side]
+
+    A2[Utility Feed B] --> B2[UPS B]
+    B2 --> C2[PDU B]
+    C2 --> E2[Server PSU #2<br/>RIGHT side]
+
+    E --> F[Server runs]
+    E2 --> F
+
+    style A fill:#e1f0ff
+    style A2 fill:#e1f0ff
+    style B fill:#ffe1e1
+    style B2 fill:#ffe1e1
+    style C fill:#e1ffe1
+    style C2 fill:#e1ffe1
+    style F fill:#fff4e1
+```
+
+### Why This Matters
+
+**If one power source fails, the server keeps running.**
+
+| Failure | What Happens | Server Status |
+|---------|--------------|---------------|
+| Utility Feed A fails | UPS A takes over, then PDU A keeps working | ✅ Server stays on (PSU #2 still powered) |
+| UPS B dies | PDU B loses power | ✅ Server stays on (PSU #1 still powered) |
+| PDU A circuit breaker trips | PSU #1 loses power | ✅ Server stays on (PSU #2 still powered) |
+| Both PSU #1 AND PSU #2 lose power | No power to server | ❌ Server shuts down |
+
+: Redundancy Failure Scenarios {.striped}
+
+::: {.callout-important}
+## Critical Rule
+**ALWAYS connect the two PSUs to DIFFERENT PDUs.**
+
+If both PSUs connect to the same PDU, and that PDU fails, the server dies.
+
+- ✅ **Correct:** PSU-A → PDU-A, PSU-B → PDU-B
+- ❌ **Wrong:** PSU-A → PDU-A, PSU-B → PDU-A
+:::
+
+---
+
+## Reading a PDU Display
+
+Most PDUs have a digital display showing power usage. You need to read this before adding servers.
+
+**Photo: PDU with Display**
+
+![PDU (Power Distribution Unit) showing digital display and outlets](../images/pdu-display.jpg){width=400px}
+
+*PDU with digital display. Notice: (1) Digital screen showing power metrics, (2) Multiple outlets along the unit, (3) Mounts vertically in rack, (4) Like a smart power strip.*
+
+---
+
+### What the Display Shows
+
+Modern PDUs display:
+- **Current (A)** — How many amps are being drawn right now
+- **Voltage (V)** — Usually 208V or 240V
+- **Power (W or kW)** — Total watts being used
+
+### Example PDU Display Reading
+
+```
+PDU-A Display:
+─────────────────
+  15.2 A
+  240 V
+  3.6 kW
+─────────────────
+```
+
+### What This Means
+
+| Value | Meaning |
+|-------|---------|
+| **15.2 A** | PDU is currently supplying 15.2 amps |
+| **240 V** | PDU voltage is 240 volts |
+| **3.6 kW** | PDU is delivering 3,600 watts total |
+
+**Check:** 240V × 15.2A = 3,648W ≈ 3.6kW ✅
+
+---
+
+### Calculating Remaining Capacity
+
+**Before plugging in a server, check if the PDU has capacity.**
+
+**Example:**
+
+1. **PDU max capacity:** 20A at 240V = **4,800W max**
+2. **Current load:** 15.2A = 3,648W
+3. **Remaining capacity:** 4,800W - 3,648W = **1,152W available**
+4. **Server power draw:** 1,200W (check label on server PSU)
+5. **Will it fit?** NO — server needs 1,200W but only 1,152W available
+
+::: {.callout-warning}
+## The 80% Rule
+**Never load a PDU past 80% of its max capacity.**
+
+- PDU max: 20A × 240V = 4,800W
+- 80% limit: 4,800W × 0.80 = **3,840W**
+- Current load: 3,648W ✅ (still under 80%)
+- After adding 1,200W server: 3,648W + 1,200W = 4,848W ❌ (exceeds 80%)
+
+**Do NOT plug in the server. Use a different PDU.**
+:::
+
+---
+
+### Worked Calculation Example
+
+**Scenario:** You need to install a server. PDU shows 12.5A at 208V.
+
+**Step 1: Calculate current PDU load**
+```
+208V × 12.5A = 2,600W
+```
+
+**Step 2: Find PDU max capacity (check label on PDU)**
+```
+Label says: "20A Max"
+208V × 20A = 4,160W max
+```
+
+**Step 3: Calculate 80% safe limit**
+```
+4,160W × 0.80 = 3,328W safe limit
+```
+
+**Step 4: Check server power (label near PSU on server rear)**
+```
+Server label says: "Max 750W"
+```
+
+**Step 5: Calculate new total load**
+```
+2,600W + 750W = 3,350W
+```
+
+**Step 6: Decision**
+```
+3,350W > 3,328W (80% limit)
+❌ DO NOT plug server into this PDU
+✅ Find a PDU with lower load
+```
+
+---
+
+## Power Safety Rules
+
+Follow these rules **without exception**. Each rule includes the consequence of violating it.
+
+### Rule 1: Never Work on Live Power
+
+**Rule:** Never touch, remove, or install power equipment while it's energized.
+
+**How to follow:**
+- Power down the server FIRST
+- Unplug cables BEFORE moving anything
+- Verify PDU outlet is OFF before plugging in
+
+**Consequence of violation:** Electric shock, death, fire.
+
+---
+
+### Rule 2: Never Exceed 80% PDU Capacity
+
+**Rule:** Never load a PDU past 80% of its rated capacity.
+
+**How to follow:**
+- Check PDU display before connecting
+- Calculate total load (current + new server)
+- If over 80%, use different PDU
+
+**Consequence of violation:** Circuit breaker trips, entire rack loses power, **data loss**.
+
+---
+
+### Rule 3: Always Connect Both PSUs to Different PDUs
+
+**Rule:** Server PSU-A and PSU-B must connect to different PDUs.
+
+**How to follow:**
+- PSU-A (left) → PDU-A
+- PSU-B (right) → PDU-B
+- Never both to same PDU
+
+**Consequence of violation:** Single PDU failure kills entire server, **data loss**.
+
+---
+
+### Rule 4: Never Overload a Single Outlet
+
+**Rule:** Don't use splitters or plug multiple high-power devices into one outlet.
+
+**How to follow:**
+- One server PSU = one PDU outlet
+- No daisy-chaining power strips
+
+**Consequence of violation:** Outlet overheats, melts, **fire hazard**.
+
+---
+
+### Rule 5: Check Cable Temperature by Touch
+
+**Rule:** If a power cable feels hot to touch, something is wrong.
+
+**How to follow:**
+- Lightly touch cables during routine checks
+- Room temperature or slightly warm = OK
+- Hot = problem
+
+**Consequence of violation:** Cable failure, fire, power loss.
+
+::: {.callout-important}
+## Hot Cable = STOP
+If a power cable is hot:
+1. **Immediately** disconnect the cable
+2. **Do not use** that cable again
+3. **Report** to Team Lead with cable ID and location
+:::
+
+---
+
+### Rule 6: Label Everything
+
+**Rule:** Every power cable must have labels at BOTH ends showing source and destination.
+
+**How to follow:**
+- Use label maker
+- Format: `SERVER-ID → PDU-ID / Outlet#`
+- Example: `SRV-042 → PDU-A / 12`
+
+**Consequence of violation:** Wrong cable unplugged during maintenance, **unintended outage**.
+
+---
+
+## Quick Reference — Safe Numbers
+
+Use this table to quickly assess if values are safe, warning, or dangerous.
+
+| Measurement | Safe ✅ | Warning ⚠️ | Danger ❌ |
+|-------------|---------|-----------|----------|
+| **PDU Load** | < 80% of max | 80–90% | > 90% |
+| **Server Intake Temp** | 18–27°C (64–80°F) | 27–30°C (80–86°F) | > 30°C (86°F) |
+| **Cable Temperature** | Room temp | Warm | Hot — disconnect now |
+| **UPS Battery Charge** | > 90% | 50–90% | < 50% — investigate |
+| **Voltage Reading** | ±5% of rated | ±10% | > ±10% — report |
+
+: Safety Thresholds {.striped}
+
+### Voltage Tolerance Examples
+
+**Rated voltage: 240V**
+- Safe: 228V to 252V (±5%)
+- Warning: 216V to 264V (±10%)
+- Danger: < 216V or > 264V
+
+**Rated voltage: 208V**
+- Safe: 198V to 218V (±5%)
+- Warning: 187V to 229V (±10%)
+- Danger: < 187V or > 229V
+
+---
+
+## When to Use This Chapter
+
+Come back to this chapter when:
+
+- **Connecting power** → See [The Power Path](#the-power-path-wall-to-server)
+- **Reading PDU numbers** → See [Reading a PDU Display](#reading-a-pdu-display)
+- **Calculating capacity** → See [Worked Calculation Example](#worked-calculation-example)
+- **Safety question** → See [Power Safety Rules](#power-safety-rules)
+- **Don't know if a number is safe** → See [Quick Reference](#quick-reference-safe-numbers)
+
+::: {.callout-note}
+## Remember
+Electricity doesn't forgive mistakes. Follow the rules. If unsure, ask.
+:::

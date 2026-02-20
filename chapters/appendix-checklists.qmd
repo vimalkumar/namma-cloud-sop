@@ -4,6 +4,34 @@ This appendix contains printable checklists for all major tasks. Print these and
 
 ---
 
+## Checklist 0: Pre-Work Safety — Universal {.unnumbered}
+
+**Use this checklist BEFORE starting any task (installation, maintenance, troubleshooting).**
+
+**Worker Name:** ________________ **Date:** ________________ **Task:** ________________
+
+| # | Safety Item | Done? |
+|---|------------|-------|
+| 1 | **Anti-static wrist strap worn** and clipped to bare metal rack | ☐ |
+| 2 | **Jewelry removed** (rings, watches, bracelets) | ☐ |
+| 3 | **Proper lighting** — work area well-lit, no shadows | ☐ |
+| 4 | **Tools ready** — all required tools gathered and functional | ☐ |
+| 5 | **SOP available** — relevant SOP chapter open/printed | ☐ |
+| 6 | **Maker-Checker identified** — both roles assigned before starting | ☐ |
+| 7 | **Floor clear** — no trip hazards, tools organized | ☐ |
+| 8 | **Rack stable** — rack not rocking, stabilizers extended (if applicable) | ☐ |
+| 9 | **Emergency contact** — Team Lead phone number known | ☐ |
+| 10 | **Mental state** — not rushed, focused, ready to work carefully | ☐ |
+
+**Signature:** ________________ **Time Started:** ________________
+
+::: {.callout-important}
+## Complete This First
+This checklist must be completed BEFORE beginning any datacenter work. It takes 2 minutes and prevents costly mistakes.
+:::
+
+---
+
 ## Checklist 1: Server Transportation — Pre-Transport {.unnumbered}
 
 **Server ID:** ________________ **Date:** ________________ **Maker:** ________________ **Checker:** ________________
@@ -201,6 +229,57 @@ This appendix contains printable checklists for all major tasks. Print these and
 **Status:** ☐ Ready  ☐ Conditional  ☐ Not Ready
 
 **Maker Signature:** ________________ **Checker Signature:** ________________
+
+---
+
+## Checklist 9: Cable Identification {.unnumbered}
+
+**Use this checklist when you're unsure which cable type to use.**
+
+**Task:** ________________ **Source:** ________________ **Destination:** ________________
+
+### Step 1: Determine Cable Purpose
+
+| Cable Purpose | Type Needed |
+|--------------|-------------|
+| Server PSU → PDU (standard power) | C13/C14 (3-prong, standard size) |
+| High-power equipment → PDU | C19/C20 (3-prong, wider than C13) |
+| Server/switch management port → switch | RJ45 Cat6 (clear plastic clip, 8 wires) |
+| Server data port → switch (same rack) | DAC (stiff, metal modules fixed to cable) |
+| Server data port → switch (different rack) | AOC (thin, flexible fiber) or Cat6A |
+
+: Cable Purpose Reference {.striped}
+
+### Step 2: Physical Identification
+
+**Holding the cable, check these characteristics:**
+
+| Check | C13/C14 | C19/C20 | RJ45 | DAC | AOC |
+|-------|---------|---------|------|-----|-----|
+| **Connector type** | 3 rectangular prongs | 3 rectangular prongs (WIDER) | Clear plastic clip | Metal module (thumb-size) | Metal module (thumb-size) |
+| **Cable thickness** | Medium | Thick | Thin | Very thick, stiff | Very thin, flexible |
+| **Cable feel** | Flexible | Flexible | Flexible | **STIFF** — hard to bend | **FLEXIBLE** — easy to bend |
+| **Cable length** | Any | Any | Any | Short (1-7m only) | Any length |
+| **Will fit in...** | C13 inlet only | C19 inlet only (wider) | RJ45 port | SFP/QSFP cage | SFP/QSFP cage |
+
+: Cable Identification Reference {.striped}
+
+**For visual reference, see [Hardware Visual Guide — Cables & Connectors](#sec-hardware-visual-guide).**
+
+### Step 3: Verify Before Connecting
+
+- [ ] Cable type matches what the SOP specifies
+- [ ] Connector slides into port easily (no force needed)
+- [ ] Cable length is appropriate (not too tight, not excessive slack)
+- [ ] Cable color matches team standard (if applicable)
+- [ ] Both ends will be labeled with source and destination after connection
+
+::: {.callout-warning}
+## Never Force a Cable
+If the cable doesn't slide in easily, **STOP**. You probably have the wrong cable type. Forcing it will damage the port or connector. Try a different cable or ask Team Lead.
+:::
+
+**Cable Type Confirmed:** ________________ **Verified by:** ________________ **Date:** ________________
 
 ---
 

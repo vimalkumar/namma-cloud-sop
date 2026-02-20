@@ -4,6 +4,16 @@
 
 This SOP defines the standard procedure for connecting servers to power and network infrastructure after rack installation. Proper power and network connections are critical for server operation, reliability, and safety.
 
+::: {.callout-note}
+## Before You Start — Read These First
+You MUST read these chapters before attempting this SOP:
+
+1. **[Hardware Visual Guide](#sec-hardware-visual-guide)** — Learn to identify cables, connectors, and server components
+2. **[Power Basics](#sec-power-basics)** — Understand PDU capacity, the 80% rule, and safety rules
+
+Come back to those chapters whenever you need to identify a cable or check if a number is safe.
+:::
+
 ## Scope
 
 - Power cable routing and connection to PDUs
@@ -32,12 +42,61 @@ This SOP defines the standard procedure for connecting servers to power and netw
 
 - [ ] Identify the PDU(s) assigned to this server's rack position
 - [ ] Verify PDU has available outlets
-- [ ] Check PDU circuit capacity:
-  - Current load on the circuit: _______ W
-  - Server's maximum power draw: _______ W
-  - Remaining capacity after this server: _______ W
-  - **Is remaining capacity ≥ 20% of circuit total?** ☐
-- [ ] Verify power cable type matches PDU outlet (C13/C14, C19/C20, etc.)
+
+**Verify PDU Capacity (Pre-Calculated in Planning)**
+
+PDU = Power Distribution Unit (the rack's smart power strip)
+
+**Photo: PDU with Digital Display**
+
+![PDU showing digital display with power readings and outlets](../images/pdu-display.jpg){width=400px}
+
+*PDU with digital display. Notice: (1) Display showing amps/volts/watts, (2) Multiple outlets, (3) Mounts vertically in rack.*
+
+**Note:** Capacity planning is done BEFORE servers are assigned to racks. This step verifies the plan is still valid.
+
+1. **Check your rack allocation sheet** → It shows which PDU outlets are assigned to this server
+2. **Walk to the PDU** → Verify current load hasn't changed since planning
+3. **If PDU has digital display:**
+   - Read current amps (A) and volts (V)
+   - Example: `15.2A at 240V`
+4. **If PDU has analog meter (needle gauge):**
+   - Read the needle position (shows amps)
+5. **If PDU has no display:**
+   - Check the nameplate label for max amps (example: `20A Max`)
+   - Cannot see current load — must assume worst case from allocation plan
+6. **Verify allocation is still valid:**
+   - Compare current reading to what was planned
+   - If current load is significantly higher (>10%) than planned, **STOP and report to Team Lead**
+
+**Simple Check:**
+- [ ] PDU current load matches allocation plan (±10%)
+- [ ] Assigned outlets are available (not occupied by other equipment)
+- [ ] Server power requirement hasn't changed from plan
+
+::: {.callout-note collapse="true"}
+## Reference: How to Calculate PDU Capacity (For Planning Phase)
+
+This calculation is normally done during rack planning, not during installation. Use this reference if you need to verify or troubleshoot.
+
+**Example Calculation:**
+
+**Scenario:** PDU shows 12.5A at 208V. Server needs 750W.
+
+**Step-by-step:**
+1. Current load: `208V × 12.5A = 2,600W`
+2. PDU max: `208V × 20A = 4,160W`
+3. 80% safe limit: `4,160W × 0.80 = 3,328W`
+4. New total: `2,600W + 750W = 3,350W`
+5. Decision: `3,350W > 3,328W?` → **YES, exceeds limit** ❌
+6. **Action:** Find different PDU with lower load
+
+**See [Power Basics](#sec-power-basics) chapter for detailed explanation of the 80% rule.**
+:::
+
+- [ ] Verify power cable type matches PDU outlet
+  - C13/C14 (standard) → See [Hardware Visual Guide: C13 Cable](#cables-connectors-know-what-youre-holding)
+  - C19/C20 (high-power) → See [Hardware Visual Guide: C19 Cable](#cables-connectors-know-what-youre-holding)
 - [ ] Verify power cable length is adequate (no tension, no excessive slack)
 
 ### Step 2: Network Infrastructure Verification
@@ -45,25 +104,41 @@ This SOP defines the standard procedure for connecting servers to power and netw
 - [ ] Identify the network switch port(s) assigned to this server
 - [ ] Verify switch port is active and configured (coordinate with network team)
 - [ ] Identify the management network port (iLO/BMC) assignment
-- [ ] Verify cable types:
-  - Production network: Cat6A or higher
-  - Management network: Cat6 or higher
-  - High-speed interconnect (if needed): Fiber / DAC cable
+  - iLO/BMC = remote control port, labeled on server rear
+
+**Verify cable types — Know what you're holding:**
+
+- [ ] **Production network:** Cat6A or higher
+  - Cat6/Cat6A = RJ45 connector (clear plastic clip, clicks in)
+  - See [Hardware Visual Guide: RJ45 Cable](#cables-connectors-know-what-youre-holding)
+- [ ] **Management network:** Cat6 or higher (RJ45)
 - [ ] Verify cable lengths are adequate
+
+::: {.callout-important}
+## Cable Separation Rule
+**Keep power and data cables ≥ 30cm (12 inches) apart.**
+
+Why? Power cables create electromagnetic interference (EMI) that corrupts network data.
+:::
 
 ### Step 3: Prepare Labels
 
-**Before** connecting any cable, prepare labels for **both ends** of every cable:
+**Before** connecting any cable, prepare labels for **both ends** of every cable.
 
-| Cable Type | Label Format | Example |
-|-----------|-------------|---------|
-| Power Cable A | `PWR-A-[ServerID]-[PDU-Port]` | `PWR-A-SRV01-PDUA-12` |
-| Power Cable B | `PWR-B-[ServerID]-[PDU-Port]` | `PWR-B-SRV01-PDUB-12` |
-| Production Network | `NET-[ServerID]-[Port]-[Switch-Port]` | `NET-SRV01-ETH0-SW1-P24` |
-| Management Network | `MGMT-[ServerID]-[Switch-Port]` | `MGMT-SRV01-SW2-P48` |
-| Storage Network | `STOR-[ServerID]-[Port]-[Switch-Port]` | `STOR-SRV01-ETH2-SW3-P12` |
+**Label Format:**
+- [ ] Follow the label format from your **inventory sheet** (the one shared with the DC)
+- [ ] Use label maker to print labels (not handwritten)
+- [ ] Prepare labels for:
+  - Power Cable A (PSU 1 to PDU A)
+  - Power Cable B (PSU 2 to PDU B)
+  - Management Network (iLO/BMC to switch)
+  - Production Network cables (NIC ports to switch)
 
-: Cable Label Format Standards {.striped}
+**Photo: Server Cable Connections with Labels**
+
+![Server rear showing organized cable connections with labels](../images/cable-mgmt-2.jpg){width=600px}
+
+*Server cable connections. Notice: (1) **Cables labeled at both ends**, (2) Power and data separated, (3) Proper slack for maintenance, (4) Organized routing.*
 
 ::: {.callout-tip}
 ## Labeling Best Practice
@@ -78,15 +153,30 @@ Use **printed labels** (label maker), not handwritten ones. Labels should be:
 
 ### Step 1: Route Power Cables
 
+**Photo: Good Cable Management Example**
+
+![Organized server cables with proper routing and separation](../images/cable-mgmt-1.jpg){width=600px}
+
+*Good cable management. Notice: (1) Cables bundled neatly, (2) Routed along designated paths, (3) Power and data separated, (4) No blocking airflow.*
+
 1. Route power cables through the **designated cable management channels**
-2. **Separate power cables from network cables** — use different sides of the rack or different cable trays
-3. Ensure no sharp bends (minimum bend radius = 4x cable diameter)
+2. **Separate power cables from network cables by ≥30cm (12 inches)**
+   - Use different sides of the rack or different cable trays
+   - Prevents electromagnetic interference (EMI)
+3. Ensure no sharp bends (minimum bend radius = 4× cable diameter)
 4. Ensure cables are not pinched by rack doors or other equipment
 5. Leave adequate slack for server maintenance (slide-out capability)
+   - Cable should have slight curve, not tight or dragging on floor
 
 ### Step 2: Connect Power
 
 For **redundant power** (recommended for all production servers):
+
+**Photo: Server Rear - PSU Locations**
+
+![Server rear view showing two PSU slots, network ports, and fan vents](../images/server-rear.jpg){width=600px}
+
+*Server rear view. Notice: (1) **PSU #1 on LEFT**, (2) **PSU #2 on RIGHT**, (3) Network ports in center, (4) Fan vents.*
 
 ```{mermaid}
 %%| label: fig-power-redundancy
@@ -122,6 +212,8 @@ Both power supplies MUST be connected to **different** PDUs fed by **different**
 
 ### Step 3: Power Connection Verification
 
+PSU = Power Supply Unit (the server's power converter, like a laptop charger)
+
 | Check | Expected | Actual | Status |
 |-------|----------|--------|--------|
 | PSU 1 LED | Amber/Green standby | _______ | ☐ |
@@ -134,9 +226,50 @@ Both power supplies MUST be connected to **different** PDUs fed by **different**
 
 : Power Connection Verification {.striped}
 
+::: {.callout-warning}
+## ❌ Troubleshooting: PSU LED Doesn't Light Up
+
+**Problem:** PSU LED stays off (no amber/green light)
+
+**Check these in order:**
+
+1. **Cable fully seated?** Push firmly until it clicks
+2. **PDU outlet turned on?** Check PDU display or button
+3. **Correct cable type?** C13 fits C14, C19 fits C20 (see [Hardware Visual Guide](#cables-connectors-know-what-youre-holding))
+4. **Cable damaged?** Check for bent pins, frayed wire
+5. **Try different PDU outlet** to test if outlet is dead
+
+**If still no light:** Report to Team Lead with:
+- Server ID
+- PDU ID and outlet number
+- Cable ID
+- Photo of connection
+:::
+
+::: {.callout-warning}
+## ❌ Troubleshooting: PDU Reading Didn't Increase
+
+**Problem:** Connected cable but PDU display shows same watts as before
+
+**This means:** Power not flowing to server
+
+**Check:**
+1. PSU LED on? (If off, see troubleshooting above)
+2. Cable fully clicked into PDU outlet?
+3. PDU outlet switch turned on? (some PDUs have per-outlet switches)
+
+**If PSU LED is on but PDU reading unchanged:** The server is in standby mode (normal). PDU will show increase when server powers on.
+:::
+
 ## Network Connection Procedure
 
 ### Step 1: Route Network Cables
+
+**Photo: Rack-Mounted Network Equipment**
+
+![Rack-mounted switches and patch panels in datacenter](../images/rack-switches.jpg){width=600px}
+
+*Production rack-mounted switches and patch panels. Notice: (1) Multiple network devices stacked in rack, (2) Patch panels with organized connections, (3) Link LEDs visible on switch ports, (4) Professional cable management.*
 
 1. Route network cables through **designated cable management** (separate from power)
 2. Use **horizontal cable managers** between every 1-2U of servers
@@ -151,24 +284,37 @@ Both power supplies MUST be connected to **different** PDUs fed by **different**
 
 For each server, the typical connections are:
 
+**Network types explained:**
+- **Management network** = For admins to remotely control server (iLO/BMC)
+- **Production network** = For server to talk to users/applications (main traffic)
+
 | Port | Purpose | Connected To | Cable Type |
 |------|---------|-------------|------------|
-| iLO/BMC Port | Management & remote access | Management switch | Cat6 |
-| NIC Port 1 (ETH0) | Production network | Production switch | Cat6A |
-| NIC Port 2 (ETH1) | Production network (bonded) | Production switch | Cat6A |
-| NIC Port 3 (ETH2) | Storage network (if applicable) | Storage switch | Cat6A / Fiber |
+| iLO/BMC Port | Management & remote access | Management switch | Cat6 (RJ45) |
+| NIC Port 1 (ETH0) | Production network | Production switch | Cat6A (RJ45) |
+| NIC Port 2 (ETH1) | Production network (bonded) | Production switch | Cat6A (RJ45) |
 
 : Standard Network Port Assignments {.striped}
+
+**What is "bonded"?** Two network cables act as one for speed + redundancy. If one cable fails, the other keeps working.
 
 Connection steps:
 
 1. Connect the **management port (iLO/BMC) first** — this enables remote access
-2. Verify the link LED lights up on both ends (server NIC and switch)
-3. Connect production network ports
-4. Verify link LEDs
-5. Connect storage network ports (if applicable)
-6. Verify link LEDs
-7. Ensure all cable labels are in place
+   - iLO/BMC port is usually labeled on server rear
+   - Often separate from main NIC ports
+2. **Verify the link LED lights up on BOTH ends:**
+   - **Link LED location:** Tiny light directly next to the port
+   - **Check server NIC port:** Look for small green LED next to where cable plugs in
+   - **Check switch port:** Look for LED on switch next to cable
+   - **Colors:**
+     - Solid green = connected, link established ✅
+     - Blinking green = data flowing (normal) ✅
+     - Amber/orange = error or wrong speed ⚠️
+     - Off = no connection ❌
+3. Connect production network ports (NIC Port 1, Port 2)
+4. Verify link LEDs on both ends (server + switch)
+5. Ensure all cable labels are in place at both ends
 
 ### Step 3: Network Connection Verification
 
@@ -183,6 +329,52 @@ Connection steps:
 | No cables crossing power path | Confirmed | _______ | ☐ |
 
 : Network Connection Verification {.striped}
+
+::: {.callout-warning}
+## ❌ Troubleshooting: Link LED Doesn't Light Up
+
+**Problem:** No green LED on server NIC port or switch port
+
+**Check these in order:**
+
+1. **Cable fully clicked in?**
+   - Push RJ45 connector until you hear/feel a CLICK
+   - Check both ends (server + switch)
+2. **Switch port enabled?**
+   - Ask network team to verify switch port is turned on
+   - Some ports are disabled by default
+3. **Correct cable type?**
+   - Management port needs Cat6 (RJ45)
+   - Production network needs Cat6A (RJ45)
+   - See [Hardware Visual Guide: RJ45 Cable](#cables-connectors-know-what-youre-holding)
+4. **Cable working?**
+   - Try a different cable (test with known-good cable)
+   - Check for bent pins inside RJ45 connector
+5. **Server port working?**
+   - Try plugging cable into different NIC port on server
+   - Check if LED lights up on that port
+
+**If still no link:** Report to Team Lead with:
+- Server ID and port number
+- Switch ID and port number
+- Cable ID
+- Photo of both connections
+:::
+
+::: {.callout-warning}
+## ❌ Troubleshooting: Link LED is Amber/Orange
+
+**Problem:** LED lights up but shows amber/orange instead of green
+
+**This usually means:** Speed/duplex mismatch or cable fault
+
+**Check:**
+1. **Cable type correct?** Cat6A required for high-speed ports
+2. **Cable length OK?** Cat6A max = 100 meters
+3. **Cable damaged?** Check for kinks, cuts, or pinches
+
+**Action:** Report to network team — they need to check switch configuration
+:::
 
 ## Initial Power-On Procedure
 
@@ -209,15 +401,78 @@ After all power and network connections are verified:
    - Note the detected hardware (RAM, CPUs, drives)
    - Verify detected hardware matches the server spec
 
-### Step 3: Verify Management Access
+### Step 3: Verify Management Access — **TEAM LEAD ONLY**
 
-1. Check if the iLO/BMC port received an IP address (DHCP) or configure static IP
-2. Access the iLO/BMC web interface from a management workstation
-3. Verify:
-   - [ ] iLO/BMC is accessible
-   - [ ] Server health status shows "OK"
-   - [ ] All components detected (CPUs, RAM, drives, NICs)
-   - [ ] Firmware version noted
+::: {.callout-important}
+## Team Lead / Supervised Task Only
+This step requires network and system administration knowledge. Team members should perform this task only under supervision until marked "Competent" on the skill matrix.
+:::
+
+**What is iLO/BMC?** Remote control for the server. Lets you see server health and control it from a web browser, even when the server is off.
+
+**Step-by-Step: Access iLO/BMC Web Interface**
+
+1. **Find the iLO IP address:**
+   - **Option A:** Check DHCP server for newly assigned IP
+   - **Option B:** Look at server front panel (some have pull-out tag with IP)
+   - **Option C:** Connect monitor and keyboard to server, check BIOS iLO settings
+   - Example IP: `10.0.1.50`
+
+2. **Open web browser** on a management workstation
+   - Must be on the management network (same network as iLO)
+
+3. **Type the iLO IP address in browser:**
+   - Format: `https://[iLO-IP-address]`
+   - Example: `https://10.0.1.50`
+   - Press Enter
+
+4. **Accept security warning** (self-signed certificate)
+   - Browser will warn "Not secure" — this is normal
+   - Click "Advanced" → "Proceed anyway"
+
+5. **Login screen appears:**
+   - Username: Check server documentation (often `Administrator`)
+   - Password: Check documentation or label on server
+   - Click "Log In"
+
+6. **Dashboard loads** showing server health
+
+**Verify:**
+- [ ] iLO/BMC login successful
+- [ ] Dashboard shows server health status = "OK" (green)
+- [ ] All components detected:
+  - CPUs: _____ detected (should match server spec)
+  - RAM: _____ GB detected (should match server spec)
+  - Drives: _____ detected (should match drive count)
+  - NICs: _____ detected
+- [ ] Firmware version recorded: _______
+
+::: {.callout-warning}
+## ❌ Troubleshooting: Can't Access iLO/BMC
+
+**Problem:** Browser shows "Can't reach this page" or times out
+
+**Check:**
+1. **iLO cable connected?** Check management port link LED (green?)
+2. **IP address correct?** Verify you typed it correctly
+3. **Management workstation on correct network?** Must be on management VLAN
+4. **Ping test:** Open command prompt, type `ping 10.0.1.50` (use actual IP)
+   - If ping works → iLO is reachable, might be web interface disabled
+   - If ping fails → network issue, check cable/switch
+5. **iLO port enabled?** Some servers have iLO disabled by default
+
+**If still can't access:** Report to Team Lead + network team
+:::
+
+::: {.callout-tip}
+## iLO/BMC Dashboard — What You'll See
+- **System Health:** Green = OK, Amber = Warning, Red = Critical
+- **Power Status:** On/Off/Standby
+- **Temperature:** CPU and system temps
+- **Fans:** Speed and status
+- **Power Consumption:** Current watts
+- **Remote Console:** Button to see server screen remotely
+:::
 
 ### Step 4: Power Redundancy Test
 
@@ -251,33 +506,6 @@ This test verifies that the server survives a single power feed failure.
 | Power redundancy test passed | _______ | _______ | _______ |
 | All photos taken | _______ | _______ | _______ |
 
-## Cable Management Standards
-
-```{mermaid}
-%%| label: fig-cable-mgmt
-%%| fig-cap: "Cable Management Layout (Rear of Rack)"
-%%{init: {'theme': 'base', 'themeVariables': { 'clusterBkg': '#ffffff', 'clusterBorder': '#dee2e6' }}}%%
-flowchart TB
-    subgraph RearView["Rear View of Rack"]
-        direction TB
-        L["← LEFT SIDE →\nManagement Cables\n(Blue)"]
-        C["← CENTER →\nPower Cables\n(Black/Red)"]
-        R["← RIGHT SIDE →\nProduction Network\n(Yellow/Green)"]
-    end
-```
-
-### Cable Color Standards
-
-| Cable Type | Color | Example |
-|-----------|-------|---------|
-| Power | Black or Red | C13/C14 power cables |
-| Management Network (iLO) | Blue | Cat6 blue patch cable |
-| Production Network | Yellow | Cat6A yellow patch cable |
-| Storage Network | Green | Cat6A / Fiber green |
-| Cross-connect / Trunk | Orange | Fiber / DAC |
-
-: Cable Color Standards {.striped}
-
 ## Record Keeping
 
 For each server's power and network connection, record:
@@ -285,8 +513,8 @@ For each server's power and network connection, record:
 - Connection ticket number
 - Server serial number and rack position
 - PDU ports used (A and B)
-- Switch ports used (all)
-- IP addresses assigned (iLO, production, storage)
+- Switch ports used (management, production)
+- IP addresses assigned (iLO, production)
 - Power-on test results
 - Redundancy test results
 - Maker-Checker sign-off form

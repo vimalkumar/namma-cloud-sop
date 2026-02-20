@@ -4,6 +4,18 @@
 
 This SOP defines the standard procedure for physically installing servers into data center racks. It covers rail kit installation, server mounting, alignment verification, and post-installation checks.
 
+::: {.callout-note}
+## Before You Start — Read This First
+**MUST READ:** [Hardware Visual Guide](#sec-hardware-visual-guide)
+
+You need to understand:
+- **Rack structure** — What racks look like, how they're organized
+- **U-numbering** — How to count U positions (U1 is at the BOTTOM)
+- **Server anatomy** — Front vs rear, what components are where
+
+Come back to the Hardware Visual Guide whenever you need to identify a component.
+:::
+
 ::: {.callout-warning}
 ## Lesson Learned
 During initial rack fitting, we encountered alignment issues with certain servers, and assembled (non-branded) servers did not fit well into standard racks. This SOP ensures every installation is precise and verified.
@@ -33,32 +45,73 @@ During initial rack fitting, we encountered alignment issues with certain server
 
 ### Step 1: Rack Preparation
 
+**Note:** Racks come from datacenters pre-installed and level. Verify these conditions:
+
 - [ ] Rack is securely bolted to the floor
 - [ ] Stabilizer feet are extended (front and rear)
-- [ ] Rack is leveled (use a spirit level — check front-to-back and left-to-right)
 - [ ] PDUs (Power Distribution Units) are installed and tested
 - [ ] Cable management arms/channels are in place
-- [ ] Rack unit numbers are clearly labeled (1U at bottom, 42U at top)
 - [ ] Adequate clearance: front (≥ 1 meter), rear (≥ 0.8 meter)
 - [ ] Temperature in the cold aisle is within spec (18-27°C)
+
+::: {.callout-important}
+## CRITICAL: Understanding U-Numbering
+
+**U1 is at the BOTTOM. U42 is at the TOP.**
+
+Think of a building:
+- **U1 = Ground floor** (bottom, where you stand)
+- **U42 = 42nd floor** (top)
+
+**Always count UP from the floor, never down from the ceiling.**
+
+Common mistake: Counting from top down. This is WRONG.
+
+How to verify:
+1. Stand in front of rack
+2. Look at the rack post (vertical metal rail)
+3. Find the LOWEST marking = U1
+4. Count upward: U1, U2, U3... U42
+
+Example: "Install server at U15" means:
+- Start at bottom (U1)
+- Count UP 15 positions
+- That's where the server goes
+:::
+
+- [ ] Rack U-numbers are visible and readable (U1 at bottom, U42 at top)
 
 ### Step 2: Space Planning
 
 Before installing any server, plan the rack layout:
 
-```{mermaid}
-%%| label: fig-rack-layout
-%%| fig-cap: "Recommended Rack Layout Strategy"
-%%{init: {'theme': 'base', 'themeVariables': { 'clusterBkg': '#ffffff', 'clusterBorder': '#dee2e6' }}}%%
-flowchart TB
-    subgraph Rack ["42U Rack"]
-        direction TB
-        A["40U-42U: Network Switches & Patch Panels"]
-        B["35U-39U: Cable Management / Blank Panels"]
-        C["7U-34U: Servers (Heaviest at Bottom)"]
-        D["3U-6U: UPS / Power Equipment"]
-        E["1U-2U: Heavy / Dense Servers"]
-    end
+**Recommended Rack Layout (42U Rack - Vertical View):**
+
+```
+        ║                                              ║
+        ║  [ U42 ] ──────────────────────────────────  ║ ← TOP
+        ║  [ U41 ]  Network Switches                   ║
+        ║  [ U40 ]  & Patch Panels                     ║
+        ║  [ U39 ] ──────────────────────────────────  ║
+        ║  [ U38 ]  Cable Management                   ║
+        ║  [ U37 ]  & Blank Panels                     ║
+        ║  [ U36 ]                                     ║
+        ║  [ U35 ] ──────────────────────────────────  ║
+        ║  [ U34 ]                                     ║
+        ║  [ ... ]  Servers                            ║
+        ║  [ U10 ]  (Heaviest at Bottom)               ║
+        ║  [ U09 ]                                     ║
+        ║  [ U08 ]                                     ║
+        ║  [ U07 ] ──────────────────────────────────  ║
+        ║  [ U06 ]  UPS / Power                        ║
+        ║  [ U05 ]  Equipment                          ║
+        ║  [ U04 ]                                     ║
+        ║  [ U03 ] ──────────────────────────────────  ║
+        ║  [ U02 ]  Heavy / Dense Servers              ║
+        ║  [ U01 ] ──────────────────────────────────  ║ ← BOTTOM (Floor)
+        ╚══════════════════════════════════════════════╝
+
+        Count UP from floor: U1, U2, U3... U42
 ```
 
 **Key Rules for Space Planning:**
@@ -79,15 +132,41 @@ flowchart TB
 
 ### Step 3: Server Compatibility Verification
 
-**Before** attempting to install any server:
+**Before** attempting to install any server, measure it to ensure it fits the rack.
+
+::: {.callout-tip}
+## How to Measure a Server
+
+**Width (Ear-to-Ear):**
+- Measure across the **front** of the server
+- From left mounting ear to right mounting ear
+- Mounting ears = metal brackets on sides with screw holes
+- Standard rack width = **482mm (19 inches)**
+
+**Depth (Front-to-Rear):**
+- Measure from front face to the rear-most point
+- Include anything that sticks out (ports, handles, PSU)
+- Must be ≤ rack internal depth (usually ~1000mm)
+
+**Height (U Count):**
+- Look at the front bezel (removable cover)
+- Count how many rack U positions it covers
+- **1U = 1.75 inches (44.45mm) tall**
+- 2U server = 3.5 inches = covers 2 U markings
+
+**Weight:**
+- Check server spec sheet or label on server
+- Typical: 1U server = 10-20kg, 2U server = 20-30kg
+- Rail kit or shelf must support this weight
+:::
 
 #### HP DL385
 
 | Parameter | Expected Value | Actual Value | Match? |
 |-----------|---------------|--------------|--------|
 | Form factor | 2U | _______ | ☐ |
-| Width | 482 mm (19") | _______ | ☐ |
-| Depth | ~734 mm | _______ | ☐ |
+| Width (ear-to-ear) | 482 mm (19") | _______ | ☐ |
+| Depth (front-to-rear) | ~734 mm | _______ | ☐ |
 | Weight | ~22-30 kg | _______ | ☐ |
 | Rail kit model | HP DL385 Gen10+ kit | _______ | ☐ |
 
@@ -122,67 +201,355 @@ Assembled servers may not conform to standard 19" rack dimensions. **Measure eve
 
 ### Step 1: Install Rail Kit / Shelf
 
+**Photo: Servers Properly Installed in Rack**
+
+![Multiple servers mounted in datacenter rack at different U positions](../images/servers-in-rack-1.jpg){width=600px}
+
+*Production servers mounted in rack. Notice: (1) Multiple servers at different U heights, (2) Each server properly aligned and secured, (3) Front faces flush with rack posts, (4) Clear U-position spacing.*
+
+::: {.callout-note}
+## What Are Cage Nuts?
+
+**Cage nut** = Small square metal clip that provides threaded hole for screws
+
+**Physical description:**
+- Size: About 1.5cm x 1.5cm (thumbnail-size)
+- Material: Spring steel (silver metal)
+- Shape: Square outer cage with threaded hole in center
+- Has spring clips on sides that grip the rack hole
+
+**Photo: Cage Nut**
+
+![Cage nut showing square metal cage with spring clips and threaded center](../images/cage-nuts.jpg){width=400px}
+
+*Cage nut hardware. Notice: (1) Square metal cage structure, (2) Spring clips on sides for gripping rack holes, (3) Threaded hole in center for screws, (4) Small thumbnail-sized component.*
+
+---
+
+**When needed:**
+- Some rack posts have square holes (no threads)
+- Cage nut slides into square hole
+- Screw goes through rail bracket → into cage nut
+
+**How to install:**
+1. Use **cage nut tool** (small hook tool from tool cart)
+2. Hook the cage nut with the tool
+3. Align cage nut with square hole on rack post
+4. Push cage nut into hole until it clicks/seats
+5. Cage nut now provides threaded hole for screw
+
+**Note:** Some racks have pre-threaded round holes (no cage nuts needed). Ask Team Lead which type your rack uses.
+
+::: {.callout-important}
+## First-Time Installation
+**Before installing cage nuts the first time, ask your Team Lead for hands-on demonstration.**
+
+Cage nuts are small components that are easier to learn by seeing and doing rather than from photos. Your Team Lead will show you:
+- What cage nuts look like
+- How to hold the cage nut tool
+- How to align and insert cage nuts
+- How to verify they're properly seated
+:::
+:::
+
+**Photo: Rack Rail System**
+
+![Rack rail system showing mounting components](../images/rack-rail-system.jpg){width=600px}
+
+*Rack rail system. Notice: (1) Rail components and brackets, (2) Mounting hardware, (3) How rails attach to rack posts for server installation.*
+
 #### For Rail Kit Installation:
 
-1. Identify the correct rail kit for the server model
-2. Read the rail kit documentation (or watch manufacturer video)
-3. Determine front and rear mounting positions based on assigned U number
-4. Install the **left rail** first:
-   - Align rear hook with the rear rack post hole
-   - Extend rail to front post
-   - Snap or screw into place
-   - Verify it's level
-5. Install the **right rail** — mirror the process
-6. **Verification:**
-   - [ ] Both rails are at the same U position
-   - [ ] Rails are level (spirit level check)
-   - [ ] Rails are firmly secured (try to wiggle — should not move)
-   - [ ] Rail extension mechanism works smoothly
+**Tools needed:** Screwdriver (Phillips), cage nut tool (if needed), measuring tape
+
+**Left Rail - Detailed Installation:**
+
+1. **Identify the rail kit** for your server model
+   - HP DL385 has specific rail kit
+   - Rails are marked "L" (left) and "R" (right)
+
+2. **Find your U position** on the rack
+   - Example: Installing at U15
+   - Stand at front of rack
+   - Count UP from bottom: U1, U2... U15
+   - Mark U15 on a piece of tape (temporary reference)
+
+3. **Start at the REAR of the rack:**
+   - Hold left rail with rear end (end with brackets/hooks)
+   - Align rear bracket with rear rack post at U15
+   - Look for square holes or threaded holes at U15
+
+4. **If rack has square holes (cage nuts needed):**
+   - Install cage nut first (see above)
+   - Insert screw through rail bracket hole
+   - Screw goes into cage nut
+   - Tighten loosely (don't fully tighten yet)
+
+5. **If rack has threaded round holes:**
+   - Insert screw through rail bracket hole directly into rack hole
+   - Tighten loosely
+
+6. **Extend rail toward front:**
+   - Slide the rail forward (it telescopes/extends)
+   - Pull until it reaches the front rack post
+
+7. **Attach front bracket:**
+   - Align front bracket with front rack post at **same U15**
+   - **Critical:** Front and rear MUST be at same U number
+   - Install screws at front (loosely)
+
+8. **Check alignment:**
+   - Look along the rail from side
+   - Rail should be straight front-to-rear
+   - Both ends at same U height
+
+9. **Tighten all screws:**
+   - Tighten rear screws fully
+   - Tighten front screws fully
+
+10. **Test the rail:**
+    - Try to wiggle it — should be solid, no movement
+    - Slide mechanism should extend smoothly
+
+**Right Rail Installation:**
+
+11. **Repeat steps 2-10 for the right rail**
+    - **CRITICAL:** Right rail MUST be at same U15 as left rail
+    - If rails are at different heights, server will tilt and won't slide in
+
+**Verification:**
+- [ ] Both rails are at the **exact same U position** (count from bottom for each)
+- [ ] Rails are firmly secured (wiggle test — no movement)
+- [ ] Rail extension mechanism works smoothly (slide in/out test)
+- [ ] Looking from front, both rails appear at same height
+
+::: {.callout-warning}
+## ❌ Troubleshooting: Rail Installation
+
+**Problem:** Rail won't align with rack post holes
+
+**Check:**
+1. Are you at the correct U position? (Count from bottom)
+2. Is this the right rail kit for this rack type?
+3. Are you using the correct holes on the rail bracket? (some have multiple)
+
+**Problem:** Rails at different heights
+
+**Check:**
+1. Count U positions again from bottom for BOTH rails
+2. Loosen screws, realign, retighten
+3. Ask Team Lead to verify before proceeding
+
+**Problem:** Screw won't go into hole
+
+**Check:**
+1. Square hole? → Need cage nut first
+2. Threaded hole? → Use correct screw size
+3. Cross-threaded? → Back out, restart carefully
+
+**If stuck:** Don't force. Ask Team Lead.
+:::
 
 #### For Shelf Installation (assembled servers without rail kits):
 
 1. Select a shelf rated for the server's weight
-2. Install shelf at the assigned U position
-3. **Verification:**
-   - [ ] Shelf is level
+   - Check shelf label for max weight (example: "Max 40kg")
+   - Server weight must be ≤ shelf rating
+2. Install shelf at the assigned U position (same U-counting method as rails)
+3. Attach shelf to front rack posts with screws (typically 2 screws per side = 4 total)
+4. **Verification:**
    - [ ] Shelf is secured with all required screws (typically 4)
-   - [ ] Weight rating is adequate (check label on shelf)
+   - [ ] Weight rating is adequate (server weight ≤ shelf max)
+   - [ ] Shelf is firmly attached (wiggle test — should not move)
 
 ### Step 2: Mount the Server
 
-1. **Two people required** — one on each side of the rack
-2. Position the server at rack height, aligned with the rails/shelf
-3. Gently slide the server in:
-   - For rail-mounted: align server rails with rack rails, slide slowly
-   - For shelf-mounted: place server centered on shelf, ensure it's not overhanging
-4. Push server fully into the rack until it clicks or reaches the rear stop
-5. Secure the server:
-   - For rail-mounted: Install front thumbscrews or latch
-   - For shelf-mounted: Use Velcro straps or shelf retainers to prevent sliding
+**Safety:** **Two people required** — one on each side of the rack. Servers are heavy (20-30kg). Never lift alone.
 
-::: {.callout-tip}
-## Pro Tip
-If a server feels stuck while sliding in, **do not force it**. Pull back, check alignment, check for obstructions (cables, misaligned rails), and try again.
+#### For Rail-Mounted Servers:
+
+1. **Lift server to rack height:**
+   - One person on left, one on right
+   - Lift together using proper technique (bend knees, straight back)
+   - Position server in front of rails at correct height
+
+2. **Align server with rails:**
+   - Look at sides of server — you'll see metal rail guides or brackets
+   - These must align with the rack rails you installed
+   - Server rail guides slide onto/into rack rails
+
+3. **Start sliding the server in:**
+   - Push gently and evenly from both sides
+   - Server should slide smoothly on rails
+   - If it feels stuck, **STOP** (see troubleshooting below)
+
+4. **Push server all the way in:**
+   - Keep pushing until server reaches the rear stop
+   - You may hear/feel a click when fully seated
+   - Front face of server should be flush with rack posts
+
+5. **Secure the server:**
+   - Install thumbscrews or latches at front
+   - Typically 2 screws (one on each side)
+   - Hand-tighten (no power tools needed)
+
+#### For Shelf-Mounted Servers:
+
+1. **Lift server onto shelf:**
+   - Two people required
+   - Center the server on the shelf
+   - Ensure server is not overhanging front or rear
+
+2. **Secure the server:**
+   - Use Velcro straps or shelf retainers to prevent sliding
+   - Some shelves have built-in clips or brackets
+
+::: {.callout-warning}
+## ❌ Troubleshooting: Server Won't Slide In
+
+**Problem:** Server feels stuck, won't slide smoothly on rails
+
+**Check these in order:**
+
+1. **Rails at same height?**
+   - Look at left and right rails from front
+   - Do they appear at same level?
+   - If uneven → Server will bind/tilt → Won't slide
+   - Fix: Remove server, check rail U positions, realign
+
+2. **Server rail guides aligned?**
+   - Server has metal guides on sides
+   - These must line up with rack rail channels
+   - Try lifting server slightly and repositioning
+
+3. **Obstructions?**
+   - Check for cables in the way
+   - Check for equipment behind server position
+   - Check rails are fully extended
+
+4. **Wrong rail kit?**
+   - Some servers need specific rail kits
+   - Generic rails may not fit all servers
+   - Ask Team Lead to verify rail kit model
+
+**NEVER force a server.** If it doesn't slide smoothly, something is wrong. Pull back and troubleshoot.
+:::
+
+::: {.callout-warning}
+## ❌ Troubleshooting: Server Tilts When Sliding
+
+**Problem:** Server angles down or to one side while sliding
+
+**This means:** Rails are NOT at the same height
+
+**Fix:**
+1. Remove server from rack (pull back out)
+2. Check left rail U position (count from bottom)
+3. Check right rail U position (count from bottom)
+4. If different → Loosen one rail, move to match other, retighten
+5. Verify both rails at exact same U number
+6. Try sliding server again
 :::
 
 ### Step 3: Alignment Verification
 
-After mounting, verify:
+After mounting, verify these visual checks:
+
+**How to Check if Server is Centered:**
+1. Stand in front of rack
+2. Look at gap between server and left rack post
+3. Look at gap between server and right rack post
+4. Gaps should be roughly equal (use finger-width method)
+   - Example: 2 fingers wide on both sides = centered ✅
+   - Example: 1 finger left, 3 fingers right = not centered ❌
+5. Small differences (±5mm) are fine
+6. If very uneven → Loosen front screws, shift server, retighten
+
+**Photo: Server Installed in Rack - Close-Up View**
+
+![Server properly seated in rack showing alignment and accessibility](../images/servers-in-rack-2.jpg){width=600px}
+
+*Server properly installed. Notice: (1) Front face flush with rack, (2) Equal spacing on both sides (centered), (3) Front panel accessible, (4) Proper alignment with neighboring equipment.*
+
+---
+
+**Verification Checklist:**
 
 | Check | How to Verify | Status |
 |-------|--------------|--------|
-| Server is level | Spirit level on top of server | ☐ |
-| Server is centered | Equal gap left and right | ☐ |
-| Server is fully seated | Front face is flush with rack posts | ☐ |
-| Front panel accessible | All buttons and indicators visible | ☐ |
-| Drive bays accessible | Drives can be inserted/removed | ☐ |
+| Server is centered | Equal gap left and right (finger-width test) | ☐ |
+| Server is fully seated | Front face is flush with rack posts (no gap) | ☐ |
+| Front panel accessible | All buttons and indicators visible and reachable | ☐ |
+| Drive bays accessible | Can insert/remove drives without obstruction | ☐ |
 | Rear ports accessible | All rear ports reachable from behind rack | ☐ |
-| No contact with neighbors | Gap exists above and below | ☐ |
-| Airflow path clear | Front intake and rear exhaust unobstructed | ☐ |
+| No contact with neighbors | Gap exists above and below (at least 1-2cm) | ☐ |
+| Airflow path clear | Front intake and rear exhaust unobstructed (no cables blocking) | ☐ |
+| Thumbscrews installed | Front mounting screws hand-tightened | ☐ |
 
 : Post-Mount Alignment Checks {.striped}
 
-### Step 4: Label the Server
+::: {.callout-note}
+## Why These Checks Matter
+
+- **Centered:** Even weight distribution on rails
+- **Fully seated:** Proper airflow, cable connections reachable
+- **Gaps above/below:** Prevents contact when rack vibrates
+- **Airflow clear:** Servers need cold air in front, hot air out rear
+:::
+
+### Step 4: Install Blank Panels
+
+**Critical:** After installing the server, fill all empty U spaces with blank panels.
+
+::: {.callout-important}
+## Why Blank Panels Are Required
+
+**Blank panels** = Metal filler plates that cover empty U spaces in the rack
+
+**Why they're critical:**
+
+1. **Airflow Management (Most Important)**
+   - Datacenters use hot aisle / cold aisle layout
+   - Cold air comes from front → servers pull it in → hot air exits rear
+   - **Without blank panels:** Cold air escapes through gaps → doesn't reach servers
+   - **With blank panels:** Forces all air to flow THROUGH servers
+   - Prevents hot air recirculation from rear to front
+
+2. **Prevents Overheating**
+   - Gaps = hot air from rear mixes with cold air at front
+   - Servers starve for cold air → overheat → thermal shutdown
+   - Blank panels ensure consistent intake temperature (18-27°C)
+
+3. **Energy Efficiency**
+   - Gaps = wasted cooling energy (cold air escapes without cooling servers)
+   - HVAC must work harder → higher power costs
+   - Blank panels can reduce cooling costs by 10-30%
+
+4. **Industry Standard**
+   - ASHRAE (datacenter standards) requires blank panels
+   - Professional datacenters always use them
+   - Part of proper airflow containment
+:::
+
+**Installation:**
+1. Identify all gaps (empty U spaces) above and below the server
+2. Count the U height of each gap
+   - Example: Gap from U10-U14 = 5U gap
+3. Select blank panel(s) that fit the gap
+   - Blank panels come in 1U, 2U, 3U, 4U sizes
+   - Mix sizes to fill the gap (example: 5U gap = 3U panel + 2U panel)
+4. Install blank panels using screws or tool-less clips
+5. Verify: No open U spaces visible
+
+**Verification:**
+- [ ] All gaps above server filled with blank panels
+- [ ] All gaps below server filled with blank panels
+- [ ] Blank panels secured (screwed in or clipped)
+- [ ] No open U spaces in rack (except planned for future servers)
+
+---
+
+### Step 5: Label the Server
 
 Immediately after mounting:
 
@@ -206,20 +573,6 @@ Immediately after mounting:
 | Alignment verified | _______ | _______ | _______ |
 | Server labeled | _______ | _______ | _______ |
 | Photos taken (front and rear) | _______ | _______ | _______ |
-
-## Common Issues & Solutions
-
-| Issue | Likely Cause | Solution |
-|-------|-------------|----------|
-| Server won't slide into rails | Rail misalignment | Re-check both rails are at same U height |
-| Server tilts forward/backward | Rails not level | Re-level rails with spirit level |
-| Assembled server too wide | Non-standard chassis | Use adjustable rails or a wider rack section |
-| Assembled server too deep | Long chassis | Check rear clearance, consider mid-mount position |
-| Server vibrates in rack | Loose mounting | Tighten all screws, check rail engagement |
-| Drive bay misaligned with bezel | Server not fully seated | Push server in until fully seated, check front bezel |
-| Cannot close rack door | Server or cables protruding | Adjust cable routing, check server depth |
-
-: Common Rack Fitting Issues {.striped}
 
 ## Post-Installation Photograph Requirements
 

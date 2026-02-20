@@ -17,6 +17,8 @@ book:
         - chapters/vision.qmd
         - chapters/principles.qmd
         - chapters/team-structure.qmd
+        - chapters/hardware-visual-guide.qmd
+        - chapters/power-basics.qmd
 
     - part: "Standard Operating Procedures"
       chapters:
@@ -40,6 +42,7 @@ book:
       chapters:
         - chapters/appendix-checklists.qmd
         - chapters/appendix-glossary.qmd
+        - chapters/appendix-opl.qmd
 
   sidebar:
     style: docked

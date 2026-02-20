@@ -6,62 +6,239 @@ This SOP defines the procedure for verifying that a newly installed server is fu
 
 ## Scope
 
+- Visual and physical inspection
 - POST (Power-On Self-Test) verification
+- iLO/BMC health dashboard check
+- Hardware component detection and inventory
 - BIOS/UEFI configuration check
-- Hardware component detection and health check
 - Firmware version audit
 - Burn-in / stress test
 - Documentation and sign-off
 
-## Pre-Verification Requirements
+---
 
-Before starting this SOP, ensure:
+## Before You Start — Read These First
+
+**Prerequisites:** Ensure you have read and understand:
+
+1. **[Hardware Visual Guide](#sec-hardware-visual-guide)** — Know LED colors, server anatomy
+2. **[Power Basics](#sec-power-basics)** — Understand PSU health indicators
+
+**Requirements:**
 
 - [ ] Server is physically installed per [Rack Fitting SOP](#sec-sop-rack)
 - [ ] Power and network are connected per [Power & Network SOP](#sec-sop-power-network)
-- [ ] iLO/BMC management access is confirmed
-- [ ] Server has completed initial POST successfully
+- [ ] You have the server's iLO/BMC IP address (from rack allocation sheet or pull-out tag)
+- [ ] You have the Bill of Materials (BOM) showing expected components
 
-## Verification Procedure
+---
 
-### Step 1: BIOS/UEFI Verification
+## Two-Tier Verification Structure
 
-Access the BIOS/UEFI setup (typically F9 or F11 during boot on HP servers):
+This SOP is divided into two tiers based on technical complexity:
 
-| Setting | Expected Value | Actual Value | Status |
-|---------|---------------|--------------|--------|
-| Boot mode | UEFI | _______ | ☐ |
-| Processor(s) detected | [expected count & model] | _______ | ☐ |
-| Total RAM detected | [expected GB] | _______ | ☐ |
-| RAM speed | [expected MHz] | _______ | ☐ |
-| Storage controllers | [expected] | _______ | ☐ |
-| Network adapters | [expected count] | _______ | ☐ |
-| TPM module | Enabled | _______ | ☐ |
-| Virtualization (VT-x/AMD-V) | Enabled | _______ | ☐ |
-| SR-IOV | Enabled | _______ | ☐ |
-| Boot order | PXE / Disk as required | _______ | ☐ |
+::: {.callout-note}
+## Tier 1: Physical & Visual Verification
+**Who:** Any team member can perform after training
 
-: BIOS/UEFI Verification Checklist {.striped}
+**What:** Visual inspection, LED checks, fan sound, iLO health dashboard, component count verification
 
-### Step 2: iLO/BMC Health Check
+**Time:** 15-20 minutes per server
+:::
 
-Using the management web interface:
+::: {.callout-important}
+## Tier 2: Technical Verification
+**Who:** Team Lead only, OR supervised team member marked "Competent" on skill matrix
 
-- [ ] Overall server health: **OK** (no amber/red indicators)
-- [ ] All fans detected and running at normal speed
-- [ ] Temperature sensors within normal range
-- [ ] Power supply status: both PSUs reporting OK
-- [ ] Storage status: all drives detected and healthy
-- [ ] Memory status: all DIMMs detected and healthy
-- [ ] Network adapter status: all NICs detected
-- [ ] Event log: no critical or warning events
+**What:** BIOS settings, stress tests, firmware audit
 
-### Step 3: Component Inventory Verification
+**Time:** 1-2 hours per server (mostly stress test duration)
 
-Cross-reference detected hardware against the **purchase order / bill of materials**:
+**Do NOT attempt Tier 2 tasks until authorized by Team Lead.**
+:::
 
-| Component | Expected | Detected (from iLO) | Match? |
-|-----------|----------|---------------------|--------|
+---
+
+## TIER 1: Physical & Visual Verification
+
+### Step 1.1: Visual Inspection
+
+Inspect the server physically before powering on.
+
+**Server Front (facing the rack aisle):**
+
+- [ ] **Power button LED** — Should be off (server not powered yet) or steady green (if already on)
+- [ ] **Status LEDs** — Check colors (refer to [LED Color Guide](#sec-hardware-visual-guide))
+  - Green = OK
+  - Amber = Warning or problem
+  - Off = Normal if server not powered
+- [ ] **Drive bay covers** — All bays filled (with disk or blank cover), no empty holes
+- [ ] **Physical damage** — No cracks, bent metal, or loose parts
+- [ ] **Front bezel** — Securely attached, not hanging or broken
+
+**Server Rear (behind the rack):**
+
+- [ ] **Both PSU LEDs** — Should be green (if power cables connected)
+- [ ] **Fan exhaust** — Should feel warm air (if server on), not hot or cold
+- [ ] **Cables** — Power cables secure, network cables clicked in, no loose connections
+- [ ] **Physical damage** — No bent connectors, damaged ports
+
+**Listen:**
+
+- [ ] **Fan sound** — Steady hum (like a desk fan)
+- [ ] **No grinding, clicking, or beeping** — These indicate hardware problems
+
+::: {.callout-warning}
+## If You Find a Problem During Visual Inspection
+
+| Problem | Action |
+|---------|--------|
+| Blinking amber LED | STOP. Do not power on. Notify Team Lead immediately. |
+| Grinding or clicking noise | STOP. Power off if already on. Notify Team Lead. |
+| Missing drive or blank cover | Note it, take photo, report to Team Lead before proceeding. |
+| Loose cable | Reseat the cable. If still loose, replace cable and retest. |
+| Hot exhaust (too hot to touch) | Power off. Check airflow. Report to Team Lead. |
+
+: Visual Inspection Troubleshooting {.striped}
+:::
+
+---
+
+### Step 1.2: POST Success Check
+
+POST = "Power-On Self-Test" — the server checking itself on startup.
+
+**How to check POST success:**
+
+1. **Power on the server** (press power button on front)
+2. **Watch the screen** (connect monitor to video port, or use iLO remote console)
+3. **You should see:**
+   - Server logo (HP, Dell, etc.) appears
+   - Text showing "POST in progress" or memory count
+   - Beep sound (one short beep = success)
+   - No error messages in red text
+
+**POST Success = Server proceeds to boot menu or OS**
+
+**POST Failure = Red error text, repeated beeping, or server shuts down**
+
+::: {.callout-warning}
+## POST Failure — What to Do
+
+| Symptom | Meaning | Action |
+|---------|---------|--------|
+| No display, no beep | No power or video issue | Check PSU LEDs, try different monitor cable |
+| Continuous beeping (3+ beeps) | Hardware error (RAM, CPU problem) | Count beeps, note pattern, report to Team Lead |
+| Red text: "Memory not detected" | RAM not seated or faulty | Power off. Reseat RAM. If still fails, report. |
+| Red text: "No boot device" | Normal if no OS installed yet | Proceed — this is expected for new server |
+| Server shuts down after logo | Overheating or power issue | Check fan exhaust, check PSU LEDs, report. |
+
+: POST Troubleshooting {.striped}
+:::
+
+---
+
+### Step 1.3: How to Access iLO/BMC
+
+**iLO** (HP servers) or **BMC** (Dell, Supermicro) = remote control for the server.
+
+Think of it like a web dashboard showing the server's health — you can see it from any computer on the same network.
+
+**Step-by-step:**
+
+1. **Find the iLO IP address:**
+   - Look at the **pull-out tag** on the server front (small sliding tab), OR
+   - Check your **rack allocation sheet** (IP listed next to server ID)
+   - Example IP: `192.168.1.50`
+
+2. **Open a web browser** (Chrome, Firefox, Edge)
+
+3. **Type the iLO IP in the address bar:**
+   ```
+   http://192.168.1.50
+   ```
+   (Use the actual IP from step 1)
+
+4. **Login page appears:**
+   - **Username:** Get from Team Lead (usually `Administrator`)
+   - **Password:** Get from Team Lead (or check password vault)
+
+5. **After login, you see: Health Status Dashboard**
+   - Main page shows server health
+   - Green checkmarks = OK
+   - Amber/red icons = problem
+
+::: {.callout-warning}
+## Can't Access iLO?
+
+| Problem | Solution |
+|---------|----------|
+| Page won't load ("can't reach") | 1. Check management cable is connected<br>2. Verify you're on the management network<br>3. Ping the iLO IP from terminal: `ping 192.168.1.50`<br>4. If no response, check cable and PDU |
+| Wrong username/password | Get credentials from Team Lead or password vault |
+| Page loads but shows error | iLO might need reset. Ask Team Lead for help. |
+| iLO IP not on pull-out tag | Check rack allocation sheet. If not there, ask Team Lead. |
+
+: iLO Access Troubleshooting {.striped}
+:::
+
+---
+
+### Step 1.4: iLO Health Dashboard Check
+
+Once logged into iLO, check the health status.
+
+**On the main dashboard page, verify:**
+
+- [ ] **Overall server health: OK** (green checkmark, no amber/red indicators)
+- [ ] **Fans:** All fans detected and running at normal speed (typically 20-40%)
+- [ ] **Temperature:** All sensors within normal range (typically 18-30°C intake)
+- [ ] **Power supplies:** Both PSUs showing "OK" status
+- [ ] **Storage:** All drives detected and status "OK" or "Healthy"
+- [ ] **Memory:** All DIMMs detected and status "OK"
+- [ ] **Network adapters:** All NICs detected (count matches expected)
+- [ ] **Event log:** No critical (red) or warning (amber) events
+
+**Where to find each item in iLO:**
+
+- **Overall health:** Main dashboard page, top section ("System Health")
+- **Fans:** Click "System Information" → "Fans"
+- **Temperature:** Click "System Information" → "Temperatures"
+- **Power supplies:** Click "System Information" → "Power Supplies"
+- **Storage:** Click "System Information" → "Storage"
+- **Memory:** Click "System Information" → "Memory"
+- **Network:** Click "System Information" → "Network"
+- **Event log:** Click "Integrated Management Log" (IML)
+
+::: {.callout-tip}
+## Take a Screenshot
+Click the "Export" or "Save Report" button in iLO to save a PDF of the health status. Attach this to your verification ticket.
+:::
+
+::: {.callout-warning}
+## iLO Shows Amber or Red Status
+
+| iLO Alert | Meaning | Action |
+|-----------|---------|--------|
+| Amber fan icon | Fan speed low or high | Check physical fan, verify airflow not blocked |
+| Red temperature | Sensor reading too high (>30°C) | Check airflow, check ambient room temp, report |
+| Amber PSU | One PSU failed or not connected | Check PSU LED on rear, check power cable, report |
+| Red memory | DIMM not detected or failed | Power off, reseat RAM, test again. If fails, report. |
+| Red storage | Drive not detected or failed | Check drive seated in bay, check drive LED. Report. |
+| Critical event in log | Hardware error recorded | Screenshot the event, report to Team Lead |
+
+: iLO Health Troubleshooting {.striped}
+:::
+
+---
+
+### Step 1.5: Component Inventory Verification
+
+Cross-reference detected hardware against the **purchase order / bill of materials (BOM)**.
+
+**Where to find detected components:** In iLO → System Information → (select component type)
+
+| Component | Expected (from BOM) | Detected (from iLO) | Match? |
+|-----------|---------------------|---------------------|--------|
 | CPU Model | _______ | _______ | ☐ |
 | CPU Count | _______ | _______ | ☐ |
 | CPU Cores (total) | _______ | _______ | ☐ |
@@ -80,18 +257,135 @@ Cross-reference detected hardware against the **purchase order / bill of materia
 
 ::: {.callout-important}
 ## Mismatch Found?
+
 If any component doesn't match the expected configuration:
 
 1. **STOP** further provisioning
-2. Document the mismatch with screenshots
-3. File a ticket
-4. Notify the Team Lead
-5. Do not proceed until resolved
+2. **Take screenshots** of the iLO page showing the mismatch
+3. **Document** the mismatch in your verification ticket
+4. **Notify the Team Lead** immediately
+5. **Do not proceed** until the mismatch is resolved
+
+**Common causes:**
+- Wrong server shipped (check serial number vs BOM)
+- Component not fully seated (RAM, GPU)
+- Component failed during shipping (dead disk, bad DIMM)
 :::
 
-### Step 4: Firmware Audit
+---
 
-Record current firmware versions:
+## TIER 2: Technical Verification (Team Lead or Supervised)
+
+::: {.callout-important}
+## Authorization Required
+**Do NOT perform Tier 2 tasks without Team Lead approval.**
+
+Tier 2 requires:
+- Understanding of BIOS settings
+- Linux command line knowledge
+- Ability to interpret stress test results
+- Skill matrix status: "Competent" or "Supervised"
+:::
+
+---
+
+### Step 2.1: How to Access BIOS/UEFI
+
+**What is BIOS?**
+
+BIOS (or UEFI) = the startup settings menu for the server. Like the "Settings" app on your phone, but for server hardware. It shows up when the server first powers on, before any operating system loads.
+
+**Analogy:** BIOS is like the control panel for the server's hardware — you can enable/disable features, set boot order, check what components are detected.
+
+**How to Enter BIOS:**
+
+1. **Power on the server** (or reboot if already on)
+2. **Watch the screen closely** for the server logo (HP, Dell, Supermicro, etc.)
+3. **Press the BIOS key repeatedly** as soon as you see the logo:
+   - **HP servers:** Press **F9** or **F11** repeatedly
+   - **Dell servers:** Press **F2** or **F11** repeatedly
+   - **Supermicro servers:** Press **Delete** repeatedly
+   - (Look for text on screen: "Press F9 for Setup" or similar)
+
+4. **You will see:** A text menu with blue/white/black background (not a graphical interface)
+
+5. **Navigate the menu:**
+   - Use **arrow keys** (↑ ↓ ← →) to move between options
+   - Press **Enter** to select an option
+   - Press **Esc** to go back
+
+6. **Exit without saving:**
+   - Press **Esc** repeatedly until you see "Exit without saving changes?"
+   - Select **Yes**
+   - Server will reboot
+
+::: {.callout-warning}
+## Can't Enter BIOS?
+
+| Problem | Solution |
+|---------|----------|
+| Pressed key but nothing happens | Try the other key (F9 vs F11, or F2 vs Delete) |
+| Server boots too fast | Reboot and start pressing key earlier, before logo appears |
+| Screen shows "Entering Setup" but then boots normally | BIOS access might be disabled. Check iLO virtual console instead. |
+| Don't see any "Press F9" prompt | It's there but brief. Watch closely. Try multiple times. |
+
+: BIOS Access Troubleshooting {.striped}
+:::
+
+---
+
+### Step 2.2: BIOS/UEFI Settings Verification
+
+Once in the BIOS menu, verify the following settings:
+
+**Navigation:** Use arrow keys to find each setting. Settings are usually under tabs like "Main", "Advanced", "Boot", "Security".
+
+| Setting | Expected Value | Actual Value | Status |
+|---------|---------------|--------------|--------|
+| Boot mode | UEFI | _______ | ☐ |
+| Processor(s) detected | [expected count & model] | _______ | ☐ |
+| Total RAM detected | [expected GB] | _______ | ☐ |
+| RAM speed | [expected MHz] | _______ | ☐ |
+| Storage controllers | [expected] | _______ | ☐ |
+| Network adapters | [expected count] | _______ | ☐ |
+| TPM module | Enabled | _______ | ☐ |
+| Virtualization (VT-x/AMD-V) | Enabled | _______ | ☐ |
+| SR-IOV | Enabled | _______ | ☐ |
+| Boot order | PXE / Disk as required | _______ | ☐ |
+
+: BIOS/UEFI Verification Checklist {.striped}
+
+**What each setting means:**
+
+- **Boot mode (UEFI):** Modern boot method. "Legacy" is old, don't use.
+- **Processor(s):** CPU count and model. Should match BOM.
+- **RAM:** Total memory detected. Should match BOM.
+- **TPM:** Security chip for encryption. Should be Enabled.
+- **Virtualization (VT-x/AMD-V):** Allows running virtual machines. Should be Enabled.
+- **SR-IOV:** Allows network cards to be shared by VMs. Should be Enabled.
+- **Boot order:** Which device server tries to boot from first. Usually "PXE" (network boot) or "Disk".
+
+::: {.callout-warning}
+## Setting Is Wrong
+
+| Problem | Action |
+|---------|--------|
+| Setting disabled but should be enabled | Navigate to setting, press Enter, select "Enabled", press Enter |
+| Wrong boot order | Navigate to "Boot" tab, change order using +/- keys or Enter |
+| Component not detected | Exit BIOS, power off, reseat component, power on and check again |
+| Can't find a setting | Check under different tabs. If still can't find, ask Team Lead. |
+
+**After making changes:**
+- Press **F10** to "Save and Exit"
+- Confirm "Yes"
+- Server will reboot with new settings
+:::
+
+---
+
+### Step 2.3: Firmware Audit
+
+Record current firmware versions from iLO and BIOS:
 
 | Component | Current Version | Latest Available | Action Needed? |
 |-----------|----------------|-----------------|----------------|
@@ -104,93 +398,366 @@ Record current firmware versions:
 
 : Firmware Audit {.striped}
 
+**Where to find versions:**
+
+- **iLO firmware:** iLO web interface → "Information" → "Overview" → "iLO Firmware Version"
+- **BIOS version:** iLO → "System Information" → "Summary" → "BIOS/System ROM", OR in BIOS menu → "Main" tab
+- **Other firmware:** iLO → "Firmware & OS Software" → "Update Firmware"
+
+**Where to find latest versions:**
+
+- Check vendor website (HP, Dell, Supermicro support pages)
+- Or ask Team Lead for the approved firmware version list
+
 ::: {.callout-note}
-Firmware updates should be planned and executed as a separate activity with proper change management. Do not update firmware without Team Lead approval.
+## Firmware Updates
+
+Firmware updates should be planned and executed as a separate activity with proper change management.
+
+**Do NOT update firmware during verification** without Team Lead approval.
+
+If firmware is outdated, note it in the verification report. The Team Lead will schedule updates if needed.
 :::
 
-### Step 5: Basic Stress Test (Burn-In)
+---
 
-Run a short stress test to verify stability:
+### Step 2.4: Stress Test (Burn-In)
 
-1. Boot a Linux live USB or PXE environment
-2. Run memory test: `memtest86+` for at least 1 full pass
-3. Run CPU stress test: `stress-ng --cpu $(nproc) --timeout 30m`
-4. Run disk test: `fio` basic read/write test on all drives
-5. Run network test: `iperf3` to verify NIC throughput
-6. Monitor temperatures during stress test (via iLO)
+Run a short stress test to verify the server is stable under load.
 
-| Test | Duration | Result | Max Temp (°C) |
-|------|----------|--------|---------------|
-| Memory (memtest86+) | 1 pass | _______ | _______ |
-| CPU (stress-ng) | 30 min | _______ | _______ |
-| Disk (fio) | Per drive | _______ | _______ |
-| Network (iperf3) | 5 min | _______ | _______ |
+**What is a stress test?**
+
+A stress test pushes the server's components (CPU, RAM, disks, network) to maximum capacity to find failures before the server goes into production. Like test-driving a car at high speed before selling it.
+
+**Requirements:**
+
+- Boot server from Linux live USB or PXE environment (Team Lead will set this up)
+- Tests will run for 1-2 hours total
+- Monitor server temperature via iLO during tests
+
+---
+
+#### Test 1: Memory Test (memtest86+)
+
+**What it does:** Writes patterns to every bit of RAM, reads them back, checks for errors. Detects bad memory chips.
+
+**Command:**
+```bash
+memtest86+
+```
+(This usually auto-starts when booting from memtest USB)
+
+**What you see:**
+- Blue screen with progress bar
+- "Pass" counter incrementing (Pass 1/4, Pass 2/4, etc.)
+- "Errors" counter (should stay at 0)
+
+**Duration:** 30-60 minutes per pass. Run **at least 1 full pass**.
+
+**Success:**
+- Progress bar reaches 100% for Pass 1
+- "Errors: 0" throughout the test
+- Screen shows "Pass complete - 0 errors"
+
+**Failure:**
+- Red text appears showing error count
+- Error address shown (which RAM chip failed)
+- Test may pause or continue
+
+::: {.callout-warning}
+## Memory Test Shows Errors
+
+**If errors appear:**
+
+1. **Note the error count and address** (take photo of screen)
+2. **Stop the test** (press Esc or power off)
+3. **Do NOT proceed** with server provisioning
+4. **Report to Team Lead** with error details
+5. **Likely cause:** Bad RAM chip. Will need replacement.
+:::
+
+---
+
+#### Test 2: CPU Stress Test (stress-ng)
+
+**What it does:** Maxes out all CPU cores at 100% utilization for 30 minutes. Detects CPU overheating, throttling, or instability.
+
+**Command:**
+```bash
+stress-ng --cpu $(nproc) --timeout 30m
+```
+
+**What it means:**
+- `stress-ng` = stress test program
+- `--cpu $(nproc)` = use all CPU cores
+- `--timeout 30m` = run for 30 minutes
+
+**What you see:**
+- Text output showing "stress-ng: info: dispatching hogs: X cpu"
+- CPU usage at 100% (check with `top` or `htop` in another terminal)
+- Timer counting down from 30 minutes
+
+**What to monitor (via iLO):**
+- **CPU temperature:** Should stay below 85°C
+- **Fan speed:** Will increase to 60-80% (this is normal)
+
+**Duration:** 30 minutes
+
+**Success:**
+- Test completes without errors
+- Final line: "stress-ng: info: successful run completed"
+- CPU temperature stayed below 85°C
+- No throttling messages
+
+**Failure:**
+- Error message: "stress-ng: error: ..."
+- CPU temperature exceeds 85°C
+- Server shuts down during test (thermal shutdown)
+
+::: {.callout-warning}
+## CPU Stress Test Fails
+
+| Problem | Meaning | Action |
+|---------|---------|--------|
+| Temperature exceeds 85°C | CPU cooler not working | Power off. Check cooler seated. Check fan. Report. |
+| Test crashes with error | CPU instability | Note error message. Report to Team Lead. |
+| Server shuts down mid-test | Thermal protection kicked in | Check cooling. Check ambient temp. Report. |
+
+: CPU Stress Troubleshooting {.striped}
+:::
+
+---
+
+#### Test 3: Disk I/O Test (fio)
+
+**What it does:** Reads and writes data to disks at high speed. Checks disk performance and detects slow or failing drives.
+
+**Command:**
+```bash
+fio --name=randwrite --ioengine=libaio --rw=randwrite --bs=4k --size=1G --numjobs=4 --runtime=300 --time_based
+```
+
+**What it means:**
+- `fio` = disk benchmark tool
+- `--rw=randwrite` = random write test
+- `--bs=4k` = 4KB block size (typical database workload)
+- `--runtime=300` = run for 5 minutes
+- Repeat this command for each disk in the server
+
+**What you see:**
+- Text output showing I/O operations per second (IOPS)
+- Throughput in MB/s
+- Progress bar
+
+**Duration:** 5 minutes per disk
+
+**Success:**
+- Test completes without errors
+- IOPS and throughput match expected specs (±10%)
+  - Example: NVMe SSD should show 50,000+ IOPS for 4K random writes
+  - Example: SATA SSD should show 10,000+ IOPS
+  - Example: HDD should show 100-200 IOPS
+
+**Failure:**
+- Error: "I/O error" or "Device timeout"
+- IOPS significantly lower than expected (>10% off)
+- Test hangs or doesn't complete
+
+::: {.callout-warning}
+## Disk Test Fails
+
+| Problem | Action |
+|---------|--------|
+| I/O error or timeout | Disk may be failing. Note disk bay number. Report. |
+| Very low IOPS (<50% expected) | Disk slow or wrong type. Check disk model. Report. |
+| Test hangs | Disk not responding. Power cycle. Test again. Report if repeats. |
+
+: Disk Test Troubleshooting {.striped}
+:::
+
+---
+
+#### Test 4: Network Throughput Test (iperf3)
+
+**What it does:** Sends data through the network at maximum speed. Checks if NIC can reach advertised speed (10G, 25G, 100G).
+
+**Requirements:**
+- Need a second server or test machine on same network
+- One machine runs as "server", one as "client"
+
+**Command (on test server):**
+```bash
+iperf3 -s
+```
+
+**Command (on this server being verified):**
+```bash
+iperf3 -c [test-server-IP] -t 300
+```
+
+**What it means:**
+- `iperf3 -s` = start in server mode (listening)
+- `iperf3 -c` = start in client mode (sending data)
+- `-t 300` = run for 5 minutes
+
+**What you see:**
+- Text output showing throughput in Gbits/sec
+- Real-time updates every second
+- Final summary at end
+
+**Duration:** 5 minutes per NIC
+
+**Success:**
+- Throughput matches NIC speed (±5%)
+  - 10G NIC: Should see 9.4+ Gbits/sec (line overhead normal)
+  - 25G NIC: Should see 23+ Gbits/sec
+  - 100G NIC: Should see 95+ Gbits/sec
+
+**Failure:**
+- Throughput significantly lower than expected (>10% off)
+- Connection drops during test
+- Error: "Connection refused"
+
+::: {.callout-warning}
+## Network Test Fails
+
+| Problem | Action |
+|---------|--------|
+| Can't connect to test server | Check cable, check link LED, check test server IP |
+| Low throughput (<90% expected) | Check cable type (copper vs fiber). Check switch port speed. |
+| Connection drops mid-test | Cable issue. Swap cable. Test again. |
+
+: Network Test Troubleshooting {.striped}
+:::
+
+---
+
+#### Stress Test Summary Table
+
+Fill in results after all tests complete:
+
+| Test | Duration | Result | Max Temp (°C) | Notes |
+|------|----------|--------|---------------|-------|
+| Memory (memtest86+) | 1 pass | _______ | _______ | _______ |
+| CPU (stress-ng) | 30 min | _______ | _______ | _______ |
+| Disk (fio) | Per drive | _______ | _______ | _______ |
+| Network (iperf3) | 5 min | _______ | _______ | _______ |
 
 : Stress Test Results {.striped}
 
-**Pass Criteria:**
+**Overall Pass Criteria:**
 
-- Zero memory errors
-- CPU stress completes without throttling or errors
-- Disk I/O matches expected specifications (±10%)
-- Network throughput matches NIC speed (±5%)
-- Temperatures stay within safe range (CPU < 85°C, ambient < 35°C)
+- [ ] Memory: Zero errors
+- [ ] CPU: Completed without throttling or errors
+- [ ] Disk: I/O matches expected specs (±10%)
+- [ ] Network: Throughput matches NIC speed (±5%)
+- [ ] Temperatures: CPU < 85°C, ambient < 35°C throughout all tests
 
-### Step 6: Update Namma DSL
+---
 
-After successful verification:
+## Server Status Classification — Decision Table
 
-1. Update the server entry in Namma DSL with:
-   - Actual hardware specifications (as detected)
-   - Firmware versions
-   - Rack position
-   - Network port mappings
-   - IP addresses
-   - Verification date and status
-2. Commit the DSL changes with a descriptive message
-3. Link the DSL commit to the verification ticket
+After completing verification (Tier 1 or Tier 1+2), classify the server using this decision table:
+
+| If You Found | Classification | What It Means | Next Action |
+|--------------|----------------|---------------|-------------|
+| All LEDs green, all components match BOM, all tests passed, no iLO warnings | ✅ **Ready** | Server is fully functional and ready for production | Proceed to OS provisioning |
+| 1-2 non-critical issues: e.g., old firmware, cosmetic damage (scratched bezel), single amber LED that clears after reboot | 🟡 **Conditional** | Server works but has minor issues | Document issues, create follow-up tasks, mark server "Conditional Ready" |
+| Any blinking amber LED, fan making grinding noise, POST fails, memory errors in stress test, component count mismatch | 🔴 **Not Ready** | Server has critical issues and cannot be used | **STOP provisioning.** File urgent ticket. Notify Team Lead. Quarantine server. |
+| Temperature consistently >30°C at intake, disk IOPS <50% expected, network throughput <90% expected | 🟡 **Conditional** | Performance issues but server functional | Investigate root cause, document, plan remediation |
+| iLO not accessible, BIOS settings locked/wrong, firmware very outdated (>2 years old) | 🟡 **Conditional** | Configuration issues | Fix configuration, retest, then re-classify |
+
+: Server Classification Decision Table {.striped}
+
+::: {.callout-important}
+## When in Doubt, Mark "Not Ready"
+
+**If you're unsure whether an issue is critical:**
+- **Mark the server "Not Ready"**
+- **Document the issue with photos/screenshots**
+- **Ask the Team Lead to review**
+
+It's better to be cautious than to provision a faulty server.
+:::
+
+---
+
+## Update Namma DSL
+
+After successful verification, update the server record:
+
+1. Open the server's YAML file in Namma DSL (see [Namma DSL chapter](#sec-namma-dsl))
+2. Update the following fields:
+   - **Verification status:** "verified" or "conditional" or "not-ready"
+   - **Actual hardware specs:** CPU model, RAM, disks (as detected)
+   - **Firmware versions:** iLO, BIOS, storage controller, NIC
+   - **Rack position:** Rack ID, U-position
+   - **Network port mappings:** Which NIC goes to which switch port
+   - **IP addresses:** Management (iLO), data network IPs
+   - **Verification date:** Today's date
+   - **Verified by:** Your name
+   - **Notes:** Any issues found (especially for "Conditional" status)
+
+3. Commit the changes with a descriptive message:
+   ```bash
+   git add servers/[server-id].yaml
+   git commit -m "Verify server [ID]: Status=[Ready/Conditional/Not Ready], [brief summary]"
+   git push
+   ```
+
+4. Link the commit to your verification ticket
+
+---
 
 ## Maker-Checker Sign-Off
 
 | Item | Maker Sign | Checker Sign | Date/Time |
 |------|-----------|-------------|-----------|
-| BIOS/UEFI verified | _______ | _______ | _______ |
+| Visual inspection completed | _______ | _______ | _______ |
+| POST successful | _______ | _______ | _______ |
 | iLO health check passed | _______ | _______ | _______ |
 | Component inventory matches BOM | _______ | _______ | _______ |
+| BIOS/UEFI verified (Tier 2) | _______ | _______ | _______ |
 | Firmware versions recorded | _______ | _______ | _______ |
-| Stress test passed | _______ | _______ | _______ |
+| Stress test passed (Tier 2) | _______ | _______ | _______ |
 | Namma DSL updated | _______ | _______ | _______ |
-| Server ready for OS provisioning | _______ | _______ | _______ |
+| Server classified and ready | _______ | _______ | _______ |
 
-## Server Status Classification
+: Maker-Checker Verification Sign-Off {.striped}
 
-After verification, classify the server:
-
-| Status | Meaning | Next Step |
-|--------|---------|-----------|
-| ✅ **Ready** | All checks passed, server is healthy | Proceed to OS provisioning |
-| 🟡 **Conditional** | Minor non-critical issue (e.g., old firmware) | Document and plan remediation |
-| 🔴 **Not Ready** | Critical issue found (missing component, failure) | File ticket, escalate, do not provision |
-
-: Server Status Classification {.striped}
+---
 
 ## Record Keeping
 
 Archive the following for each server:
 
-1. Verification ticket number
-2. All checklist tables (filled in)
-3. iLO health report screenshot/export
-4. Stress test output logs
-5. Firmware version report
-6. Maker-Checker sign-off form
-7. Namma DSL commit reference
-8. Server status classification
+1. **Verification ticket number**
+2. **All checklist tables** (filled in and signed)
+3. **iLO health report** — Screenshot or PDF export
+4. **Stress test logs** — Copy of terminal output or log files
+5. **Firmware version report** — From iLO firmware page
+6. **Photos** — Any physical issues found (damaged parts, missing covers)
+7. **Maker-Checker sign-off form** — Signed by both roles
+8. **Namma DSL commit reference** — Git commit hash
+9. **Server status classification** — Ready / Conditional / Not Ready
+10. **Notes** — Anything unusual or worth documenting
+
+**Where to store:**
+- Attach all files to the verification ticket
+- Export iLO report as PDF: iLO → "System Information" → "Export" button
+- Keep physical sign-off forms in datacenter binder
 
 ---
 
 ::: {.callout-tip}
-## Pro Tip
-Export the iLO/BMC health report as a PDF or JSON file and attach it to the verification ticket. This creates an automatic baseline for future comparison.
-:::
+## Pro Tips
 
+**iLO Health Baseline:**
+Export the iLO health report immediately after verification. This creates a baseline for future comparison. If problems arise later, you can compare current health to this baseline.
+
+**Stress Test Scheduling:**
+Stress tests are noisy (fans at high speed) and take 1-2 hours. Schedule multiple servers to run stress tests in parallel to save time.
+
+**Component Inventory:**
+Take a photo of the iLO component summary page. If there's ever a dispute about what was installed, you have visual proof.
+:::

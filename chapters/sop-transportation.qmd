@@ -13,9 +13,10 @@ During our initial transportation from the guest house to the data center, one s
 
 This procedure covers:
 
-- Transportation of **HP DL385** branded servers
-- Transportation of **assembled (non-branded)** servers
-- Any movement of servers between locations (vendor → guest house → data center)
+- Transportation of **any datacenter hardware** (servers, switches, storage arrays, networking equipment)
+- Transportation of **branded equipment** (HP, Dell, Supermicro, Cisco, etc.)
+- Transportation of **assembled (non-branded)** equipment
+- Any movement of equipment between locations (vendor → guest house → data center)
 - Both short-distance (within city) and long-distance (inter-city) transport
 
 ## Roles
@@ -28,62 +29,158 @@ This procedure covers:
 
 ## Pre-Transportation Checklist
 
-Before any server is moved, the following MUST be completed:
+Before any equipment is moved, the following MUST be completed:
 
 ### Step 1: Inventory & Documentation
 
-- [ ] Record the server's serial number, model, and configuration
-- [ ] Take **photographs** of the server from all 4 sides + top + bottom (6 photos minimum)
-- [ ] Record the server's weight (important for transport vehicle selection)
+- [ ] Record the equipment's serial number, model, and configuration
+- [ ] Take **photographs** from all 6 angles: all 4 sides + top + bottom (6 photos minimum)
+- [ ] Record the equipment's weight and dimensions (critical for transport vehicle selection)
 - [ ] Update Namma DSL with transportation event (if applicable)
 - [ ] Create a transportation ticket in the issue tracker
+- [ ] List all removable/loose components (transceivers, power cords, mounting brackets, etc.)
 
 ### Step 2: Packaging Assessment
 
-Different server types require different packaging:
+Different equipment types and packaging availability require different approaches.
 
-#### HP DL385 (Branded Servers)
+::: {.callout-tip}
+## Component Identification
+If you need help identifying components, ports, or connectors mentioned in this section, refer to the **[Hardware Visual Guide](#sec-hardware-visual-guide)**.
+:::
+
+#### A. Branded Equipment (With Original Packaging Available)
+
+**Applies to:** HP, Dell, Supermicro, Cisco, Arista, or any vendor equipment with factory packaging.
 
 | Item | Requirement | ✅ Check |
 |------|------------|----------|
-| Original HP packaging | Must use if available | ☐ |
-| Anti-static bags | Each server wrapped individually | ☐ |
-| Foam padding | Minimum 2 inches on all sides | ☐ |
-| Cardboard box | Double-wall corrugated, rated for weight | ☐ |
+| **Original packaging** | **Always use if available** — designed for this equipment | ☐ |
+| Anti-static bags | Equipment wrapped individually before placing in box | ☐ |
+| Foam inserts | Use original foam inserts (do NOT discard or substitute) | ☐ |
+| Accessories secured | Power cords, rails, brackets in separate labeled bags | ☐ |
+| Box condition | Original box must be intact (no tears, water damage, crushed corners) | ☐ |
 | Fragile labels | Applied on all 4 sides + top | ☐ |
 | "This Side Up" labels | Applied on 2 opposite sides | ☐ |
-| Shock indicators | Attached to outside of package | ☐ |
-| Moisture indicators | Placed inside package | ☐ |
+| Shock indicators | Attached to outside of package (one per box) | ☐ |
+| Moisture indicators | Placed inside package (visible when opened) | ☐ |
 
-: HP DL385 Packaging Requirements {.striped}
+: Branded Equipment Packaging Checklist {.striped}
 
-#### Assembled (Non-Branded) Servers
+::: {.callout-note}
+## Why Original Packaging Matters
+Original packaging is designed specifically for that equipment model:
+- Foam is cut to exact dimensions
+- Weight distribution is calculated
+- Drop test ratings are verified
+- Warranty may require original packaging for RMA/returns
+
+**Never discard original packaging until equipment is permanently installed.**
+:::
+
+---
+
+#### B. Equipment Without Original Packaging
+
+**Applies to:** Assembled equipment, used equipment, or when original packaging is lost/damaged.
 
 ::: {.callout-important}
-## Special Attention Required
-Assembled servers are more fragile than branded servers. Components may not be as securely fastened. Extra care is essential.
+## Extra Care Required
+Equipment without original packaging is at higher risk during transport. Components may not be securely fastened. Plan extra time for custom packaging.
 :::
 
 | Item | Requirement | ✅ Check |
 |------|------------|----------|
-| Internal component check | Verify all components are firmly seated (RAM, GPU, cables) | ☐ |
-| Anti-static bags | Full server wrap | ☐ |
-| Custom foam inserts | Cut to fit server dimensions exactly | ☐ |
-| Rigid outer container | Wooden crate or heavy-duty plastic case | ☐ |
-| Internal bracing | Server must not move inside container | ☐ |
-| Fragile + shock labels | All sides | ☐ |
-| Component list | Taped inside the box lid | ☐ |
+| **Internal component check** | Open chassis (if applicable) and verify all components firmly seated | ☐ |
+| Removable parts secured | Remove and separately pack: transceivers, drive caddies, PCIe cards, PSU modules (if removable) | ☐ |
+| Cables secured | Internal cables zip-tied, external cables removed and bagged | ☐ |
+| Anti-static bags | Full equipment wrap (use appropriate size) | ☐ |
+| Custom foam padding | **Minimum 2 inches (5 cm) on ALL six sides** | ☐ |
+| Foam type | Closed-cell foam or bubble wrap (NOT newspaper or loose packing peanuts) | ☐ |
+| Inner box fit | Equipment must NOT move inside inner padding | ☐ |
+| Outer container | **Rigid**: wooden crate, heavy-duty plastic case, or double-wall cardboard rated for weight | ☐ |
+| Box strength test | Outer box rated for **2× equipment weight** minimum | ☐ |
+| Internal bracing | Add cardboard/foam bracing if equipment moves more than 1cm when shaken | ☐ |
+| Fragile + shock labels | All 6 sides | ☐ |
+| "This Side Up" arrows | Clear arrows on all 4 vertical sides | ☐ |
+| Component list | Printed list taped **inside** box lid listing: equipment model, serial, weight, contents | ☐ |
+| Handling instructions | Taped outside: "2-Person Lift Required" if weight > 15kg | ☐ |
 
-: Assembled Server Packaging Requirements {.striped}
+: Equipment Without Original Packaging Checklist {.striped}
+
+::: {.callout-warning}
+## Foam Padding Requirements
+
+**Minimum padding thickness by equipment weight:**
+
+| Equipment Weight | Minimum Foam Thickness (All Sides) |
+|------------------|-----------------------------------|
+| < 10 kg | 2 inches (5 cm) |
+| 10-25 kg | 3 inches (7.5 cm) |
+| > 25 kg | 4 inches (10 cm) |
+
+**Foam must be:**
+- Closed-cell foam (does not compress permanently) OR high-density bubble wrap
+- NOT newspaper, tissue, or packing peanuts (inadequate shock absorption)
+:::
+
+---
+
+#### C. Equipment-Specific Pre-Transport Checks
+
+Before packing, perform equipment-type-specific checks:
+
+**For Servers:**
+
+- [ ] Remove all drive caddies (even if empty) — pack separately with bubble wrap
+- [ ] Check PCIe cards are secured with bracket screws (not just slot pressure)
+- [ ] Verify PSUs are locked in place (check release tabs)
+- [ ] Remove any USB drives, cables plugged into rear
+- [ ] Take photo of rear port layout (helps with re-cabling)
+
+**For Network Switches:**
+
+- [ ] Remove ALL transceivers (SFP, QSFP) — pack in anti-static bags separately
+- [ ] Remove power supplies if hot-swappable
+- [ ] Check fan modules are secured (some are removable)
+- [ ] Coil and secure power cords (do not leave plugged in)
+- [ ] Note which ports had transceivers (label with tape if needed)
+
+
+::: {.callout-tip}
+## General Rule for Removable Components
+**If a component can be removed without tools, remove it and pack it separately.** Examples: transceivers, drive caddies, hot-swap PSUs, PCIe cards with thumb screws.
+
+Components that require screwdriver to remove can usually stay installed, but verify they are firmly secured.
+:::
+
+---
+
+::: {.callout-note}
+## Visual Packing Examples
+
+**Images needed showing:**
+
+1. **Server/switch in original packaging** — Equipment centered in manufacturer's box with original foam inserts on all sides
+2. **Anti-static bag wrapping** — Equipment fully wrapped in anti-static (silver/pink) bag before foam padding
+3. **Custom foam padding** — Equipment with minimum 2-inch foam on all six sides in rigid container
+4. **Vehicle interior** — Packages secured on vehicle floor with tie-down straps, proper spacing, "This Side Up" maintained
+
+Until photos are available, refer to the detailed packaging checklists above.
+:::
+
+---
 
 ### Step 3: Transport Vehicle Preparation
 
-- [ ] Vehicle is clean and dry
+- [ ] Vehicle is clean and dry (no dirt, oil, water)
 - [ ] Vehicle has **suspension suitable for fragile cargo** (avoid open trucks with poor suspension)
 - [ ] Climate control available (if temperature > 35°C or < 10°C)
-- [ ] Tie-down straps or cargo nets available
+- [ ] Tie-down straps or cargo nets available (rated for load weight)
 - [ ] Non-slip mats placed on vehicle floor
-- [ ] Vehicle has adequate space — servers must **not be stacked unless packaging is designed for it**
+- [ ] Vehicle has adequate space — equipment must **not be stacked unless packaging is specifically rated for stacking**
+- [ ] No sharp objects or protruding fixtures in cargo area
+- [ ] Loading ramp or lift-gate available if needed (for heavy equipment > 30kg)
 
 ### Step 4: Maker-Checker Sign-Off — Pre-Transport
 
@@ -99,13 +196,26 @@ Assembled servers are more fragile than branded servers. Components may not be a
 
 ### Loading Procedure
 
-1. **Minimum 2 people** for lifting any server (even small form factors)
-2. Lift from the bottom — **never** grab by handles, faceplates, or cables
-3. Place on vehicle floor, never on seats or unsecured surfaces
-4. Secure with tie-down straps — snug but not compressing the packaging
-5. Place **"Fragile" side facing up** as marked
-6. Leave space between packages — no crushing
-7. Take a **photograph** of the loaded vehicle interior
+1. **Minimum 2 people** for lifting any packaged equipment (even if weight < 15kg)
+2. **Lift technique:**
+   - Lift from the **bottom** of the package
+   - **Never** grab by handles, faceplates, cables, or ports
+   - Bend knees, keep back straight
+   - If package weight > 25kg, use 3+ people or mechanical assistance (dolly, lift)
+3. **Placement:**
+   - Place on vehicle **floor only** — never on seats or unsecured surfaces
+   - Heavier packages on bottom if stacking is necessary
+   - "This Side Up" arrows must point up
+4. **Securing:**
+   - Use tie-down straps — snug but **not compressing the packaging**
+   - Straps should prevent sliding, not squeeze the box
+   - Use cargo nets for multiple small packages
+5. **Spacing:**
+   - Leave **minimum 10cm gap** between packages
+   - No package should touch vehicle walls (vibration transfer)
+6. **Final check:**
+   - Push each package gently — should not move more than 2cm
+   - Take a **photograph** of the loaded vehicle interior showing all packages secured
 
 ### Transit Rules
 
@@ -141,28 +251,51 @@ Assembled servers are more fragile than branded servers. Components may not be a
 
 ### Step 2: Inspection
 
-For **each** server, perform the following:
+For **each** piece of equipment, perform the following:
 
 - [ ] Check shock indicator — was threshold exceeded?
 - [ ] Check moisture indicator — any moisture ingress?
 - [ ] Visually inspect packaging — any dents, tears, or damage?
-- [ ] Open packaging carefully — photograph contents before removing
-- [ ] Visually inspect server exterior — any dents, scratches, loose parts?
+- [ ] Open packaging carefully — photograph contents before removing equipment
+- [ ] Visually inspect equipment exterior — any dents, scratches, loose parts?
 - [ ] Check all ports and connectors — nothing bent or broken?
-- [ ] For assembled servers: open chassis and check component seating
+- [ ] For equipment with removable components: verify all separately-packed items are present
+- [ ] For assembled/non-branded equipment: open chassis and verify internal component seating
 - [ ] Compare against pre-transport photos — any differences?
+- [ ] Test basic functionality if possible (power on, check LEDs, verify POST for servers)
 
 ### Step 3: Condition Classification
 
-After inspection, classify each server:
+After inspection, classify each piece of equipment:
 
-| Classification | Description | Action |
-|---------------|-------------|--------|
-| ✅ **Green — No Issues** | Server matches pre-transport condition exactly | Proceed to rack installation |
-| 🟡 **Yellow — Minor Issue** | Cosmetic damage, no functional concern | Document, proceed with monitoring |
-| 🔴 **Red — Significant Issue** | Functional damage suspected or confirmed | STOP. File ticket. Begin RCA. Do not install. |
+| Classification | Description | Specific Examples | Action |
+|---------------|-------------|-------------------|--------|
+| ✅ **Green — No Issues** | Equipment matches pre-transport condition exactly | No visible damage, all indicators OK, shock/moisture within limits, all components present | Proceed to installation |
+| 🟡 **Yellow — Minor (Cosmetic)** | Surface damage with no functional impact | Paint scratches, scuff marks on faceplate, small dents on non-critical metal surfaces, slight discoloration, cosmetic bezel cracks | Document with photos, proceed with monitoring |
+| 🔴 **Red — Significant (Structural/Functional)** | Damage affecting function, safety, or warranty | Bent chassis/mounting ears/brackets, cracked PCB, detached component, broken/bent port or connector, loose internal parts, damaged PSU/fan, large dents affecting clearance, missing components, shock indicator triggered | STOP. File urgent ticket. Begin RCA immediately. Quarantine equipment. Do NOT install. Contact vendor if under warranty. |
 
-: Server Condition Classification {.striped}
+: Equipment Condition Classification {.striped}
+
+::: {.callout-important}
+## Damage Threshold Guidelines
+
+**Minor (Yellow) = Surface Only:**
+- Damage is visible but superficial
+- No internal components affected
+- No structural integrity compromised
+- No impact on mounting, operation, cooling, or warranty
+- Equipment can still be safely installed and operated
+
+**Significant (Red) = Structural or Functional:**
+- Any damage that affects how equipment mounts, operates, or cools
+- Any visible internal damage (open chassis/cover and inspect)
+- Any bent metal that reduces clearances or prevents proper seating
+- Any shock indicator triggered (red showing) or moisture detected
+- Any missing components that were documented pre-transport
+- Any damage that could void warranty
+- **When in doubt, classify as Red and let Team Lead review**
+:::
+
 
 ### Step 4: Maker-Checker Sign-Off — Post-Transport
 
@@ -199,9 +332,14 @@ flowchart TD
     L --> M[Update SOP if needed]
 ```
 
-## Server Type Reference
+## Hardware Type Reference
 
-### HP ProLiant DL385
+::: {.callout-note}
+## Applies to All Datacenter Hardware
+This SOP applies to **all datacenter equipment**: servers, network switches, storage arrays, patch panels, and other rack-mounted devices. The examples below focus on servers, but the same principles (careful packaging, shock indicators, condition classification) apply to all hardware types.
+:::
+
+### Servers — HP ProLiant DL385 (Example)
 
 - **Form Factor:** 2U rack server
 - **Weight:** ~22-30 kg depending on configuration
@@ -209,7 +347,7 @@ flowchart TD
 - **Key Vulnerability:** Front bezel clips, drive bays
 - **Special Note:** iLO port is fragile — protect during transport
 
-### Assembled Servers
+### Servers — Assembled (Non-Branded)
 
 - **Form Factor:** Varies (typically 2U-4U)
 - **Weight:** Varies (15-35 kg typical)

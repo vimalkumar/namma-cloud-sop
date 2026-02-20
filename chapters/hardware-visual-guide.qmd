@@ -1,0 +1,403 @@
+# Hardware & Equipment Visual Guide {#sec-hardware-visual-guide}
+
+## Purpose
+
+This chapter is your visual reference for all physical equipment you'll work with. When an SOP mentions a cable type, connector, tool, or server component, come back here to see what it looks like and how to identify it.
+
+::: {.callout-tip}
+## Quick Reference
+Bookmark this chapter. You'll flip back to it constantly during your first few weeks.
+:::
+
+---
+
+## The Server — Anatomy of a Machine
+
+A **server** is a powerful computer built to run 24/7 in a data center. Think of it like a desktop computer, but designed to slide into a rack like a book on a shelf.
+
+### Front View — What You See From the Aisle
+
+**Diagram:**
+```
++----------------------------------------------------------+
+|  [PWR]                             [LED] O O O           | <- Top edge
++----------------------------------------------------------+
+|  +---+ +---+ +---+ +---+ +---+ +---+ +---+ +---+        |
+|  | 1 | | 2 | | 3 | | 4 | | 5 | | 6 | | 7 | | 8 |        | <- Drive bays
+|  +---+ +---+ +---+ +---+ +---+ +---+ +---+ +---+        |    (8 slots)
+|                                                          |
+|              [ FRONT BEZEL - Removable Cover ]           |
++----------------------------------------------------------+
+           2U Server - Front View (facing the rack)
+```
+
+**Key components:**
+- **[PWR]** — Power button (top right corner, press to turn on/off)
+- **[LED] O O O** — Status LEDs (colored lights: green = OK, amber = problem)
+- **Drive bays 1-8** — Numbered slots where disks slide in (like drawers)
+- **Front bezel** — Removable plastic cover (may have logo)
+
+**Photo: Server Front View**
+
+![Server front view showing drive bays, power button, and status LEDs](../images/server-front.jpg){width=600px}
+
+*Typical 2U server front view. Notice: (1) Drive bays - numbered slots where disks go, (2) Power button - usually top-right, (3) Status LEDs - small colored lights, (4) Removable front bezel.*
+
+---
+
+**Photo: Server Detail - Drive Bays Close-Up**
+
+![Close-up of server showing individual drive bays and front panel](../images/server-detail.jpg){width=600px}
+
+*Detailed server front view. Notice: (1) Individual drive bays clearly visible, (2) Each bay numbered for identification, (3) Front panel controls and indicators.*
+
+---
+
+**Photo: Hot-Swap Drive Caddy**
+
+![Hot-swap hard drive in caddy showing handle and connector](../images/drive-caddy.jpg){width=500px}
+
+*Hot-swap drive caddy. Notice: (1) Handle for pulling drive out, (2) Drive slides into numbered bay, (3) Connector at back of caddy, (4) Can be removed/inserted while server runs.*
+
+---
+
+### Rear View — What You See Behind the Rack
+
+**Diagram:**
+```
++----------------------------------------------------------+
+|                                                          |
+|  +-------------+                  +-------------+        |
+|  |   PSU #1    |                  |   PSU #2    |        | <- Power supplies
+|  | (Left side) |                  | (Right side)|        |    (2 for backup)
+|  +-------------+                  +-------------+        |
+|                                                          |
+|  O O O O  <- NIC ports (high-speed network, 4 ports)    |
+|  O <- Management port (labeled iLO or IPMI)             |
+|                                                          |
+|  ================================================         | <- Fan exhaust
+|  (hot air exits here - vents with metal grille)         |    (should feel warm)
++----------------------------------------------------------+
+           2U Server - Rear View (behind the rack)
+```
+
+**Key components:**
+- **PSU #1 and PSU #2** — Two power supplies (left and right). Each plugs into a different power source.
+- **NIC ports (O O O O)** — Small network ports for high-speed data cables (usually 2-4 ports)
+- **Management port (O)** — One special port labeled "iLO", "IPMI", or "BMC" for remote control
+- **Fan exhaust** — Vents where hot air blows out (touch it — warm air means fans working)
+
+**Photo: Server Rear View**
+
+![Server rear view showing PSU slots, network ports, and fan vents](../images/server-rear.jpg){width=600px}
+
+*Server rear view. Notice: (1) Two PSU slots - large rectangular openings left and right, (2) NIC ports - multiple small ports in center, (3) Management port - one labeled port, (4) Fan vents - where hot air exits.*
+
+### Server Sizes
+
+| Size | Height | Typical Use |
+|------|--------|-------------|
+| **1U** | 1.75 inches (thin) | Switches, compact management servers |
+| **2U** | 3.5 inches (standard) | Most common server size |
+| **4U** | 7 inches (tall) | High-capacity storage servers |
+
+: Server Form Factors {.striped}
+
+::: {.callout-note}
+## Analogy
+A server is like a powerful desktop computer built to run 24/7, sliding into a rack like a book on a shelf.
+:::
+
+---
+
+## The Rack — Your Workspace Shelf
+
+A **rack** is a tall metal frame where servers, switches, and other equipment are mounted. Think of it like a bookshelf for heavy computer equipment.
+
+```
+        ║                                    ║
+        ║  [ U42 ] ← TOP (highest)           ║
+        ║  [ U41 ]                           ║
+        ║  [ U40 ]                           ║
+        ║  [ ... ]                           ║
+        ║  [ U30 ]                           ║
+        ║  [ ... ]                           ║
+        ║  [ U22 ] ← MIDDLE                  ║
+        ║  [ ... ]                           ║
+        ║  [ U10 ]                           ║
+        ║  [ U09 ]                           ║
+        ║  [ ... ]                           ║
+        ║  [ U03 ]                           ║
+        ║  [ U02 ]                           ║
+        ║  [ U01 ] ← BOTTOM (floor level)    ║ ← Count starts HERE
+        ╚══════════════════════════════════╝
+             ▓▓▓  Stabilizer Feet  ▓▓▓
+
+        Front Posts (║) = Vertical rails with mounting holes
+
+        [PDU] ← Power strip mounted vertically inside (rear)
+```
+
+**Think of it like a building:** U1 = ground floor, U42 = top floor. Always count UP from the floor.
+
+---
+
+**Real Rack Photo:**
+
+![Server racks in a datacenter showing vertical structure and equipment](../images/rack-datacenter.jpg){width=500px}
+
+*Server racks in a data center. Notice: (1) Vertical structure, (2) Equipment at different U-heights, (3) Cable management, (4) Like a tall bookshelf for servers.*
+
+---
+
+**Photo: Rack Equipment - Switches and Patch Panels**
+
+![Network switches and patch panels mounted in 19-inch rack](../images/rack-switches.jpg){width=600px}
+
+*Rack-mounted network equipment. Notice: (1) Multiple devices stacked at different U-heights, (2) Patch panels with organized cable connections, (3) Network switches with many ports, (4) Everything fits the standard 19-inch rack width.*
+
+---
+
+### Key Components
+
+| Component | What It Is | Location |
+|-----------|-----------|----------|
+| **Front Posts** | Vertical metal rails where equipment mounts | Front of rack, left and right |
+| **Rear Posts** | Vertical rails for back support | Rear of rack, left and right |
+| **Mounting Holes** | Small square holes running up the posts | Every ~0.5 inches on posts |
+| **Stabilizer Feet** | Metal supports that prevent tipping | Bottom of rack |
+| **PDU Mounting Area** | Vertical space inside rack for power | Usually rear left or rear right |
+| **Cable Management** | Horizontal trays or arms | Between equipment sections |
+
+: Rack Components {.striped}
+
+::: {.callout-important}
+## Critical: U-Numbering Starts at the Bottom
+**U1 is at the BOTTOM.** U42 is at the TOP. Count from the floor up, like floors in a building where floor 1 is the ground level.
+:::
+
+**Rack Unit (U):** One slot on the rack. **1U = 1.75 inches tall.**
+
+---
+
+### Cable Management in Racks
+
+Proper cable management keeps the rack organized and prevents accidents. Here's what good cable management looks like.
+
+**Photo: Cable Management Example 1**
+
+![Organized server cables with proper routing and management](../images/cable-mgmt-1.jpg){width=600px}
+
+*Good cable management. Notice: (1) Cables bundled together neatly, (2) Cables routed along designated paths, (3) Easy to trace individual cables, (4) No tangled mess blocking airflow.*
+
+---
+
+**Photo: Cable Management Example 2**
+
+![Server rear showing organized cable connections and management](../images/cable-mgmt-2.jpg){width=600px}
+
+*Server cable connections. Notice: (1) Power and data cables clearly separated, (2) Cables labeled at both ends, (3) Enough slack for maintenance but not excessive, (4) Cables don't block fans or vents.*
+
+::: {.callout-tip}
+## Cable Management Rules
+- Label both ends of every cable
+- Keep power and data cables separated (≥30cm / 12 inches apart)
+- Leave enough slack for movement but avoid loose loops
+- Never block fan vents or airflow paths
+:::
+
+---
+
+## Cables & Connectors — Know What You're Holding
+
+When working with cables, you need to identify them by sight and touch. Here's how to tell them apart.
+
+### Cable Identification Table
+
+| Cable Type | Looks Like | Feels Like | Where It Goes | How to Tell Apart |
+|------------|-----------|-----------|---------------|-------------------|
+| **RJ45 (Cat6)** | Clear plastic clip, 8 thin wires visible inside | Flexible, light | Management ports, switches | Wider than a phone jack, makes a "click" when inserted |
+| **C13/C14 Power** | 3-prong rectangular connector | Medium weight, sturdy | Server PSU ↔ PDU | Shaped like rounded rectangle with 3 holes/pins, like desktop PC power |
+| **C19/C20 Power** | Larger version of C13/C14 | Heavier, thicker | High-power servers, switches | Noticeably wider than C13 — won't fit in C13 outlet |
+| **DAC (Copper)** | Metal modules permanently attached at both ends, thick black cable | **Stiff**, heavy, short (2–5m) | Server ↔ switch (same rack) | Cannot bend easily, modules are fixed to cable |
+| **AOC (Fiber)** | Thin cable, often yellow or orange | **Flexible**, light, fragile | Longer distances between racks | Very thin — **never bend sharply** |
+
+: Cable Types and Identification {.striped}
+
+#### Visual Examples
+
+**RJ45 (Cat6) Cable:**
+
+![RJ45 ethernet connector with clear plastic clip and 8 wires visible](../images/cable-rj45.jpg){width=400px}
+
+*RJ45 connector (Cat6). Notice: (1) Clear plastic clip, (2) 8 colored wires visible inside, (3) Clicks when inserted.*
+
+---
+
+**C13/C14 Power Cables:**
+
+![C13 power connector with 3 prongs in rectangular housing](../images/cable-c13.jpg){width=400px}
+
+*C13 connector. Notice: (1) 3 prongs in rectangular housing, (2) Looks like desktop PC power cable, (3) Standard server power.*
+
+---
+
+**DAC (Direct Attach Copper) Cable:**
+
+![DAC cable with metal modules permanently attached at both ends](../images/cable-dac.jpg){width=500px}
+
+*DAC cable with SFP+ modules. Notice: (1) Thick black cable - stiff, (2) Metal modules at both ends - cannot be removed, (3) Used for short connections within same rack.*
+
+---
+
+**AOC (Active Optical Cable):**
+
+![Fiber optic cable - thin, flexible, often orange or yellow](../images/cable-fiber.jpg){width=400px}
+
+*Fiber optic cable (AOC type). Notice: (1) Thin and flexible, (2) Often orange or yellow, (3) Fragile - never bend sharply. Used for longer distances.*
+
+---
+
+**C19/C20 Power Cables (High-Power):**
+
+![C19 high-power connector - wider than C13](../images/cable-c19.jpg){width=400px}
+
+*C19 connector (high-power). Notice: (1) Wider than C13, (2) Used for high-power equipment, (3) Will NOT fit C13 outlet.*
+
+---
+
+### Cable Identification Flowchart
+
+```{mermaid}
+%%| label: fig-cable-id
+%%| fig-cap: "How to Identify an Unknown Cable"
+flowchart TD
+    A[You're holding a cable] --> B{Power cable or<br/>data cable?}
+    B -->|Power| C{How many prongs?}
+    B -->|Data| D{Plastic clip or<br/>metal module?}
+
+    C -->|3 prongs,<br/>standard size| E[C13/C14]
+    C -->|3 prongs,<br/>wider| F[C19/C20]
+
+    D -->|Plastic clip| G[RJ45]
+    D -->|Metal module| H{Stiff or flexible?}
+
+    H -->|Stiff, heavy| I[DAC]
+    H -->|Flexible, thin| J[AOC]
+```
+
+::: {.callout-important}
+## Never Force a Cable
+If a cable does not slide in easily, **STOP.** You probably have the wrong cable type. **Never force any cable or connector** — you'll damage the port or the cable.
+:::
+
+---
+
+## Optics & Modules — The Small Metal Pieces
+
+**SFP/QSFP modules** are small metal adapters that click into cages on servers or switches. Think of them like USB plugs, but for high-speed networking.
+
+### Module Sizes
+
+| Module Type | Size | Speed | How to Identify |
+|-------------|------|-------|-----------------|
+| **SFP28** | Thumb-size (smallest) | 25 Gbps | Single small metal rectangle |
+| **QSFP28** | Two-thumb size (wider) | 100 Gbps | Wider than SFP28 |
+| **QSFP-DD** | Widest | 200–400 Gbps | Noticeably larger than QSFP28 |
+
+: Network Module Types {.striped}
+
+### Key Rule
+
+**The module size must match the cage size** on the server or switch. If it doesn't fit easily, it's the wrong type. **Don't force it.**
+
+::: {.callout-tip}
+## DAC vs Module
+**DAC cables** have modules permanently attached at both ends — you cannot remove them.
+
+**Separate modules** (SFP28, QSFP28) click into the equipment first, then you plug a fiber cable into the module.
+:::
+
+---
+
+**Visual Examples:**
+
+**SFP Module:**
+
+![SFP transceiver module - small metal rectangle about thumb-size](../images/module-sfp.png){width=300px}
+
+*SFP module (transceiver). Notice: (1) Small metal rectangle - thumb-size, (2) Clicks into cage on server/switch, (3) Fiber cable plugs into front.*
+
+---
+
+**QSFP Module:**
+
+![QSFP module - wider than SFP, about two-thumb size](../images/module-qsfp.jpg){width=300px}
+
+*QSFP module. Notice: (1) Wider than SFP - two-thumb size, (2) Used for 100Gbps or 400Gbps, (3) Larger cage needed.*
+
+---
+
+## Tools of the Trade
+
+These are the tools referenced in the SOPs. Know what each one looks like and how to use it.
+
+| Tool | What It Looks Like | How to Use It |
+|------|-------------------|---------------|
+| **Spirit Level** | Small tube with liquid and a bubble, ruler-shaped | Place on surface. If the bubble is centered between the two lines, the surface is level. |
+| **Anti-Static Wrist Strap** | Bracelet with a wire and metal clip at the end | Wear on wrist. Clip the metal end to **bare metal** on the rack (not painted surface). |
+| **Cage Nut Tool** | Small metal tool with a hook on the end | Slides cage nuts into rack mounting holes. Ask Team Lead to demonstrate first time. |
+| **Label Maker** | Handheld device that prints sticky labels | Type the cable ID, print, peel, stick label on both ends of the cable. |
+| **Cable Tester** | Small device with two connectors and LED lights | Plug each end of the cable into the tester. Green lights = cable working. |
+| **Screwdriver Set** | Phillips (cross-head) and flat-head | Phillips for most server screws. Flat-head for some older equipment. |
+| **Flashlight / Headlamp** | Battery-powered light | Use headlamp when you need both hands free. |
+
+: Common Tools Used in SOPs {.striped}
+
+::: {.callout-tip}
+## Spirit Level — How to Read It
+Place the level on the surface. Look at the bubble inside the tube.
+
+- **Bubble between the two lines** = surface is level ✅
+- **Bubble to the left** = left side is higher
+- **Bubble to the right** = right side is higher
+:::
+
+---
+
+## LED Color Guide — Universal Reference
+
+Almost all datacenter equipment has LED lights showing status. Here's what the colors mean.
+
+| LED Pattern | What It Means | What to Do |
+|-------------|---------------|------------|
+| **Solid Green** | Everything OK | Proceed normally |
+| **Blinking Green** | Activity (network traffic, disk reading/writing) | Normal — keep working |
+| **Solid Amber/Orange** | Warning — something needs attention | Note it, report to Team Lead |
+| **Blinking Amber** | Critical fault — something is broken | **STOP.** Do not proceed. Notify Team Lead immediately. |
+| **Off (No Light)** | No power or no connection | Check cable seating, check power switch |
+
+: LED Status Indicators {.striped}
+
+::: {.callout-important}
+## Blinking Amber = Stop
+If you see a **blinking amber LED** on any equipment, **stop what you're doing** and notify the Team Lead. This indicates a critical fault.
+:::
+
+---
+
+## Quick Reference — When to Use This Chapter
+
+Flip back to this chapter when you encounter:
+
+- **Unknown cable** → See [Cable Identification Table](#cables-connectors-know-what-youre-holding)
+- **Unknown tool** → See [Tools of the Trade](#tools-of-the-trade)
+- **LED light** you don't understand → See [LED Color Guide](#led-color-guide-universal-reference)
+- **Server component** mentioned in SOP → See [Server Anatomy](#the-server-anatomy-of-a-machine)
+- **Rack U-numbers** confusing → See [Rack Structure](#the-rack-your-workspace-shelf)
+- **Module or connector** won't fit → See [Optics & Modules](#optics-modules-the-small-metal-pieces)
+
+::: {.callout-note}
+## Living Reference
+This chapter will grow as you encounter new equipment. If you see something not described here, ask the Team Lead and we'll add it.
+:::
