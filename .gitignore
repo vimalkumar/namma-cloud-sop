@@ -1,0 +1,22 @@
+# Quarto build output
+_book/
+_freeze/
+
+# Quarto internal
+.quarto/
+
+# Quarto downloaded binary (during CI build)
+quarto-*/
+*.tar.gz
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor files
+*.swp
+*.swo
+*~
+.vscode/
+.idea/
+
