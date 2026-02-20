@@ -1,0 +1,71 @@
+project:
+  type: book
+  output-dir: _book
+
+book:
+  title: "Namma Cloud — Private Cloud Infrastructure SOP"
+  subtitle: "Standard Operating Procedures for Data Center Setup & Management"
+  author: "Namma Cloud Admin Team"
+  date: today
+  date-format: "MMMM D, YYYY"
+  reader-mode: true
+
+  chapters:
+    - index.qmd
+    - part: "Vision & Foundations"
+      chapters:
+        - chapters/vision.qmd
+        - chapters/principles.qmd
+        - chapters/team-structure.qmd
+
+    - part: "Standard Operating Procedures"
+      chapters:
+        - chapters/sop-transportation.qmd
+        - chapters/sop-rack-fitting.qmd
+        - chapters/sop-power-network.qmd
+        - chapters/sop-server-verification.qmd
+
+    - part: "Quality & Governance"
+      chapters:
+        - chapters/maker-checker.qmd
+        - chapters/rca-module.qmd
+        - chapters/issue-tracking.qmd
+
+    - part: "Learning & Technology"
+      chapters:
+        - chapters/learning-module.qmd
+        - chapters/namma-dsl.qmd
+
+    - part: "Appendices"
+      chapters:
+        - chapters/appendix-checklists.qmd
+        - chapters/appendix-glossary.qmd
+
+  sidebar:
+    style: docked
+    search: true
+
+  page-footer:
+    center: "Namma Cloud — Confidential & Internal Use Only"
+
+format:
+  html:
+    theme:
+      light: cosmo
+      dark: darkly
+    css: custom.css
+    toc: true
+    toc-depth: 3
+    number-sections: true
+    code-fold: true
+    highlight-style: github
+    mermaid:
+      theme: neutral
+  pdf:
+    documentclass: scrbook
+    papersize: a4
+    toc: true
+    number-sections: true
+    colorlinks: true
+    highlight-style: github
+

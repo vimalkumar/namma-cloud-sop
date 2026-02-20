@@ -1,0 +1,211 @@
+# Appendix A: Checklists {#sec-appendix-checklists .unnumbered}
+
+This appendix contains printable checklists for all major tasks. Print these and keep them at the relevant workstation.
+
+---
+
+## Checklist 1: Server Transportation — Pre-Transport {.unnumbered}
+
+**Server ID:** ________________ **Date:** ________________ **Maker:** ________________ **Checker:** ________________
+
+| # | Item | Done? |
+|---|------|-------|
+| 1 | Server serial number recorded | ☐ |
+| 2 | Photos taken (6 angles) | ☐ |
+| 3 | Server weight recorded | ☐ |
+| 4 | Anti-static bag applied | ☐ |
+| 5 | Foam padding (2" minimum all sides) | ☐ |
+| 6 | Outer box/crate secured | ☐ |
+| 7 | Fragile labels on all sides + top | ☐ |
+| 8 | "This Side Up" labels applied | ☐ |
+| 9 | Shock indicator attached | ☐ |
+| 10 | Moisture indicator placed inside | ☐ |
+| 11 | For assembled: internal components checked | ☐ |
+| 12 | For assembled: component list taped inside lid | ☐ |
+| 13 | Vehicle clean, dry, with proper suspension | ☐ |
+| 14 | Tie-down straps available | ☐ |
+| 15 | Transportation ticket created | ☐ |
+
+**Maker Signature:** ________________ **Checker Signature:** ________________
+
+---
+
+## Checklist 2: Server Transportation — Post-Transport {.unnumbered}
+
+**Server ID:** ________________ **Date:** ________________ **Maker:** ________________ **Checker:** ________________
+
+| # | Item | Done? |
+|---|------|-------|
+| 1 | Cargo condition photo taken (before unloading) | ☐ |
+| 2 | Shock indicator checked | ☐ |
+| 3 | Moisture indicator checked | ☐ |
+| 4 | Packaging visual inspection | ☐ |
+| 5 | Packaging opened — contents photographed | ☐ |
+| 6 | Server exterior visual inspection | ☐ |
+| 7 | All ports and connectors inspected | ☐ |
+| 8 | For assembled: chassis opened, components inspected | ☐ |
+| 9 | Pre vs post-transport photos compared | ☐ |
+| 10 | Condition classification assigned (Green/Yellow/Red) | ☐ |
+| 11 | Any issues ticketed? | ☐ |
+
+**Condition:** ☐ Green  ☐ Yellow  ☐ Red
+
+**Maker Signature:** ________________ **Checker Signature:** ________________
+
+---
+
+## Checklist 3: Rack Preparation {.unnumbered}
+
+**Rack ID:** ________________ **Date:** ________________ **Maker:** ________________ **Checker:** ________________
+
+| # | Item | Done? |
+|---|------|-------|
+| 1 | Rack bolted to floor | ☐ |
+| 2 | Stabilizer feet extended | ☐ |
+| 3 | Rack leveled (spirit level) | ☐ |
+| 4 | PDUs installed and tested | ☐ |
+| 5 | Cable management in place | ☐ |
+| 6 | U numbers labeled | ☐ |
+| 7 | Front clearance ≥ 1m | ☐ |
+| 8 | Rear clearance ≥ 0.8m | ☐ |
+| 9 | Temperature within spec (18-27°C) | ☐ |
+| 10 | Rack layout plan documented | ☐ |
+
+**Maker Signature:** ________________ **Checker Signature:** ________________
+
+---
+
+## Checklist 4: Server Installation {.unnumbered}
+
+**Server ID:** ________________ **Rack:** ________________ **Position:** ________U **Date:** ________________
+
+**Maker:** ________________ **Checker:** ________________
+
+| # | Item | Done? |
+|---|------|-------|
+| 1 | Server compatibility verified (width, depth, weight) | ☐ |
+| 2 | Rail kit / shelf selected and rated | ☐ |
+| 3 | Rails/shelf installed at correct U | ☐ |
+| 4 | Rails/shelf level (spirit level) | ☐ |
+| 5 | Rails/shelf firmly secured | ☐ |
+| 6 | Server mounted (2-person lift) | ☐ |
+| 7 | Server fully seated | ☐ |
+| 8 | Server secured (thumbscrews/retainers) | ☐ |
+| 9 | Server is level | ☐ |
+| 10 | Front panel accessible | ☐ |
+| 11 | Drive bays accessible | ☐ |
+| 12 | Rear ports accessible | ☐ |
+| 13 | No contact with neighboring equipment | ☐ |
+| 14 | Airflow path clear | ☐ |
+| 15 | Front label attached | ☐ |
+| 16 | Rear label attached | ☐ |
+| 17 | Photos taken (front, rear, context) | ☐ |
+
+**Maker Signature:** ________________ **Checker Signature:** ________________
+
+---
+
+## Checklist 5: Power Connection {.unnumbered}
+
+**Server ID:** ________________ **Date:** ________________ **Maker:** ________________ **Checker:** ________________
+
+| # | Item | Done? |
+|---|------|-------|
+| 1 | PDU outlets identified (A and B) | ☐ |
+| 2 | PDU capacity verified (≥20% remaining) | ☐ |
+| 3 | Power cable type verified | ☐ |
+| 4 | Power cables routed through cable management | ☐ |
+| 5 | Power separated from network cables | ☐ |
+| 6 | Cable A connected (PSU 1 → PDU A) | ☐ |
+| 7 | Cable B connected (PSU 2 → PDU B) | ☐ |
+| 8 | Cable retention clips applied | ☐ |
+| 9 | PSU 1 LED shows standby | ☐ |
+| 10 | PSU 2 LED shows standby | ☐ |
+| 11 | Cable labels attached (both ends, both cables) | ☐ |
+
+**Maker Signature:** ________________ **Checker Signature:** ________________
+
+---
+
+## Checklist 6: Network Connection {.unnumbered}
+
+**Server ID:** ________________ **Date:** ________________ **Maker:** ________________ **Checker:** ________________
+
+| # | Item | Done? |
+|---|------|-------|
+| 1 | Switch ports identified and configured | ☐ |
+| 2 | Cable types verified | ☐ |
+| 3 | Cables labeled (both ends) | ☐ |
+| 4 | iLO/BMC port connected | ☐ |
+| 5 | iLO/BMC link LED active | ☐ |
+| 6 | NIC Port 1 connected | ☐ |
+| 7 | NIC Port 1 link LED active | ☐ |
+| 8 | NIC Port 2 connected (if applicable) | ☐ |
+| 9 | NIC Port 2 link LED active | ☐ |
+| 10 | Switch LEDs confirmed for all ports | ☐ |
+| 11 | Cables routed through cable management | ☐ |
+| 12 | No cables crossing power paths | ☐ |
+
+**Maker Signature:** ________________ **Checker Signature:** ________________
+
+---
+
+## Checklist 7: Initial Power-On {.unnumbered}
+
+**Server ID:** ________________ **Date:** ________________ **Maker:** ________________ **Checker:** ________________
+
+| # | Item | Done? |
+|---|------|-------|
+| 1 | All connections verified (pre-check) | ☐ |
+| 2 | Rack door can close without pinching | ☐ |
+| 3 | Power button pressed | ☐ |
+| 4 | Fans spin up | ☐ |
+| 5 | Front panel LEDs normal | ☐ |
+| 6 | No error beeps | ☐ |
+| 7 | PSU LEDs show active | ☐ |
+| 8 | POST screen observed — no errors | ☐ |
+| 9 | Hardware detected matches spec | ☐ |
+| 10 | iLO/BMC accessible via network | ☐ |
+| 11 | Server health shows "OK" | ☐ |
+| 12 | Power redundancy test — Cable A removed, server stays on | ☐ |
+| 13 | Power redundancy test — Cable A reconnected | ☐ |
+| 14 | Power redundancy test — Cable B removed, server stays on | ☐ |
+| 15 | Power redundancy test — Cable B reconnected | ☐ |
+
+**Maker Signature:** ________________ **Checker Signature:** ________________
+
+---
+
+## Checklist 8: Server Verification {.unnumbered}
+
+**Server ID:** ________________ **Date:** ________________ **Maker:** ________________ **Checker:** ________________
+
+| # | Item | Done? |
+|---|------|-------|
+| 1 | BIOS/UEFI settings verified | ☐ |
+| 2 | All CPUs detected | ☐ |
+| 3 | All RAM detected (correct size and speed) | ☐ |
+| 4 | All storage drives detected | ☐ |
+| 5 | All NICs detected | ☐ |
+| 6 | iLO health report — no warnings | ☐ |
+| 7 | Component inventory matches BOM | ☐ |
+| 8 | Firmware versions recorded | ☐ |
+| 9 | Memory test passed (memtest86+) | ☐ |
+| 10 | CPU stress test passed | ☐ |
+| 11 | Disk I/O test passed | ☐ |
+| 12 | Network throughput test passed | ☐ |
+| 13 | Temperatures within limits during stress | ☐ |
+| 14 | Namma DSL updated | ☐ |
+| 15 | Server status classified (Ready/Conditional/Not Ready) | ☐ |
+
+**Status:** ☐ Ready  ☐ Conditional  ☐ Not Ready
+
+**Maker Signature:** ________________ **Checker Signature:** ________________
+
+---
+
+::: {.callout-tip}
+## Printing Tip
+Print these checklists on **heavy paper** or **laminate** them for reuse with dry-erase markers. Keep a stack of fresh copies at each workstation.
+:::
+

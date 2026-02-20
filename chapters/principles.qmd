@@ -1,0 +1,168 @@
+# Principles & Culture {#sec-principles}
+
+## Core Principles
+
+The Namma Cloud Admin Team operates under a set of principles that guide every decision, every action, and every interaction. These are not just words on a page — they are the foundation of how we work.
+
+### Principle 1: Be Curious, Stay Curious {#sec-curious}
+
+> *"The important thing is not to stop questioning. Curiosity has its own reason for existing."* — Albert Einstein
+
+**What this means for us:**
+
+- **Ask "Why?"** — Don't just follow instructions. Understand *why* each step matters.
+- **Explore** — When you encounter something new, spend time understanding it.
+- **Question AI** — When AI gives you an answer, verify it. Ask "Is this correct?" and "How can I confirm this?"
+- **No question is a bad question** — If you don't understand, ask. If you think you understand, still ask to confirm.
+
+::: {.callout-tip}
+## Daily Practice
+Every day, write down **one thing you learned** and **one thing you're curious about**. Share it with the team.
+:::
+
+### Principle 2: AI as a Collaborator, Not a Commander {#sec-ai-collaborator}
+
+We are an **AI-first** team. But "AI-first" does not mean "AI-only" or "AI-blindly."
+
+```{mermaid}
+%%| label: fig-ai-collaboration
+%%| fig-cap: "The Right Way to Use AI"
+flowchart TD
+    A[Encounter a Task/Problem] --> B{Do you understand it?}
+    B -->|Yes| C[Do it yourself, use AI to verify]
+    B -->|No| D[Ask AI to explain]
+    D --> E[Read and understand the explanation]
+    E --> F{Does it make sense?}
+    F -->|Yes| G[Apply it, verify the result]
+    F -->|No| H[Ask AI follow-up questions]
+    H --> E
+    G --> I[Document what you learned]
+    C --> I
+```
+
+**The AI Collaboration Rules:**
+
+| ✅ Do | ❌ Don't |
+|-------|---------|
+| Use AI to understand concepts | Blindly copy-paste AI output |
+| Verify AI suggestions with real testing | Assume AI is always right |
+| Ask AI to explain in simpler terms | Skip understanding and just execute |
+| Use AI to draft documentation | Submit AI-generated docs without review |
+| Collaborate with AI on troubleshooting | Let AI make decisions without human judgment |
+
+: AI Collaboration Guidelines {.striped}
+
+### Principle 3: Verify Everything — Maker-Checker {#sec-verify}
+
+No single person completes and approves their own work. Every critical task follows the **Maker-Checker** pattern:
+
+- **Maker** performs the task
+- **Checker** independently verifies the result
+- Both sign off before moving to the next step
+
+This is not about distrust — it's about **quality assurance** and **learning from each other**.
+
+### Principle 4: Every Incident Is a Gift {#sec-incident-gift}
+
+When something goes wrong, we don't blame — we **learn**.
+
+Every incident triggers:
+
+1. **Immediate documentation** — What happened? What was the impact?
+2. **Root Cause Analysis (RCA)** — Why did it happen? What was the chain of events?
+3. **Corrective Action** — What do we change so it never happens again?
+4. **Knowledge Sharing** — What can the whole team learn from this?
+
+::: {.callout-important}
+## Non-Negotiable
+Every incident MUST be documented within 24 hours and have an RCA completed within 72 hours. No exceptions.
+:::
+
+### Principle 5: Small Steps, Big Impact {#sec-small-steps}
+
+We break everything into small, manageable steps:
+
+- **SOPs** are broken into individual, atomic tasks
+- **Learning** happens in small daily doses
+- **Improvements** are made incrementally
+- **Confidence** is built one success at a time
+
+### Principle 6: Document Everything {#sec-document}
+
+If it's not documented, it didn't happen. If it's not in a checklist, it might be forgotten.
+
+- Every task has an SOP
+- Every SOP has a checklist
+- Every checklist is versioned
+- Every change is tracked
+
+### Principle 7: Grow Together — 10x Potential {#sec-grow}
+
+Every team member has the potential to do **10x** their current output — not by working harder, but by:
+
+- **Learning** new skills every day
+- **Using AI** to augment capabilities
+- **Automating** repetitive tasks
+- **Sharing knowledge** with teammates
+- **Taking ownership** of their growth
+
+```{mermaid}
+%%| label: fig-growth-path
+%%| fig-cap: "Team Growth Trajectory"
+gantt
+    title Team Growth Path
+    dateFormat  YYYY-MM
+    axisFormat  %b %Y
+    section Foundation
+    Basic SOPs & Checklists       :done, 2026-01, 2026-03
+    Physical Server Operations    :active, 2026-01, 2026-04
+    section Intermediate
+    Networking Fundamentals       : 2026-03, 2026-06
+    Linux & OS Basics             : 2026-03, 2026-06
+    Namma DSL Usage               : 2026-04, 2026-07
+    section Advanced
+    OpenStack Operations          : 2026-06, 2026-09
+    Kubernetes Basics             : 2026-07, 2026-10
+    Monitoring & Troubleshooting  : 2026-08, 2026-11
+    section Expert
+    Full Stack Cloud Operations   : 2026-10, 2027-01
+    Capacity Planning & Scaling   : 2026-11, 2027-02
+```
+
+## Team Culture
+
+### Daily Standup
+
+Every day, the team meets briefly (15 minutes max) to:
+
+1. **Share** what they did yesterday
+2. **Plan** what they'll do today
+3. **Flag** any blockers or issues
+4. **Learn** one new concept together (5-minute learning moment)
+
+### Language & Communication
+
+Our team is diverse. Some members are still building English language skills. This is a strength, not a weakness.
+
+**Guidelines:**
+
+- Use **simple, clear language** in all documentation
+- Include **pictures and diagrams** wherever possible
+- Provide instructions in **both English and local language** where helpful
+- Encourage **everyone to speak up** — understanding matters more than grammar
+- Use AI translation tools when needed
+
+### Recognition & Growth
+
+- Celebrate every successfully completed SOP task
+- Recognize team members who identify issues early
+- Track and celebrate learning milestones
+- Create opportunities for increased responsibility
+
+---
+
+::: {.callout-note}
+## Remember
+These principles are alive. As we grow, our principles evolve. If you think a principle needs updating, bring it to the team discussion.
+:::
+

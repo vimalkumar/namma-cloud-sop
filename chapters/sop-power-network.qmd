@@ -1,0 +1,302 @@
+# SOP: Power & Network Connections {#sec-sop-power-network}
+
+## Purpose
+
+This SOP defines the standard procedure for connecting servers to power and network infrastructure after rack installation. Proper power and network connections are critical for server operation, reliability, and safety.
+
+## Scope
+
+- Power cable routing and connection to PDUs
+- Redundant power configuration
+- Network cable (Ethernet) routing and connection
+- Management network (iLO/BMC) connection
+- Cable labeling and management
+- Initial power-on verification
+
+## Safety First
+
+::: {.callout-important}
+## Electrical Safety — Non-Negotiable
+1. **Never** work on power connections with wet hands
+2. **Never** force a power cable into a socket — if it doesn't fit, it's the wrong cable
+3. **Always** verify the PDU circuit is rated for the server's power draw
+4. **Always** use grounded (3-pin) power cables
+5. **Report** any frayed, damaged, or warm cables immediately
+6. **Never** run power cables alongside network cables in the same bundle
+7. **Know the location** of the nearest fire extinguisher and emergency power shutoff
+:::
+
+## Pre-Connection Checklist
+
+### Step 1: Power Infrastructure Verification
+
+- [ ] Identify the PDU(s) assigned to this server's rack position
+- [ ] Verify PDU has available outlets
+- [ ] Check PDU circuit capacity:
+  - Current load on the circuit: _______ W
+  - Server's maximum power draw: _______ W
+  - Remaining capacity after this server: _______ W
+  - **Is remaining capacity ≥ 20% of circuit total?** ☐
+- [ ] Verify power cable type matches PDU outlet (C13/C14, C19/C20, etc.)
+- [ ] Verify power cable length is adequate (no tension, no excessive slack)
+
+### Step 2: Network Infrastructure Verification
+
+- [ ] Identify the network switch port(s) assigned to this server
+- [ ] Verify switch port is active and configured (coordinate with network team)
+- [ ] Identify the management network port (iLO/BMC) assignment
+- [ ] Verify cable types:
+  - Production network: Cat6A or higher
+  - Management network: Cat6 or higher
+  - High-speed interconnect (if needed): Fiber / DAC cable
+- [ ] Verify cable lengths are adequate
+
+### Step 3: Prepare Labels
+
+**Before** connecting any cable, prepare labels for **both ends** of every cable:
+
+| Cable Type | Label Format | Example |
+|-----------|-------------|---------|
+| Power Cable A | `PWR-A-[ServerID]-[PDU-Port]` | `PWR-A-SRV01-PDUA-12` |
+| Power Cable B | `PWR-B-[ServerID]-[PDU-Port]` | `PWR-B-SRV01-PDUB-12` |
+| Production Network | `NET-[ServerID]-[Port]-[Switch-Port]` | `NET-SRV01-ETH0-SW1-P24` |
+| Management Network | `MGMT-[ServerID]-[Switch-Port]` | `MGMT-SRV01-SW2-P48` |
+| Storage Network | `STOR-[ServerID]-[Port]-[Switch-Port]` | `STOR-SRV01-ETH2-SW3-P12` |
+
+: Cable Label Format Standards {.striped}
+
+::: {.callout-tip}
+## Labeling Best Practice
+Use **printed labels** (label maker), not handwritten ones. Labels should be:
+
+- Wrapped around the cable, 15 cm from each connector
+- Heat-resistant (near power connections)
+- Readable without removing the cable
+:::
+
+## Power Connection Procedure
+
+### Step 1: Route Power Cables
+
+1. Route power cables through the **designated cable management channels**
+2. **Separate power cables from network cables** — use different sides of the rack or different cable trays
+3. Ensure no sharp bends (minimum bend radius = 4x cable diameter)
+4. Ensure cables are not pinched by rack doors or other equipment
+5. Leave adequate slack for server maintenance (slide-out capability)
+
+### Step 2: Connect Power
+
+For **redundant power** (recommended for all production servers):
+
+```{mermaid}
+%%| label: fig-power-redundancy
+%%| fig-cap: "Redundant Power Connection Diagram"
+%%{init: {'theme': 'base', 'themeVariables': { 'clusterBkg': '#ffffff', 'clusterBorder': '#dee2e6' }}}%%
+flowchart LR
+    subgraph UPS_A["UPS Feed A"]
+        PA[PDU A]
+    end
+    subgraph UPS_B["UPS Feed B"]
+        PB[PDU B]
+    end
+
+    PA -->|"Power Cable A"| PSU1["Server PSU 1"]
+    PB -->|"Power Cable B"| PSU2["Server PSU 2"]
+
+    subgraph Server
+        PSU1
+        PSU2
+    end
+```
+
+1. Connect **Power Cable A** to **PSU 1** (left power supply) → **PDU A**
+2. Connect **Power Cable B** to **PSU 2** (right power supply) → **PDU B**
+3. Verify both cables click firmly into the sockets
+4. Use **cable retention clips** if available (prevents accidental disconnect)
+5. Verify both PSU LED indicators show standby power (typically amber/green)
+
+::: {.callout-caution}
+## Redundancy Check
+Both power supplies MUST be connected to **different** PDUs fed by **different** UPS systems. If one UPS fails, the server must remain powered through the other.
+:::
+
+### Step 3: Power Connection Verification
+
+| Check | Expected | Actual | Status |
+|-------|----------|--------|--------|
+| PSU 1 LED | Amber/Green standby | _______ | ☐ |
+| PSU 2 LED | Amber/Green standby | _______ | ☐ |
+| PDU A reading increased | By ~server idle watts | _______ | ☐ |
+| PDU B reading increased | By ~server idle watts | _______ | ☐ |
+| No buzzing or clicking sounds | Silent | _______ | ☐ |
+| Cables firmly seated | No wobble | _______ | ☐ |
+| Cable labels attached | Both ends, both cables | _______ | ☐ |
+
+: Power Connection Verification {.striped}
+
+## Network Connection Procedure
+
+### Step 1: Route Network Cables
+
+1. Route network cables through **designated cable management** (separate from power)
+2. Use **horizontal cable managers** between every 1-2U of servers
+3. Follow a consistent routing pattern:
+   - Left side: management network
+   - Right side: production network
+   - Or as defined in the rack's cable management plan
+4. Maintain **minimum bend radius** (Cat6A: 4x cable diameter)
+5. Do not over-bundle — leave cables loose enough for individual tracing
+
+### Step 2: Connect Network Cables
+
+For each server, the typical connections are:
+
+| Port | Purpose | Connected To | Cable Type |
+|------|---------|-------------|------------|
+| iLO/BMC Port | Management & remote access | Management switch | Cat6 |
+| NIC Port 1 (ETH0) | Production network | Production switch | Cat6A |
+| NIC Port 2 (ETH1) | Production network (bonded) | Production switch | Cat6A |
+| NIC Port 3 (ETH2) | Storage network (if applicable) | Storage switch | Cat6A / Fiber |
+
+: Standard Network Port Assignments {.striped}
+
+Connection steps:
+
+1. Connect the **management port (iLO/BMC) first** — this enables remote access
+2. Verify the link LED lights up on both ends (server NIC and switch)
+3. Connect production network ports
+4. Verify link LEDs
+5. Connect storage network ports (if applicable)
+6. Verify link LEDs
+7. Ensure all cable labels are in place
+
+### Step 3: Network Connection Verification
+
+| Check | Expected | Actual | Status |
+|-------|----------|--------|--------|
+| iLO/BMC link LED | Solid green | _______ | ☐ |
+| NIC Port 1 link LED | Solid/blinking green | _______ | ☐ |
+| NIC Port 2 link LED | Solid/blinking green | _______ | ☐ |
+| Switch port LED for each | Active | _______ | ☐ |
+| Cable labels on both ends | Present and readable | _______ | ☐ |
+| Cables in cable management | Neat and organized | _______ | ☐ |
+| No cables crossing power path | Confirmed | _______ | ☐ |
+
+: Network Connection Verification {.striped}
+
+## Initial Power-On Procedure
+
+After all power and network connections are verified:
+
+### Step 1: Pre-Power-On Final Check
+
+- [ ] All power connections verified (Maker + Checker)
+- [ ] All network connections verified (Maker + Checker)
+- [ ] All cable labels in place
+- [ ] Rack door can close without pinching cables
+- [ ] Camera/phone ready to record the first boot (capture any error messages)
+
+### Step 2: Power On
+
+1. Press the power button on the server front panel
+2. **Observe and record:**
+   - All fans spin up
+   - Front panel LEDs light up (note colors and patterns)
+   - No error beeps or unusual sounds
+   - PSU LEDs change from standby to active
+3. Watch the POST (Power-On Self-Test) screen:
+   - Record any errors or warnings
+   - Note the detected hardware (RAM, CPUs, drives)
+   - Verify detected hardware matches the server spec
+
+### Step 3: Verify Management Access
+
+1. Check if the iLO/BMC port received an IP address (DHCP) or configure static IP
+2. Access the iLO/BMC web interface from a management workstation
+3. Verify:
+   - [ ] iLO/BMC is accessible
+   - [ ] Server health status shows "OK"
+   - [ ] All components detected (CPUs, RAM, drives, NICs)
+   - [ ] Firmware version noted
+
+### Step 4: Power Redundancy Test
+
+::: {.callout-important}
+## Critical Test
+This test verifies that the server survives a single power feed failure.
+:::
+
+1. With the server running, **disconnect Power Cable A** from the PDU
+2. Verify:
+   - Server continues running without interruption
+   - PSU 1 shows fault/no power
+   - PSU 2 shows active
+3. **Reconnect Power Cable A**
+4. Verify PSU 1 returns to active
+5. Repeat the test by disconnecting **Power Cable B**
+6. Verify same behavior
+7. Reconnect Power Cable B
+
+## Maker-Checker Sign-Off
+
+| Item | Maker Sign | Checker Sign | Date/Time |
+|------|-----------|-------------|-----------|
+| Power infrastructure verified | _______ | _______ | _______ |
+| Network infrastructure verified | _______ | _______ | _______ |
+| Cable labels prepared | _______ | _______ | _______ |
+| Power cables connected (redundant) | _______ | _______ | _______ |
+| Network cables connected | _______ | _______ | _______ |
+| Initial power-on successful | _______ | _______ | _______ |
+| Management access verified | _______ | _______ | _______ |
+| Power redundancy test passed | _______ | _______ | _______ |
+| All photos taken | _______ | _______ | _______ |
+
+## Cable Management Standards
+
+```{mermaid}
+%%| label: fig-cable-mgmt
+%%| fig-cap: "Cable Management Layout (Rear of Rack)"
+%%{init: {'theme': 'base', 'themeVariables': { 'clusterBkg': '#ffffff', 'clusterBorder': '#dee2e6' }}}%%
+flowchart TB
+    subgraph RearView["Rear View of Rack"]
+        direction TB
+        L["← LEFT SIDE →\nManagement Cables\n(Blue)"]
+        C["← CENTER →\nPower Cables\n(Black/Red)"]
+        R["← RIGHT SIDE →\nProduction Network\n(Yellow/Green)"]
+    end
+```
+
+### Cable Color Standards
+
+| Cable Type | Color | Example |
+|-----------|-------|---------|
+| Power | Black or Red | C13/C14 power cables |
+| Management Network (iLO) | Blue | Cat6 blue patch cable |
+| Production Network | Yellow | Cat6A yellow patch cable |
+| Storage Network | Green | Cat6A / Fiber green |
+| Cross-connect / Trunk | Orange | Fiber / DAC |
+
+: Cable Color Standards {.striped}
+
+## Record Keeping
+
+For each server's power and network connection, record:
+
+- Connection ticket number
+- Server serial number and rack position
+- PDU ports used (A and B)
+- Switch ports used (all)
+- IP addresses assigned (iLO, production, storage)
+- Power-on test results
+- Redundancy test results
+- Maker-Checker sign-off form
+- All photographs (before and after cable connection)
+- Any issues encountered
+
+---
+
+::: {.callout-tip}
+## Next Step
+After power and network connections are verified, proceed to [Server Verification SOP](#sec-sop-verify) for comprehensive hardware and firmware validation.
+:::
+

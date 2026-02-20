@@ -1,0 +1,226 @@
+# Appendix B: Glossary {#sec-appendix-glossary .unnumbered}
+
+A reference of key terms used throughout this book. When in doubt about a term, look it up here.
+
+---
+
+## A {.unnumbered}
+
+**Airflow**
+: The movement of air through the data center and server racks. Servers pull cool air from the front (cold aisle) and exhaust hot air from the rear (hot aisle). Proper airflow prevents overheating.
+
+**Anti-Static Bag**
+: A special bag that protects electronic components from static electricity damage. Servers and components should be wrapped in these during transport.
+
+**Assembled Server**
+: A server that is custom-built from individual components (as opposed to a branded server from HP, Dell, etc.). May require special handling due to less standardized construction.
+
+## B {.unnumbered}
+
+**BIOS (Basic Input/Output System)**
+: The firmware that runs when a server first powers on. It initializes hardware and hands control to the operating system. Modern servers use UEFI instead of traditional BIOS.
+
+**Blank Panel**
+: A flat panel that fills empty rack spaces. Prevents hot air from the back of the rack from mixing with cold air at the front.
+
+**BMC (Baseboard Management Controller)**
+: A small computer on the server motherboard that allows remote management (power on/off, health monitoring) even when the server's main OS is not running. HP calls their BMC "iLO."
+
+**Burn-In Test**
+: A stress test run on new hardware to verify it works reliably under load. Helps catch early failures.
+
+## C {.unnumbered}
+
+**Cable Management**
+: The practice of organizing cables neatly in racks. Good cable management improves airflow, makes maintenance easier, and reduces errors.
+
+**CAPA (Corrective and Preventive Action)**
+: Actions taken after an incident — corrective actions fix the immediate problem, preventive actions stop it from happening again.
+
+**Cat6 / Cat6A**
+: Categories of Ethernet network cables. Cat6 supports up to 1 Gbps (gigabit per second). Cat6A supports up to 10 Gbps. We use Cat6A for production network and Cat6 for management.
+
+**Cold Aisle**
+: The aisle in a data center where the front of the racks face. This is where cool air is supplied. Servers pull air in from this side.
+
+## D {.unnumbered}
+
+**DAC (Direct Attach Copper)**
+: A type of high-speed cable used to connect servers or switches at short distances (1-7 meters). Used for 10 Gbps, 25 Gbps, or faster connections.
+
+**Digital Twin**
+: A digital representation of a physical system. In our case, Namma DSL is the digital twin of our data center — every physical component has a corresponding digital description.
+
+**DIMM (Dual Inline Memory Module)**
+: A type of RAM (memory) module that plugs into the server motherboard. Servers typically have multiple DIMM slots.
+
+**DSL (Domain-Specific Language)**
+: A specialized language designed for a particular purpose. Namma DSL is designed specifically for describing data center infrastructure.
+
+## E {.unnumbered}
+
+**ESD (Electrostatic Discharge)**
+: A sudden flow of electricity between two objects. Can damage electronic components. Prevented by wearing anti-static wrist straps and using anti-static bags.
+
+**Ethernet**
+: The most common type of network connection. Uses cables (Cat5e, Cat6, Cat6A) and connectors (RJ45) to connect devices.
+
+## F {.unnumbered}
+
+**Firmware**
+: Software that is permanently stored in hardware (like the server's BIOS/UEFI or iLO). Can be updated but is different from regular software.
+
+**Form Factor**
+: The physical size and shape of a server. Measured in "U" (rack units). A 1U server is 1.75 inches tall. Common sizes: 1U, 2U, 4U.
+
+## G {.unnumbered}
+
+**GitOps**
+: A practice where infrastructure is managed through Git (version control). Changes are made by editing files and committing them, just like software code.
+
+## H {.unnumbered}
+
+**Hot Aisle**
+: The aisle where the rear of the racks face. This is where servers exhaust hot air. Temperature is higher here than the cold aisle.
+
+**HP DL385**
+: HP ProLiant DL385 — a 2U rack server from HP. "DL" stands for "Density Line." This is one of our primary server models.
+
+## I {.unnumbered}
+
+**iLO (Integrated Lights-Out)**
+: HP's remote management technology (a type of BMC). Allows you to manage the server remotely — power on/off, view health, access the console — even when the server's OS is not running.
+
+**IP Address**
+: A unique number assigned to each device on a network (like a postal address for computers). Example: 10.0.1.101.
+
+## K {.unnumbered}
+
+**Kubernetes (K8s)**
+: A system for managing containerized applications across multiple servers. Part of our cloud platform stack.
+
+## L {.unnumbered}
+
+**Link LED**
+: A small light on a network port that indicates whether a cable is connected and working. Usually green when active.
+
+## M {.unnumbered}
+
+**Maker-Checker**
+: A quality assurance process where one person (Maker) performs a task and another person (Checker) independently verifies it. Standard practice at Namma Cloud.
+
+## N {.unnumbered}
+
+**Namma Cloud**
+: Our private cloud infrastructure project. "Namma" means "ours" in Kannada.
+
+**Namma DSL**
+: Our custom domain-specific language for describing and managing the entire data center infrastructure. Acts as a digital twin.
+
+**NIC (Network Interface Card)**
+: The component in a server that provides network connectivity. Servers typically have multiple NICs for different networks.
+
+**NVMe (Non-Volatile Memory Express)**
+: A type of very fast storage drive. Faster than traditional SSDs connected via SATA.
+
+## O {.unnumbered}
+
+**OpenStack**
+: An open-source platform for creating and managing cloud computing resources (virtual machines, networks, storage). Part of our cloud stack.
+
+## P {.unnumbered}
+
+**Patch Cable**
+: A short network cable used to connect a server's port to a patch panel or switch.
+
+**Patch Panel**
+: A panel with multiple network ports, used as a central connection point in the rack.
+
+**PCIe (Peripheral Component Interconnect Express)**
+: A type of expansion slot on a server motherboard. Used for GPUs, network cards, and storage controllers.
+
+**PDU (Power Distribution Unit)**
+: A device in the rack that distributes electrical power to multiple servers. Like a power strip but designed for data centers.
+
+**POST (Power-On Self-Test)**
+: The initial test that runs when a server powers on. Checks that basic hardware (CPU, RAM, storage) is functioning.
+
+**PSU (Power Supply Unit)**
+: The component inside a server that converts AC power from the wall into DC power for the server's components. Servers typically have 2 PSUs for redundancy.
+
+## R {.unnumbered}
+
+**Rack**
+: A standard frame for mounting servers and networking equipment. Standard width is 19 inches. Height is measured in U (rack units). Common sizes: 42U, 48U.
+
+**Rack Unit (U)**
+: A unit of measurement for rack space. 1U = 1.75 inches (44.45 mm) of vertical space.
+
+**Rail Kit**
+: Sliding rails that mount inside a rack to hold a server. Allow the server to slide in and out for maintenance.
+
+**RCA (Root Cause Analysis)**
+: The process of investigating an incident to find the underlying cause and prevent recurrence.
+
+**Redundancy**
+: Having backup systems so that if one fails, the other takes over. Example: two power supplies connected to two different PDUs.
+
+## S {.unnumbered}
+
+**SOP (Standard Operating Procedure)**
+: A documented, step-by-step procedure for performing a task consistently and correctly.
+
+**Spirit Level**
+: A tool used to check if a surface is perfectly horizontal (level). Used to ensure racks and rails are properly aligned.
+
+**SR-IOV (Single Root I/O Virtualization)**
+: A technology that allows a single network adapter to appear as multiple virtual adapters. Important for virtualization performance.
+
+**SSD (Solid State Drive)**
+: A type of storage drive with no moving parts. Faster and more reliable than traditional hard disk drives (HDDs).
+
+**Stress Test**
+: Running a server at maximum capacity to verify stability and detect hardware issues.
+
+## T {.unnumbered}
+
+**TPM (Trusted Platform Module)**
+: A security chip on the server motherboard that provides hardware-based security functions like encryption.
+
+## U {.unnumbered}
+
+**UEFI (Unified Extensible Firmware Interface)**
+: Modern replacement for traditional BIOS. Provides the firmware that runs when a server first powers on.
+
+**UPS (Uninterruptible Power Supply)**
+: A battery backup system that provides power during electrical outages. Gives time to safely shut down or switch to generator power.
+
+## V {.unnumbered}
+
+**VLAN (Virtual Local Area Network)**
+: A way to logically separate network traffic on the same physical network. Used to isolate management, production, and storage traffic.
+
+**VT-x / AMD-V**
+: CPU virtualization technologies from Intel (VT-x) and AMD (AMD-V). Must be enabled in BIOS for running virtual machines.
+
+## Y {.unnumbered}
+
+**YAML**
+: A human-readable data format used in Namma DSL. Uses indentation to show structure. Example:
+```yaml
+server:
+  id: SRV001
+  model: HP DL385
+```
+
+---
+
+::: {.callout-tip}
+## Can't Find a Term?
+If you encounter a term not in this glossary:
+
+1. Ask AI: "What does [term] mean in the context of data centers?"
+2. Verify the AI answer with a teammate or Team Lead
+3. Request it be added to this glossary (file a ticket!)
+:::
+

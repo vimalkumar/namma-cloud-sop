@@ -1,0 +1,269 @@
+# Learning & Upskilling Module {#sec-learning}
+
+## Purpose
+
+The Learning Module ensures that every team member continuously grows their skills, knowledge, and confidence. Our team comes from diverse backgrounds — some members are learning technical concepts and English language simultaneously. This module is designed to meet everyone where they are and take them further.
+
+## Learning Philosophy
+
+> *"Tell me and I forget. Show me and I remember. Involve me and I understand."*
+
+Our learning approach:
+
+```{mermaid}
+%%| label: fig-learning-approach
+%%| fig-cap: "Namma Cloud Learning Approach"
+flowchart LR
+    A["Learn\n(Understand concept)"] --> B["Do\n(Practice hands-on)"]
+    B --> C["Verify\n(Maker-Checker)"]
+    C --> D["Teach\n(Share with team)"]
+    D --> E["Improve\n(Find better ways)"]
+    E --> A
+```
+
+**Key Principles:**
+
+1. **Learn by doing** — Every concept is tied to a real task
+2. **Small daily doses** — 15-30 minutes of learning every day
+3. **AI-assisted but human-verified** — Use AI to learn, verify with practice
+4. **No judgment** — Every question is valid, every pace is respected
+5. **Multi-language support** — Learn in whatever language works best, document in English (with AI help)
+
+## Learning Structure
+
+### Daily Learning (15 minutes)
+
+Part of the daily standup — the last 5-10 minutes are dedicated to learning:
+
+| Day | Focus Area | Format |
+|-----|-----------|--------|
+| Monday | Hardware Concept | 5-min explainer by Team Lead or video |
+| Tuesday | SOP Deep-Dive | Walk through one SOP section in detail |
+| Wednesday | Tool/AI Training | Practice using a tool or AI assistant |
+| Thursday | Incident Review | Learn from a recent issue or RCA |
+| Friday | Open Discussion | Team members ask questions, share learnings |
+
+: Daily Learning Schedule {.striped}
+
+### Weekly Deep-Dive (1 hour)
+
+Every week, one focused session:
+
+- Hands-on workshop on a specific skill
+- Guest speaker (internal or external)
+- Video tutorial followed by discussion
+- Practice exercise with Maker-Checker
+
+### Monthly Assessment
+
+- Informal skills check (not an exam — a guided conversation)
+- Review of learning log entries
+- Goal setting for next month
+- Celebration of progress
+
+## Learning Tracks
+
+### Track 1: Physical Infrastructure (Months 1-3)
+
+| Week | Topic | Learning Goal | Practice Activity |
+|------|-------|--------------|-------------------|
+| 1 | Server Hardware Basics | Identify server components | Open a server, name each part |
+| 2 | Server Types | Understand rack, tower, blade | Compare HP DL385 vs assembled |
+| 3 | Rack Infrastructure | Understand U sizing, rails, shelves | Measure and map a rack |
+| 4 | Safe Handling | Lifting, ESD, packaging | Practice packing a server |
+| 5 | Power Systems | PDU, UPS, redundancy | Trace power path in data center |
+| 6 | Network Cabling | Cable types, connectors, labeling | Make and label a patch cable |
+| 7 | Server Installation | Full rack installation process | Install a server (supervised) |
+| 8 | Server Verification | POST, BIOS, health checks | Verify a server using checklist |
+| 9 | Troubleshooting Basics | Common issues and solutions | Diagnose a simulated problem |
+| 10 | Cable Management | Standards, routing, documentation | Re-route cables in a rack |
+| 11 | Environmental Monitoring | Temperature, humidity, airflow | Read and interpret sensor data |
+| 12 | Review & Assessment | Comprehensive review | Full server install, solo (checked) |
+
+: Track 1: Physical Infrastructure Curriculum {.striped}
+
+### Track 2: Networking Fundamentals (Months 3-6)
+
+| Week | Topic | Learning Goal |
+|------|-------|--------------|
+| 1-2 | What is a Network? | IP addresses, subnets, DNS basics |
+| 3-4 | Switches & Routers | What they do, how they connect |
+| 5-6 | VLANs | Why we separate traffic |
+| 7-8 | Network Troubleshooting | ping, traceroute, basic diagnosis |
+| 9-10 | Management Networks | iLO/BMC, out-of-band management |
+| 11-12 | Network Security Basics | Firewalls, access control |
+
+: Track 2: Networking Curriculum {.striped}
+
+### Track 3: Linux & OS Basics (Months 3-6)
+
+| Week | Topic | Learning Goal |
+|------|-------|--------------|
+| 1-2 | What is Linux? | Basic concepts, why we use it |
+| 3-4 | Command Line Basics | Navigation, files, permissions |
+| 5-6 | System Administration | Users, services, logs |
+| 7-8 | Storage Basics | Disks, partitions, filesystems |
+| 9-10 | Networking on Linux | IP config, hostname, ports |
+| 11-12 | Scripting Introduction | Basic bash scripts for automation |
+
+: Track 3: Linux Curriculum {.striped}
+
+### Track 4: Namma DSL & Cloud Concepts (Months 6-9)
+
+| Week | Topic | Learning Goal |
+|------|-------|--------------|
+| 1-2 | What is Namma DSL? | Purpose, structure, how to read it |
+| 3-4 | Using the DSL | Check out, edit, commit changes |
+| 5-6 | Digital Twin Concept | How DSL represents our data center |
+| 7-8 | OpenStack Basics | What is virtualization, basic concepts |
+| 9-10 | Kubernetes Basics | What is containerization, basic concepts |
+| 11-12 | Putting It All Together | How all layers connect |
+
+: Track 4: DSL & Cloud Curriculum {.striped}
+
+### Track 5: Advanced Operations (Months 9-12)
+
+| Week | Topic | Learning Goal |
+|------|-------|--------------|
+| 1-4 | Monitoring & Alerting | Set up and interpret dashboards |
+| 5-8 | Capacity Planning | Understand resource usage and planning |
+| 9-12 | Full Stack Troubleshooting | Diagnose issues across all layers |
+
+: Track 5: Advanced Operations Curriculum {.striped}
+
+## Learning with AI
+
+### How to Use AI for Learning
+
+AI is your **study buddy**, not your **answer sheet**.
+
+```{mermaid}
+%%| label: fig-ai-learning
+%%| fig-cap: "Using AI for Learning"
+flowchart TD
+    A[You encounter something new] --> B[Try to understand it yourself first — even 2 minutes]
+    B --> C[Ask AI to explain it simply]
+    C --> D[Read the explanation carefully]
+    D --> E{Do you understand?}
+    E -->|Mostly| F[Ask AI for an example]
+    E -->|Not really| G[Ask AI to explain differently / simpler]
+    G --> D
+    F --> H[Try to do it yourself]
+    H --> I{Did it work?}
+    I -->|Yes| J[Write down what you learned — in your own words]
+    I -->|No| K[Ask AI what might be wrong]
+    K --> H
+    J --> L[Share with a teammate — teach them]
+```
+
+### AI Learning Prompts
+
+Here are example prompts team members can use:
+
+| Situation | Prompt to Use |
+|-----------|-------------- |
+| Don't understand a term | "Explain [term] in simple words with an example" |
+| Need to learn a skill | "Teach me step by step how to [skill], like I'm a beginner" |
+| Troubleshooting | "I see [symptom]. What could be the cause?" |
+| Verifying understanding | "I think [concept] means [your understanding]. Am I right?" |
+| Language help | "How do I say [phrase in your language] in English?" |
+| SOP help | "I'm following SOP for [task]. I'm stuck at [step]. Help me understand what to do" |
+
+: AI Prompts for Learning {.striped}
+
+::: {.callout-important}
+## The Golden Rule of AI Learning
+**Always verify what AI tells you** by:
+
+1. Checking against the SOP
+2. Asking a teammate or Team Lead
+3. Testing it in practice
+4. Using your own judgment — does it make sense?
+:::
+
+## Learning Log
+
+Every team member maintains a **Learning Log** — a simple daily record:
+
+### Learning Log Template
+
+| Date | What I Learned | How I Learned It | What I'm Still Curious About |
+|------|---------------|-----------------|------------------------------|
+| _______ | _______ | _______ | _______ |
+| _______ | _______ | _______ | _______ |
+
+**Guidelines:**
+
+- Write at least **one entry per day**
+- It can be as short as one sentence
+- Write in **any language** — you can translate later with AI help
+- **Share interesting entries** during Friday's open discussion
+- Team Lead reviews logs weekly (for support, not evaluation)
+
+## Skill Matrix
+
+Track team skills with a visual matrix:
+
+### Skill Levels
+
+| Level | Symbol | Meaning |
+|-------|--------|---------|
+| 0 — Not started | ⬜ | Haven't begun learning |
+| 1 — Awareness | 🟨 | Knows the concept exists |
+| 2 — Basic | 🟧 | Can do with guidance |
+| 3 — Competent | 🟩 | Can do independently |
+| 4 — Expert | 🟦 | Can teach others |
+
+### Example Skill Matrix
+
+| Skill | Person A | Person B | Person C | Person D |
+|-------|----------|----------|----------|----------|
+| Server handling | 🟩 | 🟧 | 🟩 | 🟧 |
+| Rack installation | 🟧 | 🟧 | 🟨 | 🟨 |
+| Power connection | 🟩 | 🟨 | 🟧 | 🟨 |
+| Network cabling | 🟧 | 🟨 | 🟨 | 🟨 |
+| Maker-Checker (checker) | 🟧 | 🟧 | 🟨 | 🟨 |
+| AI tool usage | 🟧 | 🟨 | 🟧 | 🟨 |
+| English communication | 🟩 | 🟨 | 🟧 | 🟨 |
+| Documentation | 🟧 | 🟨 | 🟨 | 🟨 |
+
+: Team Skill Matrix (Example) {.striped}
+
+**Updated:** Monthly, during assessment conversations.
+
+## Mentorship & Buddy System
+
+### Buddy Pairs
+
+- Pair experienced members with newer members
+- Buddies work together on tasks
+- Natural Maker-Checker pairing
+- Rotate buddies monthly for broader learning
+
+### Team Lead as Coach
+
+The Team Lead:
+
+- Identifies learning gaps through daily observation
+- Creates targeted mini-lessons
+- Provides encouragement and constructive feedback
+- Connects team with resources (videos, AI tools, external help)
+- Tracks progress without creating pressure
+
+## Language Support
+
+For team members building English skills:
+
+1. **Technical vocabulary list** — Key terms with local language translations (see [Glossary](#sec-appendix-glossary))
+2. **Visual SOPs** — Diagrams and photos supplement written instructions
+3. **AI translation** — Use AI to translate concepts
+4. **Practice in standups** — Encourage English usage in a safe environment
+5. **Bilingual labels** — Where helpful, label equipment in both languages
+
+---
+
+::: {.callout-tip}
+## Growth Mindset
+Every expert was once a beginner. Every skill you have today was once something you couldn't do. Keep learning, keep growing, keep asking questions.
+:::
+

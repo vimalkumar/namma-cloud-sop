@@ -1,0 +1,53 @@
+# Preface {.unnumbered}
+
+Welcome to the **Namma Cloud Standard Operating Procedures (SOP) Book** — a comprehensive guide for our admin team responsible for building, managing, and maintaining our private cloud data center infrastructure.
+
+## Who Is This Book For?
+
+This book is written for every member of the Namma Cloud Admin Team — from team leads with deep technical knowledge to team members who are learning new skills every day. Whether you are:
+
+- **Transporting servers** from one location to the data center
+- **Fitting servers** into racks and ensuring proper alignment
+- **Connecting power and network** cables
+- **Verifying server health** after installation
+- **Learning new concepts** about cloud infrastructure
+
+...this book has clear, step-by-step procedures for you.
+
+## Why This Book Exists
+
+Setting up a private cloud data center is a complex, multi-layered effort. Our team has already faced real challenges:
+
+- A server was damaged during transportation due to inadequate packaging
+- Assembled (non-branded) servers did not fit well into standard racks
+- Alignment issues were discovered during rack fitting
+
+Each of these incidents taught us something valuable. This book captures those lessons and turns them into **repeatable, reliable processes** so that we never make the same mistake twice.
+
+## How to Use This Book
+
+| Part | What You'll Find |
+|------|-----------------|
+| **Vision & Foundations** | Our mission, principles, and team structure |
+| **Standard Operating Procedures** | Step-by-step guides for every physical task |
+| **Quality & Governance** | Maker-Checker processes, RCA, and issue tracking |
+| **Learning & Technology** | Upskilling modules and Namma DSL integration |
+| **Appendices** | Ready-to-use checklists, templates, and glossary |
+
+: Book Structure Overview {.striped}
+
+## A Living Document
+
+This book is not static. As we learn, as we encounter new challenges, and as our infrastructure grows, this book will evolve. Every team member is encouraged to:
+
+1. **Flag gaps** — If something is missing, raise it
+2. **Suggest improvements** — If a process can be better, propose changes
+3. **Document incidents** — Every issue is a learning opportunity
+4. **Use AI tools** — Leverage AI to understand, verify, and improve
+
+> *"We are building not just a data center, but a culture of excellence, curiosity, and continuous learning."*
+
+---
+
+**Let's build something extraordinary together.**
+

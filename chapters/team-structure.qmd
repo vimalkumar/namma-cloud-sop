@@ -1,0 +1,155 @@
+# Team Structure & Departments {#sec-team}
+
+## Overview
+
+The Namma Cloud Admin Team is organized into clear functional areas, each with defined responsibilities and growth paths. As the team matures, members will expand across multiple areas.
+
+## Organizational Structure
+
+```{mermaid}
+%%| label: fig-org-structure
+%%| fig-cap: "Namma Cloud Admin Team Structure"
+flowchart TD
+    A[Project Lead] --> B[Team Lead - Admin Operations]
+    B --> C[Physical Infrastructure Team]
+    B --> D[Quality & Documentation Team]
+    B --> E[Learning & Development]
+
+    C --> C1[Server Transportation]
+    C --> C2[Rack Installation]
+    C --> C3[Power & Network]
+    C --> C4[Hardware Verification]
+
+    D --> D1[SOP Management]
+    D --> D2[Issue Tracking]
+    D --> D3[RCA & CAPA]
+    D --> D4[Maker-Checker Oversight]
+
+    E --> E1[Daily Learning Sessions]
+    E --> E2[Skill Tracking]
+    E --> E3[AI Tool Training]
+    E --> E4[Namma DSL Training]
+```
+
+## Roles & Responsibilities
+
+### Project Lead
+
+| Aspect | Details |
+|--------|---------|
+| **Focus** | Strategic direction, vendor management, cross-team coordination |
+| **Decisions** | Hardware procurement, data center design, team composition |
+| **Reviews** | Weekly progress, incident reports, learning outcomes |
+
+### Team Lead — Admin Operations
+
+| Aspect | Details |
+|--------|---------|
+| **Focus** | Day-to-day operations, team coordination, quality assurance |
+| **Skills Required** | Technical knowledge of server hardware, networking basics, leadership |
+| **Key Tasks** | Assign work, review Maker-Checker outputs, conduct RCAs, run daily standups |
+| **Language** | Bridges communication between project lead and team members |
+
+### Physical Infrastructure Team Members
+
+| Aspect | Details |
+|--------|---------|
+| **Focus** | Hands-on server transportation, installation, cabling |
+| **Skills Being Built** | Hardware handling, basic networking, documentation, AI tool usage |
+| **Key Tasks** | Follow SOPs, complete checklists, report issues, participate in learning |
+| **Growth Path** | Physical Ops → Network Basics → OS/Linux → Cloud Ops |
+
+## Departments & Functions
+
+### 1. Physical Infrastructure Operations
+
+**Scope:** All physical tasks related to data center hardware.
+
+- Server transportation and receiving
+- Server rack installation and fitting
+- Power connection and management
+- Network cabling and connectivity
+- Hardware health verification
+- Environmental monitoring (temperature, humidity)
+
+### 2. Quality & Governance
+
+**Scope:** Ensuring every task meets quality standards.
+
+- Maintain and update SOPs
+- Run Maker-Checker processes
+- Track and manage issues/tickets
+- Conduct Root Cause Analysis (RCA)
+- Implement Corrective and Preventive Actions (CAPA)
+- Audit trail maintenance
+
+### 3. Learning & Development
+
+**Scope:** Continuous upskilling of all team members.
+
+- Daily 5-minute learning moments
+- Weekly deep-dive sessions
+- AI tool training
+- Language skill development
+- Namma DSL training
+- Progress tracking and certification
+
+### 4. DSL & Automation (Future)
+
+**Scope:** Interfacing with Namma DSL for infrastructure management.
+
+- Updating hardware specs in Namma DSL
+- Running validation checks
+- Contributing to digital twin accuracy
+- Automated reporting
+- Integration with monitoring systems
+
+## Communication Channels
+
+| Channel | Purpose | Frequency |
+|---------|---------|-----------|
+| **Daily Standup** | Status, blockers, learning moment | Daily, 15 min |
+| **Issue Ticket** | Report and track issues | As needed |
+| **RCA Meeting** | Deep-dive into incidents | Within 72 hours of incident |
+| **Weekly Review** | Progress, metrics, planning | Weekly, 30 min |
+| **Learning Session** | Deep-dive into a topic | Weekly, 1 hour |
+| **DSL Check-in** | Update/review DSL changes | As needed |
+
+: Communication Channels {.striped .hover}
+
+## Escalation Path
+
+```{mermaid}
+%%| label: fig-escalation
+%%| fig-cap: "Issue Escalation Path"
+flowchart LR
+    A[Team Member identifies issue] --> B[Log ticket immediately]
+    B --> C{Severity?}
+    C -->|Low| D[Team Lead reviews in daily standup]
+    C -->|Medium| E[Team Lead reviews within 4 hours]
+    C -->|High| F[Team Lead + Project Lead notified immediately]
+    C -->|Critical| G[All hands — stop other work]
+    D --> H[Resolution & RCA]
+    E --> H
+    F --> H
+    G --> H
+```
+
+### Severity Definitions
+
+| Severity | Definition | Example | Response Time |
+|----------|-----------|---------|---------------|
+| **Critical** | Infrastructure at risk of damage or safety hazard | Server falling from rack, electrical hazard | Immediate |
+| **High** | Significant impact on project timeline or hardware | Server not powering on after install | < 1 hour |
+| **Medium** | Issue that needs attention but no immediate risk | Alignment issue during rack fitting | < 4 hours |
+| **Low** | Minor issue, cosmetic, or improvement opportunity | Cable labeling inconsistency | Next standup |
+
+: Severity Definitions {.striped}
+
+---
+
+::: {.callout-tip}
+## Team Mantra
+*"We are not just setting up servers. We are building skills, building careers, and building the future of cloud infrastructure."*
+:::
+

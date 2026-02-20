@@ -1,0 +1,253 @@
+# SOP: Server Rack Fitting & Installation {#sec-sop-rack}
+
+## Purpose
+
+This SOP defines the standard procedure for physically installing servers into data center racks. It covers rail kit installation, server mounting, alignment verification, and post-installation checks.
+
+::: {.callout-warning}
+## Lesson Learned
+During initial rack fitting, we encountered alignment issues with certain servers, and assembled (non-branded) servers did not fit well into standard racks. This SOP ensures every installation is precise and verified.
+:::
+
+## Scope
+
+- Installation of **HP DL385** servers into standard 42U racks
+- Installation of **assembled servers** (with or without rail kits)
+- Rack preparation and space planning
+- Physical alignment and securing
+
+## Safety First
+
+::: {.callout-important}
+## Safety Rules — Non-Negotiable
+1. **Never** attempt to lift a server alone — minimum 2 people always
+2. **Never** work on a rack with the stabilizer feet not deployed (tip-over risk)
+3. **Wear anti-static wrist straps** when handling servers
+4. **Remove all jewelry** (rings, watches, bracelets) before working inside racks
+5. **Use proper lifting technique** — bend knees, straight back
+6. **Ensure adequate lighting** before starting work
+7. **Keep the work area clean** — no loose screws, cables, or tools on the floor
+:::
+
+## Pre-Installation Checklist
+
+### Step 1: Rack Preparation
+
+- [ ] Rack is securely bolted to the floor
+- [ ] Stabilizer feet are extended (front and rear)
+- [ ] Rack is leveled (use a spirit level — check front-to-back and left-to-right)
+- [ ] PDUs (Power Distribution Units) are installed and tested
+- [ ] Cable management arms/channels are in place
+- [ ] Rack unit numbers are clearly labeled (1U at bottom, 42U at top)
+- [ ] Adequate clearance: front (≥ 1 meter), rear (≥ 0.8 meter)
+- [ ] Temperature in the cold aisle is within spec (18-27°C)
+
+### Step 2: Space Planning
+
+Before installing any server, plan the rack layout:
+
+```{mermaid}
+%%| label: fig-rack-layout
+%%| fig-cap: "Recommended Rack Layout Strategy"
+%%{init: {'theme': 'base', 'themeVariables': { 'clusterBkg': '#ffffff', 'clusterBorder': '#dee2e6' }}}%%
+flowchart TB
+    subgraph Rack ["42U Rack"]
+        direction TB
+        A["40U-42U: Network Switches & Patch Panels"]
+        B["35U-39U: Cable Management / Blank Panels"]
+        C["7U-34U: Servers (Heaviest at Bottom)"]
+        D["3U-6U: UPS / Power Equipment"]
+        E["1U-2U: Heavy / Dense Servers"]
+    end
+```
+
+**Key Rules for Space Planning:**
+
+| Rule | Rationale |
+|------|-----------|
+| Heaviest servers at the bottom | Center of gravity — prevents tipping |
+| Network equipment at the top | Cable runs come from overhead trays |
+| Leave 1U gap between groups | Airflow management |
+| Fill empty spaces with blank panels | Prevents hot/cold air mixing |
+| Plan for 30% future growth | Don't fill the rack completely |
+
+: Rack Space Planning Rules {.striped}
+
+- [ ] Rack layout plan documented and approved by Team Lead
+- [ ] Each server's position (U number) assigned
+- [ ] Required accessories identified (rail kits, shelves, screws, cage nuts)
+
+### Step 3: Server Compatibility Verification
+
+**Before** attempting to install any server:
+
+#### HP DL385
+
+| Parameter | Expected Value | Actual Value | Match? |
+|-----------|---------------|--------------|--------|
+| Form factor | 2U | _______ | ☐ |
+| Width | 482 mm (19") | _______ | ☐ |
+| Depth | ~734 mm | _______ | ☐ |
+| Weight | ~22-30 kg | _______ | ☐ |
+| Rail kit model | HP DL385 Gen10+ kit | _______ | ☐ |
+
+#### Assembled Servers
+
+::: {.callout-caution}
+## Extra Verification Required
+Assembled servers may not conform to standard 19" rack dimensions. **Measure every assembled server** before attempting installation.
+:::
+
+| Parameter | Expected Value | Actual Value | Match? |
+|-----------|---------------|--------------|--------|
+| Form factor | _____U | _______ | ☐ |
+| Width | 482 mm (19") standard | _______ | ☐ |
+| Depth | ≤ rack depth | _______ | ☐ |
+| Weight | ≤ shelf/rail capacity | _______ | ☐ |
+| Mounting method | Rails / Shelf / Custom | _______ | ☐ |
+
+**If the server doesn't fit:**
+
+1. **STOP** — Do not force it
+2. Document the mismatch (photos + measurements)
+3. File a ticket
+4. Options to explore:
+   - Adjustable rail kits
+   - Universal rack shelves
+   - Custom mounting brackets
+   - Different rack (if available)
+5. Get Team Lead approval before any custom solution
+
+## Installation Procedure
+
+### Step 1: Install Rail Kit / Shelf
+
+#### For Rail Kit Installation:
+
+1. Identify the correct rail kit for the server model
+2. Read the rail kit documentation (or watch manufacturer video)
+3. Determine front and rear mounting positions based on assigned U number
+4. Install the **left rail** first:
+   - Align rear hook with the rear rack post hole
+   - Extend rail to front post
+   - Snap or screw into place
+   - Verify it's level
+5. Install the **right rail** — mirror the process
+6. **Verification:**
+   - [ ] Both rails are at the same U position
+   - [ ] Rails are level (spirit level check)
+   - [ ] Rails are firmly secured (try to wiggle — should not move)
+   - [ ] Rail extension mechanism works smoothly
+
+#### For Shelf Installation (assembled servers without rail kits):
+
+1. Select a shelf rated for the server's weight
+2. Install shelf at the assigned U position
+3. **Verification:**
+   - [ ] Shelf is level
+   - [ ] Shelf is secured with all required screws (typically 4)
+   - [ ] Weight rating is adequate (check label on shelf)
+
+### Step 2: Mount the Server
+
+1. **Two people required** — one on each side of the rack
+2. Position the server at rack height, aligned with the rails/shelf
+3. Gently slide the server in:
+   - For rail-mounted: align server rails with rack rails, slide slowly
+   - For shelf-mounted: place server centered on shelf, ensure it's not overhanging
+4. Push server fully into the rack until it clicks or reaches the rear stop
+5. Secure the server:
+   - For rail-mounted: Install front thumbscrews or latch
+   - For shelf-mounted: Use Velcro straps or shelf retainers to prevent sliding
+
+::: {.callout-tip}
+## Pro Tip
+If a server feels stuck while sliding in, **do not force it**. Pull back, check alignment, check for obstructions (cables, misaligned rails), and try again.
+:::
+
+### Step 3: Alignment Verification
+
+After mounting, verify:
+
+| Check | How to Verify | Status |
+|-------|--------------|--------|
+| Server is level | Spirit level on top of server | ☐ |
+| Server is centered | Equal gap left and right | ☐ |
+| Server is fully seated | Front face is flush with rack posts | ☐ |
+| Front panel accessible | All buttons and indicators visible | ☐ |
+| Drive bays accessible | Drives can be inserted/removed | ☐ |
+| Rear ports accessible | All rear ports reachable from behind rack | ☐ |
+| No contact with neighbors | Gap exists above and below | ☐ |
+| Airflow path clear | Front intake and rear exhaust unobstructed | ☐ |
+
+: Post-Mount Alignment Checks {.striped}
+
+### Step 4: Label the Server
+
+Immediately after mounting:
+
+- [ ] Attach a label to the **front** of the server with:
+  - Server name/ID
+  - Rack position (e.g., "Rack A, 15U-16U")
+  - Serial number
+  - Date of installation
+- [ ] Attach a label to the **rear** with:
+  - Server name/ID
+  - Network port assignments
+
+## Maker-Checker Sign-Off
+
+| Item | Maker Sign | Checker Sign | Date/Time |
+|------|-----------|-------------|-----------|
+| Rack prepared and level | _______ | _______ | _______ |
+| Server compatibility verified | _______ | _______ | _______ |
+| Rail/shelf installed correctly | _______ | _______ | _______ |
+| Server mounted and secured | _______ | _______ | _______ |
+| Alignment verified | _______ | _______ | _______ |
+| Server labeled | _______ | _______ | _______ |
+| Photos taken (front and rear) | _______ | _______ | _______ |
+
+## Common Issues & Solutions
+
+| Issue | Likely Cause | Solution |
+|-------|-------------|----------|
+| Server won't slide into rails | Rail misalignment | Re-check both rails are at same U height |
+| Server tilts forward/backward | Rails not level | Re-level rails with spirit level |
+| Assembled server too wide | Non-standard chassis | Use adjustable rails or a wider rack section |
+| Assembled server too deep | Long chassis | Check rear clearance, consider mid-mount position |
+| Server vibrates in rack | Loose mounting | Tighten all screws, check rail engagement |
+| Drive bay misaligned with bezel | Server not fully seated | Push server in until fully seated, check front bezel |
+| Cannot close rack door | Server or cables protruding | Adjust cable routing, check server depth |
+
+: Common Rack Fitting Issues {.striped}
+
+## Post-Installation Photograph Requirements
+
+Take and archive the following photos:
+
+1. **Front view** of installed server in rack (with label visible)
+2. **Rear view** showing port layout
+3. **Side view** (if accessible) showing airflow gap
+4. **Full rack front view** showing server in context
+5. **Full rack rear view** showing cable management
+
+## Record Keeping
+
+For each server installation, record:
+
+- Installation ticket number
+- Server serial number and model
+- Rack ID and U position
+- Rail kit / shelf used
+- Maker-Checker sign-off form
+- All photographs
+- Any issues encountered and resolutions
+- Time taken for installation
+
+---
+
+::: {.callout-note}
+## Continuous Improvement
+If you encounter a new issue not covered in this SOP, **document it immediately** and file a ticket. This SOP will be updated based on your findings.
+:::
+

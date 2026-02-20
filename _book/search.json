@@ -1,0 +1,1449 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Namma Cloud — Private Cloud Infrastructure SOP",
+    "section": "",
+    "text": "Preface\nWelcome to the Namma Cloud Standard Operating Procedures (SOP) Book — a comprehensive guide for our admin team responsible for building, managing, and maintaining our private cloud data center infrastructure.",
+    "crumbs": [
+      "Preface"
+    ]
+  },
+  {
+    "objectID": "index.html#who-is-this-book-for",
+    "href": "index.html#who-is-this-book-for",
+    "title": "Namma Cloud — Private Cloud Infrastructure SOP",
+    "section": "Who Is This Book For?",
+    "text": "Who Is This Book For?\nThis book is written for every member of the Namma Cloud Admin Team — from team leads with deep technical knowledge to team members who are learning new skills every day. Whether you are:\n\nTransporting servers from one location to the data center\nFitting servers into racks and ensuring proper alignment\nConnecting power and network cables\nVerifying server health after installation\nLearning new concepts about cloud infrastructure\n\n…this book has clear, step-by-step procedures for you.",
+    "crumbs": [
+      "Preface"
+    ]
+  },
+  {
+    "objectID": "index.html#why-this-book-exists",
+    "href": "index.html#why-this-book-exists",
+    "title": "Namma Cloud — Private Cloud Infrastructure SOP",
+    "section": "Why This Book Exists",
+    "text": "Why This Book Exists\nSetting up a private cloud data center is a complex, multi-layered effort. Our team has already faced real challenges:\n\nA server was damaged during transportation due to inadequate packaging\nAssembled (non-branded) servers did not fit well into standard racks\nAlignment issues were discovered during rack fitting\n\nEach of these incidents taught us something valuable. This book captures those lessons and turns them into repeatable, reliable processes so that we never make the same mistake twice.",
+    "crumbs": [
+      "Preface"
+    ]
+  },
+  {
+    "objectID": "index.html#how-to-use-this-book",
+    "href": "index.html#how-to-use-this-book",
+    "title": "Namma Cloud — Private Cloud Infrastructure SOP",
+    "section": "How to Use This Book",
+    "text": "How to Use This Book\n\nBook Structure Overview\n\n\n\n\n\n\nPart\nWhat You’ll Find\n\n\n\n\nVision & Foundations\nOur mission, principles, and team structure\n\n\nStandard Operating Procedures\nStep-by-step guides for every physical task\n\n\nQuality & Governance\nMaker-Checker processes, RCA, and issue tracking\n\n\nLearning & Technology\nUpskilling modules and Namma DSL integration\n\n\nAppendices\nReady-to-use checklists, templates, and glossary",
+    "crumbs": [
+      "Preface"
+    ]
+  },
+  {
+    "objectID": "index.html#a-living-document",
+    "href": "index.html#a-living-document",
+    "title": "Namma Cloud — Private Cloud Infrastructure SOP",
+    "section": "A Living Document",
+    "text": "A Living Document\nThis book is not static. As we learn, as we encounter new challenges, and as our infrastructure grows, this book will evolve. Every team member is encouraged to:\n\nFlag gaps — If something is missing, raise it\nSuggest improvements — If a process can be better, propose changes\nDocument incidents — Every issue is a learning opportunity\nUse AI tools — Leverage AI to understand, verify, and improve\n\n\n“We are building not just a data center, but a culture of excellence, curiosity, and continuous learning.”\n\n\nLet’s build something extraordinary together.",
+    "crumbs": [
+      "Preface"
+    ]
+  },
+  {
+    "objectID": "chapters/vision.html",
+    "href": "chapters/vision.html",
+    "title": "1  Vision & Introduction",
+    "section": "",
+    "text": "1.1 The Namma Cloud Vision\nNamma Cloud is not just another data center project. It is a bold step toward building a modern, Kubernetes-driven, DSL-powered private cloud infrastructure — managed by a team that embraces AI-first thinking, continuous learning, and operational excellence.\nOur vision:",
+    "crumbs": [
+      "Vision & Foundations",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Vision & Introduction</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/vision.html#the-namma-cloud-vision",
+    "href": "chapters/vision.html#the-namma-cloud-vision",
+    "title": "1  Vision & Introduction",
+    "section": "",
+    "text": "To create a modern, simplified, and AI-augmented approach to setting up and managing private cloud infrastructure — where every team member, regardless of background, can contribute meaningfully and grow professionally.",
+    "crumbs": [
+      "Vision & Foundations",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Vision & Introduction</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/vision.html#why-private-cloud",
+    "href": "chapters/vision.html#why-private-cloud",
+    "title": "1  Vision & Introduction",
+    "section": "1.2 Why Private Cloud?",
+    "text": "1.2 Why Private Cloud?\nPrivate cloud infrastructure gives us:\n\nFull control over hardware, network, and security\nCost optimization for long-term, predictable workloads\nData sovereignty — data stays where we want it\nCustomization — we design the stack from bare metal to application layer\nLearning opportunity — our team builds deep, real-world expertise",
+    "crumbs": [
+      "Vision & Foundations",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Vision & Introduction</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/vision.html#the-modern-approach",
+    "href": "chapters/vision.html#the-modern-approach",
+    "title": "1  Vision & Introduction",
+    "section": "1.3 The Modern Approach",
+    "text": "1.3 The Modern Approach\nTraditional data center management relies on tribal knowledge, manual processes, and siloed expertise. We are doing it differently:\n\n\n\n\n\n\nflowchart LR\n    A[Physical Infrastructure] --&gt; B[Namma DSL Spec]\n    B --&gt; C[OpenStack Layer]\n    C --&gt; D[Kubernetes Layer]\n    D --&gt; E[Application Layer]\n    B --&gt; F[Digital Twin]\n    F --&gt; G[Monitoring & Validation]\n    G --&gt; A\n\n\n\n\nFigure 1.1: Namma Cloud Modern Approach\n\n\n\n\n\n\n1.3.1 Key Differentiators\n\nDSL-Driven Infrastructure\n\nEvery component — from server hardware specs to Kubernetes configurations — is defined in Namma DSL\nThe DSL serves as a digital twin of our entire data center\nChanges are version-controlled, reviewed, and auditable\n\nAI-First Operations\n\nAI assists in troubleshooting, documentation, and learning\nTeam members collaborate with AI, not just follow AI blindly\nAI helps bridge language and knowledge gaps\n\nKubernetes-Native\n\nInfrastructure management follows cloud-native patterns\nDeclarative configurations over imperative commands\nSelf-healing, observable, and scalable\n\nContinuous Learning Culture\n\nEvery incident becomes a learning module\nEvery team member is on a growth trajectory\nKnowledge sharing is built into daily operations",
+    "crumbs": [
+      "Vision & Foundations",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Vision & Introduction</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/vision.html#the-full-stack",
+    "href": "chapters/vision.html#the-full-stack",
+    "title": "1  Vision & Introduction",
+    "section": "1.4 The Full Stack",
+    "text": "1.4 The Full Stack\nOur private cloud spans multiple layers, all managed through Namma DSL:\n\nNamma Cloud Full Stack\n\n\n\n\n\n\n\nLayer\nComponents\nManaged Via\n\n\n\n\nPhysical\nServers, racks, power, cooling, network cabling\nSOPs + Namma DSL\n\n\nFirmware/BIOS\nServer firmware, BMC/iLO configuration\nNamma DSL specs\n\n\nOS\nBase operating system, drivers\nAutomated provisioning\n\n\nOpenStack\nCompute, storage, networking virtualization\nNamma DSL + Ansible\n\n\nKubernetes\nContainer orchestration, service mesh\nNamma DSL + GitOps\n\n\nApplication\nWorkloads, services, databases\nNamma DSL + CI/CD\n\n\nObservability\nMonitoring, logging, alerting\nIntegrated dashboards\n\n\nPricing & Capacity\nCost tracking, capacity planning\nNamma DSL analytics",
+    "crumbs": [
+      "Vision & Foundations",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Vision & Introduction</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/vision.html#what-success-looks-like",
+    "href": "chapters/vision.html#what-success-looks-like",
+    "title": "1  Vision & Introduction",
+    "section": "1.5 What Success Looks Like",
+    "text": "1.5 What Success Looks Like\nIn 12 months, we envision:\n\n✅ A fully operational private cloud serving production workloads\n✅ A team that can independently manage, troubleshoot, and expand the infrastructure\n✅ Zero repeat incidents — every issue resolved permanently through RCA\n✅ Complete digital twin of the data center in Namma DSL\n✅ A replicable model that can be used to set up additional data centers\n✅ Team members who have grown from operations roles into cloud infrastructure specialists",
+    "crumbs": [
+      "Vision & Foundations",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Vision & Introduction</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/vision.html#guiding-philosophy",
+    "href": "chapters/vision.html#guiding-philosophy",
+    "title": "1  Vision & Introduction",
+    "section": "1.6 Guiding Philosophy",
+    "text": "1.6 Guiding Philosophy\n\n\n\n\n\n\nmindmap\n  root((Namma Cloud))\n    Simplify\n      Clear SOPs\n      Checklists\n      Visual Guides\n    Automate\n      DSL-Driven\n      GitOps\n      CI/CD\n    Learn\n      Daily Learning\n      RCA as Education\n      AI-Assisted\n    Verify\n      Maker-Checker\n      Peer Review\n      Automated Tests\n    Grow\n      10x Potential\n      Career Growth\n      Knowledge Sharing\n\n\n\n\nFigure 1.2: Namma Cloud Guiding Philosophy\n\n\n\n\n\n\nThe journey of a thousand servers begins with a single rack.",
+    "crumbs": [
+      "Vision & Foundations",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Vision & Introduction</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/principles.html",
+    "href": "chapters/principles.html",
+    "title": "2  Principles & Culture",
+    "section": "",
+    "text": "2.1 Core Principles\nThe Namma Cloud Admin Team operates under a set of principles that guide every decision, every action, and every interaction. These are not just words on a page — they are the foundation of how we work.",
+    "crumbs": [
+      "Vision & Foundations",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Principles & Culture</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/principles.html#core-principles",
+    "href": "chapters/principles.html#core-principles",
+    "title": "2  Principles & Culture",
+    "section": "",
+    "text": "2.1.1 Principle 1: Be Curious, Stay Curious\n\n“The important thing is not to stop questioning. Curiosity has its own reason for existing.” — Albert Einstein\n\nWhat this means for us:\n\nAsk “Why?” — Don’t just follow instructions. Understand why each step matters.\nExplore — When you encounter something new, spend time understanding it.\nQuestion AI — When AI gives you an answer, verify it. Ask “Is this correct?” and “How can I confirm this?”\nNo question is a bad question — If you don’t understand, ask. If you think you understand, still ask to confirm.\n\n\n\n\n\n\n\nDaily Practice\n\n\n\nEvery day, write down one thing you learned and one thing you’re curious about. Share it with the team.\n\n\n\n\n2.1.2 Principle 2: AI as a Collaborator, Not a Commander\nWe are an AI-first team. But “AI-first” does not mean “AI-only” or “AI-blindly.”\n\n\n\n\n\n\nflowchart TD\n    A[Encounter a Task/Problem] --&gt; B{Do you understand it?}\n    B --&gt;|Yes| C[Do it yourself, use AI to verify]\n    B --&gt;|No| D[Ask AI to explain]\n    D --&gt; E[Read and understand the explanation]\n    E --&gt; F{Does it make sense?}\n    F --&gt;|Yes| G[Apply it, verify the result]\n    F --&gt;|No| H[Ask AI follow-up questions]\n    H --&gt; E\n    G --&gt; I[Document what you learned]\n    C --&gt; I\n\n\n\n\nFigure 2.1: The Right Way to Use AI\n\n\n\n\n\nThe AI Collaboration Rules:\n\nAI Collaboration Guidelines\n\n\n\n\n\n\n✅ Do\n❌ Don’t\n\n\n\n\nUse AI to understand concepts\nBlindly copy-paste AI output\n\n\nVerify AI suggestions with real testing\nAssume AI is always right\n\n\nAsk AI to explain in simpler terms\nSkip understanding and just execute\n\n\nUse AI to draft documentation\nSubmit AI-generated docs without review\n\n\nCollaborate with AI on troubleshooting\nLet AI make decisions without human judgment\n\n\n\n\n\n2.1.3 Principle 3: Verify Everything — Maker-Checker\nNo single person completes and approves their own work. Every critical task follows the Maker-Checker pattern:\n\nMaker performs the task\nChecker independently verifies the result\nBoth sign off before moving to the next step\n\nThis is not about distrust — it’s about quality assurance and learning from each other.\n\n\n2.1.4 Principle 4: Every Incident Is a Gift\nWhen something goes wrong, we don’t blame — we learn.\nEvery incident triggers:\n\nImmediate documentation — What happened? What was the impact?\nRoot Cause Analysis (RCA) — Why did it happen? What was the chain of events?\nCorrective Action — What do we change so it never happens again?\nKnowledge Sharing — What can the whole team learn from this?\n\n\n\n\n\n\n\nNon-Negotiable\n\n\n\nEvery incident MUST be documented within 24 hours and have an RCA completed within 72 hours. No exceptions.\n\n\n\n\n2.1.5 Principle 5: Small Steps, Big Impact\nWe break everything into small, manageable steps:\n\nSOPs are broken into individual, atomic tasks\nLearning happens in small daily doses\nImprovements are made incrementally\nConfidence is built one success at a time\n\n\n\n2.1.6 Principle 6: Document Everything\nIf it’s not documented, it didn’t happen. If it’s not in a checklist, it might be forgotten.\n\nEvery task has an SOP\nEvery SOP has a checklist\nEvery checklist is versioned\nEvery change is tracked\n\n\n\n2.1.7 Principle 7: Grow Together — 10x Potential\nEvery team member has the potential to do 10x their current output — not by working harder, but by:\n\nLearning new skills every day\nUsing AI to augment capabilities\nAutomating repetitive tasks\nSharing knowledge with teammates\nTaking ownership of their growth\n\n\n\n\n\n\n\ngantt\n    title Team Growth Path\n    dateFormat  YYYY-MM\n    axisFormat  %b %Y\n    section Foundation\n    Basic SOPs & Checklists       :done, 2026-01, 2026-03\n    Physical Server Operations    :active, 2026-01, 2026-04\n    section Intermediate\n    Networking Fundamentals       : 2026-03, 2026-06\n    Linux & OS Basics             : 2026-03, 2026-06\n    Namma DSL Usage               : 2026-04, 2026-07\n    section Advanced\n    OpenStack Operations          : 2026-06, 2026-09\n    Kubernetes Basics             : 2026-07, 2026-10\n    Monitoring & Troubleshooting  : 2026-08, 2026-11\n    section Expert\n    Full Stack Cloud Operations   : 2026-10, 2027-01\n    Capacity Planning & Scaling   : 2026-11, 2027-02\n\n\n\n\nFigure 2.2: Team Growth Trajectory",
+    "crumbs": [
+      "Vision & Foundations",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Principles & Culture</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/principles.html#team-culture",
+    "href": "chapters/principles.html#team-culture",
+    "title": "2  Principles & Culture",
+    "section": "2.2 Team Culture",
+    "text": "2.2 Team Culture\n\n2.2.1 Daily Standup\nEvery day, the team meets briefly (15 minutes max) to:\n\nShare what they did yesterday\nPlan what they’ll do today\nFlag any blockers or issues\nLearn one new concept together (5-minute learning moment)\n\n\n\n2.2.2 Language & Communication\nOur team is diverse. Some members are still building English language skills. This is a strength, not a weakness.\nGuidelines:\n\nUse simple, clear language in all documentation\nInclude pictures and diagrams wherever possible\nProvide instructions in both English and local language where helpful\nEncourage everyone to speak up — understanding matters more than grammar\nUse AI translation tools when needed\n\n\n\n2.2.3 Recognition & Growth\n\nCelebrate every successfully completed SOP task\nRecognize team members who identify issues early\nTrack and celebrate learning milestones\nCreate opportunities for increased responsibility\n\n\n\n\n\n\n\n\nRemember\n\n\n\nThese principles are alive. As we grow, our principles evolve. If you think a principle needs updating, bring it to the team discussion.",
+    "crumbs": [
+      "Vision & Foundations",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Principles & Culture</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/team-structure.html",
+    "href": "chapters/team-structure.html",
+    "title": "3  Team Structure & Departments",
+    "section": "",
+    "text": "3.1 Overview\nThe Namma Cloud Admin Team is organized into clear functional areas, each with defined responsibilities and growth paths. As the team matures, members will expand across multiple areas.",
+    "crumbs": [
+      "Vision & Foundations",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Team Structure & Departments</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/team-structure.html#organizational-structure",
+    "href": "chapters/team-structure.html#organizational-structure",
+    "title": "3  Team Structure & Departments",
+    "section": "3.2 Organizational Structure",
+    "text": "3.2 Organizational Structure\n\n\n\n\n\n\nflowchart TD\n    A[Project Lead] --&gt; B[Team Lead - Admin Operations]\n    B --&gt; C[Physical Infrastructure Team]\n    B --&gt; D[Quality & Documentation Team]\n    B --&gt; E[Learning & Development]\n\n    C --&gt; C1[Server Transportation]\n    C --&gt; C2[Rack Installation]\n    C --&gt; C3[Power & Network]\n    C --&gt; C4[Hardware Verification]\n\n    D --&gt; D1[SOP Management]\n    D --&gt; D2[Issue Tracking]\n    D --&gt; D3[RCA & CAPA]\n    D --&gt; D4[Maker-Checker Oversight]\n\n    E --&gt; E1[Daily Learning Sessions]\n    E --&gt; E2[Skill Tracking]\n    E --&gt; E3[AI Tool Training]\n    E --&gt; E4[Namma DSL Training]\n\n\n\n\nFigure 3.1: Namma Cloud Admin Team Structure",
+    "crumbs": [
+      "Vision & Foundations",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Team Structure & Departments</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/team-structure.html#roles-responsibilities",
+    "href": "chapters/team-structure.html#roles-responsibilities",
+    "title": "3  Team Structure & Departments",
+    "section": "3.3 Roles & Responsibilities",
+    "text": "3.3 Roles & Responsibilities\n\n3.3.1 Project Lead\n\n\n\n\n\n\n\nAspect\nDetails\n\n\n\n\nFocus\nStrategic direction, vendor management, cross-team coordination\n\n\nDecisions\nHardware procurement, data center design, team composition\n\n\nReviews\nWeekly progress, incident reports, learning outcomes\n\n\n\n\n\n3.3.2 Team Lead — Admin Operations\n\n\n\n\n\n\n\nAspect\nDetails\n\n\n\n\nFocus\nDay-to-day operations, team coordination, quality assurance\n\n\nSkills Required\nTechnical knowledge of server hardware, networking basics, leadership\n\n\nKey Tasks\nAssign work, review Maker-Checker outputs, conduct RCAs, run daily standups\n\n\nLanguage\nBridges communication between project lead and team members\n\n\n\n\n\n3.3.3 Physical Infrastructure Team Members\n\n\n\n\n\n\n\nAspect\nDetails\n\n\n\n\nFocus\nHands-on server transportation, installation, cabling\n\n\nSkills Being Built\nHardware handling, basic networking, documentation, AI tool usage\n\n\nKey Tasks\nFollow SOPs, complete checklists, report issues, participate in learning\n\n\nGrowth Path\nPhysical Ops → Network Basics → OS/Linux → Cloud Ops",
+    "crumbs": [
+      "Vision & Foundations",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Team Structure & Departments</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/team-structure.html#departments-functions",
+    "href": "chapters/team-structure.html#departments-functions",
+    "title": "3  Team Structure & Departments",
+    "section": "3.4 Departments & Functions",
+    "text": "3.4 Departments & Functions\n\n3.4.1 1. Physical Infrastructure Operations\nScope: All physical tasks related to data center hardware.\n\nServer transportation and receiving\nServer rack installation and fitting\nPower connection and management\nNetwork cabling and connectivity\nHardware health verification\nEnvironmental monitoring (temperature, humidity)\n\n\n\n3.4.2 2. Quality & Governance\nScope: Ensuring every task meets quality standards.\n\nMaintain and update SOPs\nRun Maker-Checker processes\nTrack and manage issues/tickets\nConduct Root Cause Analysis (RCA)\nImplement Corrective and Preventive Actions (CAPA)\nAudit trail maintenance\n\n\n\n3.4.3 3. Learning & Development\nScope: Continuous upskilling of all team members.\n\nDaily 5-minute learning moments\nWeekly deep-dive sessions\nAI tool training\nLanguage skill development\nNamma DSL training\nProgress tracking and certification\n\n\n\n3.4.4 4. DSL & Automation (Future)\nScope: Interfacing with Namma DSL for infrastructure management.\n\nUpdating hardware specs in Namma DSL\nRunning validation checks\nContributing to digital twin accuracy\nAutomated reporting\nIntegration with monitoring systems",
+    "crumbs": [
+      "Vision & Foundations",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Team Structure & Departments</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/team-structure.html#communication-channels",
+    "href": "chapters/team-structure.html#communication-channels",
+    "title": "3  Team Structure & Departments",
+    "section": "3.5 Communication Channels",
+    "text": "3.5 Communication Channels\n\nCommunication Channels\n\n\n\n\n\n\n\nChannel\nPurpose\nFrequency\n\n\n\n\nDaily Standup\nStatus, blockers, learning moment\nDaily, 15 min\n\n\nIssue Ticket\nReport and track issues\nAs needed\n\n\nRCA Meeting\nDeep-dive into incidents\nWithin 72 hours of incident\n\n\nWeekly Review\nProgress, metrics, planning\nWeekly, 30 min\n\n\nLearning Session\nDeep-dive into a topic\nWeekly, 1 hour\n\n\nDSL Check-in\nUpdate/review DSL changes\nAs needed",
+    "crumbs": [
+      "Vision & Foundations",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Team Structure & Departments</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/team-structure.html#escalation-path",
+    "href": "chapters/team-structure.html#escalation-path",
+    "title": "3  Team Structure & Departments",
+    "section": "3.6 Escalation Path",
+    "text": "3.6 Escalation Path\n\n\n\n\n\n\nflowchart LR\n    A[Team Member identifies issue] --&gt; B[Log ticket immediately]\n    B --&gt; C{Severity?}\n    C --&gt;|Low| D[Team Lead reviews in daily standup]\n    C --&gt;|Medium| E[Team Lead reviews within 4 hours]\n    C --&gt;|High| F[Team Lead + Project Lead notified immediately]\n    C --&gt;|Critical| G[All hands — stop other work]\n    D --&gt; H[Resolution & RCA]\n    E --&gt; H\n    F --&gt; H\n    G --&gt; H\n\n\n\n\nFigure 3.2: Issue Escalation Path\n\n\n\n\n\n\n3.6.1 Severity Definitions\n\nSeverity Definitions\n\n\n\n\n\n\n\n\nSeverity\nDefinition\nExample\nResponse Time\n\n\n\n\nCritical\nInfrastructure at risk of damage or safety hazard\nServer falling from rack, electrical hazard\nImmediate\n\n\nHigh\nSignificant impact on project timeline or hardware\nServer not powering on after install\n&lt; 1 hour\n\n\nMedium\nIssue that needs attention but no immediate risk\nAlignment issue during rack fitting\n&lt; 4 hours\n\n\nLow\nMinor issue, cosmetic, or improvement opportunity\nCable labeling inconsistency\nNext standup\n\n\n\n\n\n\n\n\n\n\nTeam Mantra\n\n\n\n“We are not just setting up servers. We are building skills, building careers, and building the future of cloud infrastructure.”",
+    "crumbs": [
+      "Vision & Foundations",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Team Structure & Departments</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/sop-transportation.html",
+    "href": "chapters/sop-transportation.html",
+    "title": "4  SOP: Server Transportation",
+    "section": "",
+    "text": "4.1 Purpose\nThis SOP defines the standard procedure for safely transporting servers from the source location (vendor, guest house, or staging area) to the data center. It ensures that all servers arrive undamaged, properly documented, and ready for installation.",
+    "crumbs": [
+      "Standard Operating Procedures",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>SOP: Server Transportation</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/sop-transportation.html#purpose",
+    "href": "chapters/sop-transportation.html#purpose",
+    "title": "4  SOP: Server Transportation",
+    "section": "",
+    "text": "Lesson Learned\n\n\n\nDuring our initial transportation from the guest house to the data center, one server was slightly damaged due to inadequate packaging. This SOP was created to prevent such incidents from ever recurring.",
+    "crumbs": [
+      "Standard Operating Procedures",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>SOP: Server Transportation</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/sop-transportation.html#scope",
+    "href": "chapters/sop-transportation.html#scope",
+    "title": "4  SOP: Server Transportation",
+    "section": "4.2 Scope",
+    "text": "4.2 Scope\nThis procedure covers:\n\nTransportation of HP DL385 branded servers\nTransportation of assembled (non-branded) servers\nAny movement of servers between locations (vendor → guest house → data center)\nBoth short-distance (within city) and long-distance (inter-city) transport",
+    "crumbs": [
+      "Standard Operating Procedures",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>SOP: Server Transportation</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/sop-transportation.html#roles",
+    "href": "chapters/sop-transportation.html#roles",
+    "title": "4  SOP: Server Transportation",
+    "section": "4.3 Roles",
+    "text": "4.3 Roles\n\n\n\n\n\n\n\nRole\nResponsibility\n\n\n\n\nMaker\nPrepares, packs, and supervises transportation\n\n\nChecker\nVerifies packing quality, documentation, and condition on arrival\n\n\nTeam Lead\nApproves transportation plan, reviews completion",
+    "crumbs": [
+      "Standard Operating Procedures",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>SOP: Server Transportation</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/sop-transportation.html#pre-transportation-checklist",
+    "href": "chapters/sop-transportation.html#pre-transportation-checklist",
+    "title": "4  SOP: Server Transportation",
+    "section": "4.4 Pre-Transportation Checklist",
+    "text": "4.4 Pre-Transportation Checklist\nBefore any server is moved, the following MUST be completed:\n\n4.4.1 Step 1: Inventory & Documentation\n\nRecord the server’s serial number, model, and configuration\nTake photographs of the server from all 4 sides + top + bottom (6 photos minimum)\nRecord the server’s weight (important for transport vehicle selection)\nUpdate Namma DSL with transportation event (if applicable)\nCreate a transportation ticket in the issue tracker\n\n\n\n4.4.2 Step 2: Packaging Assessment\nDifferent server types require different packaging:\n\n4.4.2.1 HP DL385 (Branded Servers)\n\nHP DL385 Packaging Requirements\n\n\nItem\nRequirement\n✅ Check\n\n\n\n\nOriginal HP packaging\nMust use if available\n☐\n\n\nAnti-static bags\nEach server wrapped individually\n☐\n\n\nFoam padding\nMinimum 2 inches on all sides\n☐\n\n\nCardboard box\nDouble-wall corrugated, rated for weight\n☐\n\n\nFragile labels\nApplied on all 4 sides + top\n☐\n\n\n“This Side Up” labels\nApplied on 2 opposite sides\n☐\n\n\nShock indicators\nAttached to outside of package\n☐\n\n\nMoisture indicators\nPlaced inside package\n☐\n\n\n\n\n\n4.4.2.2 Assembled (Non-Branded) Servers\n\n\n\n\n\n\nSpecial Attention Required\n\n\n\nAssembled servers are more fragile than branded servers. Components may not be as securely fastened. Extra care is essential.\n\n\n\nAssembled Server Packaging Requirements\n\n\n\n\n\n\n\nItem\nRequirement\n✅ Check\n\n\n\n\nInternal component check\nVerify all components are firmly seated (RAM, GPU, cables)\n☐\n\n\nAnti-static bags\nFull server wrap\n☐\n\n\nCustom foam inserts\nCut to fit server dimensions exactly\n☐\n\n\nRigid outer container\nWooden crate or heavy-duty plastic case\n☐\n\n\nInternal bracing\nServer must not move inside container\n☐\n\n\nFragile + shock labels\nAll sides\n☐\n\n\nComponent list\nTaped inside the box lid\n☐\n\n\n\n\n\n\n4.4.3 Step 3: Transport Vehicle Preparation\n\nVehicle is clean and dry\nVehicle has suspension suitable for fragile cargo (avoid open trucks with poor suspension)\nClimate control available (if temperature &gt; 35°C or &lt; 10°C)\nTie-down straps or cargo nets available\nNon-slip mats placed on vehicle floor\nVehicle has adequate space — servers must not be stacked unless packaging is designed for it\n\n\n\n4.4.4 Step 4: Maker-Checker Sign-Off — Pre-Transport\n\n\n\nItem\nMaker Sign\nChecker Sign\nDate/Time\n\n\n\n\nInventory recorded\n_______\n_______\n_______\n\n\nPhotos taken\n_______\n_______\n_______\n\n\nPackaging complete\n_______\n_______\n_______\n\n\nVehicle prepared\n_______\n_______\n_______\n\n\nShock indicators attached\n_______\n_______\n_______",
+    "crumbs": [
+      "Standard Operating Procedures",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>SOP: Server Transportation</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/sop-transportation.html#during-transportation",
+    "href": "chapters/sop-transportation.html#during-transportation",
+    "title": "4  SOP: Server Transportation",
+    "section": "4.5 During Transportation",
+    "text": "4.5 During Transportation\n\n4.5.1 Loading Procedure\n\nMinimum 2 people for lifting any server (even small form factors)\nLift from the bottom — never grab by handles, faceplates, or cables\nPlace on vehicle floor, never on seats or unsecured surfaces\nSecure with tie-down straps — snug but not compressing the packaging\nPlace “Fragile” side facing up as marked\nLeave space between packages — no crushing\nTake a photograph of the loaded vehicle interior\n\n\n\n4.5.2 Transit Rules\n\nDriver must be informed that cargo is fragile electronics\nMaximum speed: 40 km/h on rough roads, 80 km/h on highways\nAvoid sudden braking and sharp turns\nIf journey &gt; 2 hours, check cargo at rest stop\nNo smoking in or near the vehicle\nAt least one team member rides with the cargo\nContact Team Lead if any incident occurs during transit\n\n\n\n4.5.3 Route Planning\n\nRoute Planning Considerations\n\n\n\n\n\n\nFactor\nConsideration\n\n\n\n\nRoad quality\nPrefer paved, smooth roads even if longer\n\n\nDistance\nMinimize total transport time\n\n\nWeather\nAvoid transport during heavy rain or extreme heat\n\n\nTime of day\nPrefer early morning (less traffic, cooler temperature)\n\n\nRest stops\nPlan stops every 2 hours for cargo check",
+    "crumbs": [
+      "Standard Operating Procedures",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>SOP: Server Transportation</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/sop-transportation.html#post-transportation-receiving-at-data-center",
+    "href": "chapters/sop-transportation.html#post-transportation-receiving-at-data-center",
+    "title": "4  SOP: Server Transportation",
+    "section": "4.6 Post-Transportation — Receiving at Data Center",
+    "text": "4.6 Post-Transportation — Receiving at Data Center\n\n4.6.1 Step 1: Unloading\n\nOpen vehicle carefully — check if anything shifted during transit\nPhotograph the cargo as-is before touching\nUnload one package at a time — 2 people minimum\nPlace on a clean, flat, dry surface in the receiving area\nNever drag packages — always lift\n\n\n\n4.6.2 Step 2: Inspection\nFor each server, perform the following:\n\nCheck shock indicator — was threshold exceeded?\nCheck moisture indicator — any moisture ingress?\nVisually inspect packaging — any dents, tears, or damage?\nOpen packaging carefully — photograph contents before removing\nVisually inspect server exterior — any dents, scratches, loose parts?\nCheck all ports and connectors — nothing bent or broken?\nFor assembled servers: open chassis and check component seating\nCompare against pre-transport photos — any differences?\n\n\n\n4.6.3 Step 3: Condition Classification\nAfter inspection, classify each server:\n\nServer Condition Classification\n\n\n\n\n\n\n\nClassification\nDescription\nAction\n\n\n\n\n✅ Green — No Issues\nServer matches pre-transport condition exactly\nProceed to rack installation\n\n\n🟡 Yellow — Minor Issue\nCosmetic damage, no functional concern\nDocument, proceed with monitoring\n\n\n🔴 Red — Significant Issue\nFunctional damage suspected or confirmed\nSTOP. File ticket. Begin RCA. Do not install.\n\n\n\n\n\n4.6.4 Step 4: Maker-Checker Sign-Off — Post-Transport\n\n\n\nItem\nMaker Sign\nChecker Sign\nDate/Time\n\n\n\n\nShock indicator OK\n_______\n_______\n_______\n\n\nMoisture indicator OK\n_______\n_______\n_______\n\n\nPackaging intact\n_______\n_______\n_______\n\n\nServer visual inspection OK\n_______\n_______\n_______\n\n\nInternal inspection OK (assembled)\n_______\n_______\n_______\n\n\nPhotos match pre-transport\n_______\n_______\n_______\n\n\nCondition classification assigned\n_______\n_______\n_______",
+    "crumbs": [
+      "Standard Operating Procedures",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>SOP: Server Transportation</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/sop-transportation.html#issue-handling-during-transportation",
+    "href": "chapters/sop-transportation.html#issue-handling-during-transportation",
+    "title": "4  SOP: Server Transportation",
+    "section": "4.7 Issue Handling During Transportation",
+    "text": "4.7 Issue Handling During Transportation\nIf any issue is discovered:\n\n\n\n\n\n\nflowchart TD\n    A[Issue Discovered] --&gt; B[STOP — Do not proceed]\n    B --&gt; C[Take photographs immediately]\n    C --&gt; D[Document: What, When, Where, Who]\n    D --&gt; E[File a ticket in issue tracker]\n    E --&gt; F[Notify Team Lead]\n    F --&gt; G{Severity?}\n    G --&gt;|Minor| H[Continue with caution, monitor]\n    G --&gt;|Major| I[Isolate server, do NOT install]\n    I --&gt; J[Begin RCA within 24 hours]\n    H --&gt; K[Complete RCA within 72 hours]\n    J --&gt; L[Determine corrective action]\n    K --&gt; L\n    L --&gt; M[Update SOP if needed]\n\n\n\n\nFigure 4.1: Transportation Issue Handling Flow",
+    "crumbs": [
+      "Standard Operating Procedures",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>SOP: Server Transportation</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/sop-transportation.html#server-type-reference",
+    "href": "chapters/sop-transportation.html#server-type-reference",
+    "title": "4  SOP: Server Transportation",
+    "section": "4.8 Server Type Reference",
+    "text": "4.8 Server Type Reference\n\n4.8.1 HP ProLiant DL385\n\nForm Factor: 2U rack server\nWeight: ~22-30 kg depending on configuration\nHandling: Use original HP packaging when available\nKey Vulnerability: Front bezel clips, drive bays\nSpecial Note: iLO port is fragile — protect during transport\n\n\n\n4.8.2 Assembled Servers\n\nForm Factor: Varies (typically 2U-4U)\nWeight: Varies (15-35 kg typical)\nHandling: Requires custom packaging — original packaging unlikely to exist\nKey Vulnerability: PCIe cards (GPU, NIC), unsecured drive cages, loose cables\nSpecial Note: May not conform to standard rack dimensions — verify before transport if it will fit the destination rack\n\n\n\n\n\n\n\nCritical Reminder — Assembled Servers\n\n\n\nWe experienced fitting issues with assembled servers in our racks. Before transporting assembled servers, confirm rack compatibility by checking:\n\nServer width, depth, and height match rack specifications\nRail kits (if any) are compatible\nIf no rail kits, shelf dimensions are verified",
+    "crumbs": [
+      "Standard Operating Procedures",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>SOP: Server Transportation</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/sop-transportation.html#record-keeping",
+    "href": "chapters/sop-transportation.html#record-keeping",
+    "title": "4  SOP: Server Transportation",
+    "section": "4.9 Record Keeping",
+    "text": "4.9 Record Keeping\nAll transportation records must include:\n\nTransportation ticket number\nPre-transport photos (all 6 angles)\nPost-transport photos (all 6 angles + packaging state)\nShock and moisture indicator readings\nMaker-Checker sign-off sheets (pre and post)\nCondition classification\nAny issue tickets filed\nRCA reports (if applicable)\n\nRetention: All records must be kept for minimum 2 years.\n\n\n\n\n\n\n\nQuick Reference\n\n\n\nPrint the checklists from Appendix A — Checklists and keep them with the transportation kit.",
+    "crumbs": [
+      "Standard Operating Procedures",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>SOP: Server Transportation</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/sop-rack-fitting.html",
+    "href": "chapters/sop-rack-fitting.html",
+    "title": "5  SOP: Server Rack Fitting & Installation",
+    "section": "",
+    "text": "5.1 Purpose\nThis SOP defines the standard procedure for physically installing servers into data center racks. It covers rail kit installation, server mounting, alignment verification, and post-installation checks.",
+    "crumbs": [
+      "Standard Operating Procedures",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>SOP: Server Rack Fitting & Installation</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/sop-rack-fitting.html#purpose",
+    "href": "chapters/sop-rack-fitting.html#purpose",
+    "title": "5  SOP: Server Rack Fitting & Installation",
+    "section": "",
+    "text": "Lesson Learned\n\n\n\nDuring initial rack fitting, we encountered alignment issues with certain servers, and assembled (non-branded) servers did not fit well into standard racks. This SOP ensures every installation is precise and verified.",
+    "crumbs": [
+      "Standard Operating Procedures",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>SOP: Server Rack Fitting & Installation</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/sop-rack-fitting.html#scope",
+    "href": "chapters/sop-rack-fitting.html#scope",
+    "title": "5  SOP: Server Rack Fitting & Installation",
+    "section": "5.2 Scope",
+    "text": "5.2 Scope\n\nInstallation of HP DL385 servers into standard 42U racks\nInstallation of assembled servers (with or without rail kits)\nRack preparation and space planning\nPhysical alignment and securing",
+    "crumbs": [
+      "Standard Operating Procedures",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>SOP: Server Rack Fitting & Installation</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/sop-rack-fitting.html#safety-first",
+    "href": "chapters/sop-rack-fitting.html#safety-first",
+    "title": "5  SOP: Server Rack Fitting & Installation",
+    "section": "5.3 Safety First",
+    "text": "5.3 Safety First\n\n\n\n\n\n\nSafety Rules — Non-Negotiable\n\n\n\n\nNever attempt to lift a server alone — minimum 2 people always\nNever work on a rack with the stabilizer feet not deployed (tip-over risk)\nWear anti-static wrist straps when handling servers\nRemove all jewelry (rings, watches, bracelets) before working inside racks\nUse proper lifting technique — bend knees, straight back\nEnsure adequate lighting before starting work\nKeep the work area clean — no loose screws, cables, or tools on the floor",
+    "crumbs": [
+      "Standard Operating Procedures",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>SOP: Server Rack Fitting & Installation</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/sop-rack-fitting.html#pre-installation-checklist",
+    "href": "chapters/sop-rack-fitting.html#pre-installation-checklist",
+    "title": "5  SOP: Server Rack Fitting & Installation",
+    "section": "5.4 Pre-Installation Checklist",
+    "text": "5.4 Pre-Installation Checklist\n\n5.4.1 Step 1: Rack Preparation\n\nRack is securely bolted to the floor\nStabilizer feet are extended (front and rear)\nRack is leveled (use a spirit level — check front-to-back and left-to-right)\nPDUs (Power Distribution Units) are installed and tested\nCable management arms/channels are in place\nRack unit numbers are clearly labeled (1U at bottom, 42U at top)\nAdequate clearance: front (≥ 1 meter), rear (≥ 0.8 meter)\nTemperature in the cold aisle is within spec (18-27°C)\n\n\n\n5.4.2 Step 2: Space Planning\nBefore installing any server, plan the rack layout:\n\n\n\n\n\n\nflowchart TB\n    subgraph Rack [\"42U Rack\"]\n        direction TB\n        A[\"40U-42U: Network Switches & Patch Panels\"]\n        B[\"35U-39U: Cable Management / Blank Panels\"]\n        C[\"7U-34U: Servers (Heaviest at Bottom)\"]\n        D[\"3U-6U: UPS / Power Equipment\"]\n        E[\"1U-2U: Heavy / Dense Servers\"]\n    end\n\n\n\n\nFigure 5.1: Recommended Rack Layout Strategy\n\n\n\n\n\nKey Rules for Space Planning:\n\nRack Space Planning Rules\n\n\n\n\n\n\nRule\nRationale\n\n\n\n\nHeaviest servers at the bottom\nCenter of gravity — prevents tipping\n\n\nNetwork equipment at the top\nCable runs come from overhead trays\n\n\nLeave 1U gap between groups\nAirflow management\n\n\nFill empty spaces with blank panels\nPrevents hot/cold air mixing\n\n\nPlan for 30% future growth\nDon’t fill the rack completely\n\n\n\n\nRack layout plan documented and approved by Team Lead\nEach server’s position (U number) assigned\nRequired accessories identified (rail kits, shelves, screws, cage nuts)\n\n\n\n5.4.3 Step 3: Server Compatibility Verification\nBefore attempting to install any server:\n\n5.4.3.1 HP DL385\n\n\n\nParameter\nExpected Value\nActual Value\nMatch?\n\n\n\n\nForm factor\n2U\n_______\n☐\n\n\nWidth\n482 mm (19”)\n_______\n☐\n\n\nDepth\n~734 mm\n_______\n☐\n\n\nWeight\n~22-30 kg\n_______\n☐\n\n\nRail kit model\nHP DL385 Gen10+ kit\n_______\n☐\n\n\n\n\n\n5.4.3.2 Assembled Servers\n\n\n\n\n\n\nExtra Verification Required\n\n\n\nAssembled servers may not conform to standard 19” rack dimensions. Measure every assembled server before attempting installation.\n\n\n\n\n\nParameter\nExpected Value\nActual Value\nMatch?\n\n\n\n\nForm factor\n_____U\n_______\n☐\n\n\nWidth\n482 mm (19”) standard\n_______\n☐\n\n\nDepth\n≤ rack depth\n_______\n☐\n\n\nWeight\n≤ shelf/rail capacity\n_______\n☐\n\n\nMounting method\nRails / Shelf / Custom\n_______\n☐\n\n\n\nIf the server doesn’t fit:\n\nSTOP — Do not force it\nDocument the mismatch (photos + measurements)\nFile a ticket\nOptions to explore:\n\nAdjustable rail kits\nUniversal rack shelves\nCustom mounting brackets\nDifferent rack (if available)\n\nGet Team Lead approval before any custom solution",
+    "crumbs": [
+      "Standard Operating Procedures",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>SOP: Server Rack Fitting & Installation</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/sop-rack-fitting.html#installation-procedure",
+    "href": "chapters/sop-rack-fitting.html#installation-procedure",
+    "title": "5  SOP: Server Rack Fitting & Installation",
+    "section": "5.5 Installation Procedure",
+    "text": "5.5 Installation Procedure\n\n5.5.1 Step 1: Install Rail Kit / Shelf\n\n5.5.1.1 For Rail Kit Installation:\n\nIdentify the correct rail kit for the server model\nRead the rail kit documentation (or watch manufacturer video)\nDetermine front and rear mounting positions based on assigned U number\nInstall the left rail first:\n\nAlign rear hook with the rear rack post hole\nExtend rail to front post\nSnap or screw into place\nVerify it’s level\n\nInstall the right rail — mirror the process\nVerification:\n\nBoth rails are at the same U position\nRails are level (spirit level check)\nRails are firmly secured (try to wiggle — should not move)\nRail extension mechanism works smoothly\n\n\n\n\n5.5.1.2 For Shelf Installation (assembled servers without rail kits):\n\nSelect a shelf rated for the server’s weight\nInstall shelf at the assigned U position\nVerification:\n\nShelf is level\nShelf is secured with all required screws (typically 4)\nWeight rating is adequate (check label on shelf)\n\n\n\n\n\n5.5.2 Step 2: Mount the Server\n\nTwo people required — one on each side of the rack\nPosition the server at rack height, aligned with the rails/shelf\nGently slide the server in:\n\nFor rail-mounted: align server rails with rack rails, slide slowly\nFor shelf-mounted: place server centered on shelf, ensure it’s not overhanging\n\nPush server fully into the rack until it clicks or reaches the rear stop\nSecure the server:\n\nFor rail-mounted: Install front thumbscrews or latch\nFor shelf-mounted: Use Velcro straps or shelf retainers to prevent sliding\n\n\n\n\n\n\n\n\nPro Tip\n\n\n\nIf a server feels stuck while sliding in, do not force it. Pull back, check alignment, check for obstructions (cables, misaligned rails), and try again.\n\n\n\n\n5.5.3 Step 3: Alignment Verification\nAfter mounting, verify:\n\nPost-Mount Alignment Checks\n\n\n\n\n\n\n\nCheck\nHow to Verify\nStatus\n\n\n\n\nServer is level\nSpirit level on top of server\n☐\n\n\nServer is centered\nEqual gap left and right\n☐\n\n\nServer is fully seated\nFront face is flush with rack posts\n☐\n\n\nFront panel accessible\nAll buttons and indicators visible\n☐\n\n\nDrive bays accessible\nDrives can be inserted/removed\n☐\n\n\nRear ports accessible\nAll rear ports reachable from behind rack\n☐\n\n\nNo contact with neighbors\nGap exists above and below\n☐\n\n\nAirflow path clear\nFront intake and rear exhaust unobstructed\n☐\n\n\n\n\n\n5.5.4 Step 4: Label the Server\nImmediately after mounting:\n\nAttach a label to the front of the server with:\n\nServer name/ID\nRack position (e.g., “Rack A, 15U-16U”)\nSerial number\nDate of installation\n\nAttach a label to the rear with:\n\nServer name/ID\nNetwork port assignments",
+    "crumbs": [
+      "Standard Operating Procedures",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>SOP: Server Rack Fitting & Installation</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/sop-rack-fitting.html#maker-checker-sign-off",
+    "href": "chapters/sop-rack-fitting.html#maker-checker-sign-off",
+    "title": "5  SOP: Server Rack Fitting & Installation",
+    "section": "5.6 Maker-Checker Sign-Off",
+    "text": "5.6 Maker-Checker Sign-Off\n\n\n\nItem\nMaker Sign\nChecker Sign\nDate/Time\n\n\n\n\nRack prepared and level\n_______\n_______\n_______\n\n\nServer compatibility verified\n_______\n_______\n_______\n\n\nRail/shelf installed correctly\n_______\n_______\n_______\n\n\nServer mounted and secured\n_______\n_______\n_______\n\n\nAlignment verified\n_______\n_______\n_______\n\n\nServer labeled\n_______\n_______\n_______\n\n\nPhotos taken (front and rear)\n_______\n_______\n_______",
+    "crumbs": [
+      "Standard Operating Procedures",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>SOP: Server Rack Fitting & Installation</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/sop-rack-fitting.html#common-issues-solutions",
+    "href": "chapters/sop-rack-fitting.html#common-issues-solutions",
+    "title": "5  SOP: Server Rack Fitting & Installation",
+    "section": "5.7 Common Issues & Solutions",
+    "text": "5.7 Common Issues & Solutions\n\nCommon Rack Fitting Issues\n\n\n\n\n\n\n\nIssue\nLikely Cause\nSolution\n\n\n\n\nServer won’t slide into rails\nRail misalignment\nRe-check both rails are at same U height\n\n\nServer tilts forward/backward\nRails not level\nRe-level rails with spirit level\n\n\nAssembled server too wide\nNon-standard chassis\nUse adjustable rails or a wider rack section\n\n\nAssembled server too deep\nLong chassis\nCheck rear clearance, consider mid-mount position\n\n\nServer vibrates in rack\nLoose mounting\nTighten all screws, check rail engagement\n\n\nDrive bay misaligned with bezel\nServer not fully seated\nPush server in until fully seated, check front bezel\n\n\nCannot close rack door\nServer or cables protruding\nAdjust cable routing, check server depth",
+    "crumbs": [
+      "Standard Operating Procedures",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>SOP: Server Rack Fitting & Installation</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/sop-rack-fitting.html#post-installation-photograph-requirements",
+    "href": "chapters/sop-rack-fitting.html#post-installation-photograph-requirements",
+    "title": "5  SOP: Server Rack Fitting & Installation",
+    "section": "5.8 Post-Installation Photograph Requirements",
+    "text": "5.8 Post-Installation Photograph Requirements\nTake and archive the following photos:\n\nFront view of installed server in rack (with label visible)\nRear view showing port layout\nSide view (if accessible) showing airflow gap\nFull rack front view showing server in context\nFull rack rear view showing cable management",
+    "crumbs": [
+      "Standard Operating Procedures",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>SOP: Server Rack Fitting & Installation</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/sop-rack-fitting.html#record-keeping",
+    "href": "chapters/sop-rack-fitting.html#record-keeping",
+    "title": "5  SOP: Server Rack Fitting & Installation",
+    "section": "5.9 Record Keeping",
+    "text": "5.9 Record Keeping\nFor each server installation, record:\n\nInstallation ticket number\nServer serial number and model\nRack ID and U position\nRail kit / shelf used\nMaker-Checker sign-off form\nAll photographs\nAny issues encountered and resolutions\nTime taken for installation\n\n\n\n\n\n\n\n\nContinuous Improvement\n\n\n\nIf you encounter a new issue not covered in this SOP, document it immediately and file a ticket. This SOP will be updated based on your findings.",
+    "crumbs": [
+      "Standard Operating Procedures",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>SOP: Server Rack Fitting & Installation</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/sop-power-network.html",
+    "href": "chapters/sop-power-network.html",
+    "title": "6  SOP: Power & Network Connections",
+    "section": "",
+    "text": "6.1 Purpose\nThis SOP defines the standard procedure for connecting servers to power and network infrastructure after rack installation. Proper power and network connections are critical for server operation, reliability, and safety.",
+    "crumbs": [
+      "Standard Operating Procedures",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>SOP: Power & Network Connections</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/sop-power-network.html#scope",
+    "href": "chapters/sop-power-network.html#scope",
+    "title": "6  SOP: Power & Network Connections",
+    "section": "6.2 Scope",
+    "text": "6.2 Scope\n\nPower cable routing and connection to PDUs\nRedundant power configuration\nNetwork cable (Ethernet) routing and connection\nManagement network (iLO/BMC) connection\nCable labeling and management\nInitial power-on verification",
+    "crumbs": [
+      "Standard Operating Procedures",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>SOP: Power & Network Connections</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/sop-power-network.html#safety-first",
+    "href": "chapters/sop-power-network.html#safety-first",
+    "title": "6  SOP: Power & Network Connections",
+    "section": "6.3 Safety First",
+    "text": "6.3 Safety First\n\n\n\n\n\n\nElectrical Safety — Non-Negotiable\n\n\n\n\nNever work on power connections with wet hands\nNever force a power cable into a socket — if it doesn’t fit, it’s the wrong cable\nAlways verify the PDU circuit is rated for the server’s power draw\nAlways use grounded (3-pin) power cables\nReport any frayed, damaged, or warm cables immediately\nNever run power cables alongside network cables in the same bundle\nKnow the location of the nearest fire extinguisher and emergency power shutoff",
+    "crumbs": [
+      "Standard Operating Procedures",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>SOP: Power & Network Connections</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/sop-power-network.html#pre-connection-checklist",
+    "href": "chapters/sop-power-network.html#pre-connection-checklist",
+    "title": "6  SOP: Power & Network Connections",
+    "section": "6.4 Pre-Connection Checklist",
+    "text": "6.4 Pre-Connection Checklist\n\n6.4.1 Step 1: Power Infrastructure Verification\n\nIdentify the PDU(s) assigned to this server’s rack position\nVerify PDU has available outlets\nCheck PDU circuit capacity:\n\nCurrent load on the circuit: _______ W\nServer’s maximum power draw: _______ W\nRemaining capacity after this server: _______ W\nIs remaining capacity ≥ 20% of circuit total? ☐\n\nVerify power cable type matches PDU outlet (C13/C14, C19/C20, etc.)\nVerify power cable length is adequate (no tension, no excessive slack)\n\n\n\n6.4.2 Step 2: Network Infrastructure Verification\n\nIdentify the network switch port(s) assigned to this server\nVerify switch port is active and configured (coordinate with network team)\nIdentify the management network port (iLO/BMC) assignment\nVerify cable types:\n\nProduction network: Cat6A or higher\nManagement network: Cat6 or higher\nHigh-speed interconnect (if needed): Fiber / DAC cable\n\nVerify cable lengths are adequate\n\n\n\n6.4.3 Step 3: Prepare Labels\nBefore connecting any cable, prepare labels for both ends of every cable:\n\nCable Label Format Standards\n\n\n\n\n\n\n\nCable Type\nLabel Format\nExample\n\n\n\n\nPower Cable A\nPWR-A-[ServerID]-[PDU-Port]\nPWR-A-SRV01-PDUA-12\n\n\nPower Cable B\nPWR-B-[ServerID]-[PDU-Port]\nPWR-B-SRV01-PDUB-12\n\n\nProduction Network\nNET-[ServerID]-[Port]-[Switch-Port]\nNET-SRV01-ETH0-SW1-P24\n\n\nManagement Network\nMGMT-[ServerID]-[Switch-Port]\nMGMT-SRV01-SW2-P48\n\n\nStorage Network\nSTOR-[ServerID]-[Port]-[Switch-Port]\nSTOR-SRV01-ETH2-SW3-P12\n\n\n\n\n\n\n\n\n\nLabeling Best Practice\n\n\n\nUse printed labels (label maker), not handwritten ones. Labels should be:\n\nWrapped around the cable, 15 cm from each connector\nHeat-resistant (near power connections)\nReadable without removing the cable",
+    "crumbs": [
+      "Standard Operating Procedures",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>SOP: Power & Network Connections</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/sop-power-network.html#power-connection-procedure",
+    "href": "chapters/sop-power-network.html#power-connection-procedure",
+    "title": "6  SOP: Power & Network Connections",
+    "section": "6.5 Power Connection Procedure",
+    "text": "6.5 Power Connection Procedure\n\n6.5.1 Step 1: Route Power Cables\n\nRoute power cables through the designated cable management channels\nSeparate power cables from network cables — use different sides of the rack or different cable trays\nEnsure no sharp bends (minimum bend radius = 4x cable diameter)\nEnsure cables are not pinched by rack doors or other equipment\nLeave adequate slack for server maintenance (slide-out capability)\n\n\n\n6.5.2 Step 2: Connect Power\nFor redundant power (recommended for all production servers):\n\n\n\n\n\n\nflowchart LR\n    subgraph UPS_A[\"UPS Feed A\"]\n        PA[PDU A]\n    end\n    subgraph UPS_B[\"UPS Feed B\"]\n        PB[PDU B]\n    end\n\n    PA --&gt;|\"Power Cable A\"| PSU1[\"Server PSU 1\"]\n    PB --&gt;|\"Power Cable B\"| PSU2[\"Server PSU 2\"]\n\n    subgraph Server\n        PSU1\n        PSU2\n    end\n\n\n\n\nFigure 6.1: Redundant Power Connection Diagram\n\n\n\n\n\n\nConnect Power Cable A to PSU 1 (left power supply) → PDU A\nConnect Power Cable B to PSU 2 (right power supply) → PDU B\nVerify both cables click firmly into the sockets\nUse cable retention clips if available (prevents accidental disconnect)\nVerify both PSU LED indicators show standby power (typically amber/green)\n\n\n\n\n\n\n\nRedundancy Check\n\n\n\nBoth power supplies MUST be connected to different PDUs fed by different UPS systems. If one UPS fails, the server must remain powered through the other.\n\n\n\n\n6.5.3 Step 3: Power Connection Verification\n\nPower Connection Verification\n\n\nCheck\nExpected\nActual\nStatus\n\n\n\n\nPSU 1 LED\nAmber/Green standby\n_______\n☐\n\n\nPSU 2 LED\nAmber/Green standby\n_______\n☐\n\n\nPDU A reading increased\nBy ~server idle watts\n_______\n☐\n\n\nPDU B reading increased\nBy ~server idle watts\n_______\n☐\n\n\nNo buzzing or clicking sounds\nSilent\n_______\n☐\n\n\nCables firmly seated\nNo wobble\n_______\n☐\n\n\nCable labels attached\nBoth ends, both cables\n_______\n☐",
+    "crumbs": [
+      "Standard Operating Procedures",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>SOP: Power & Network Connections</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/sop-power-network.html#network-connection-procedure",
+    "href": "chapters/sop-power-network.html#network-connection-procedure",
+    "title": "6  SOP: Power & Network Connections",
+    "section": "6.6 Network Connection Procedure",
+    "text": "6.6 Network Connection Procedure\n\n6.6.1 Step 1: Route Network Cables\n\nRoute network cables through designated cable management (separate from power)\nUse horizontal cable managers between every 1-2U of servers\nFollow a consistent routing pattern:\n\nLeft side: management network\nRight side: production network\nOr as defined in the rack’s cable management plan\n\nMaintain minimum bend radius (Cat6A: 4x cable diameter)\nDo not over-bundle — leave cables loose enough for individual tracing\n\n\n\n6.6.2 Step 2: Connect Network Cables\nFor each server, the typical connections are:\n\nStandard Network Port Assignments\n\n\n\n\n\n\n\n\nPort\nPurpose\nConnected To\nCable Type\n\n\n\n\niLO/BMC Port\nManagement & remote access\nManagement switch\nCat6\n\n\nNIC Port 1 (ETH0)\nProduction network\nProduction switch\nCat6A\n\n\nNIC Port 2 (ETH1)\nProduction network (bonded)\nProduction switch\nCat6A\n\n\nNIC Port 3 (ETH2)\nStorage network (if applicable)\nStorage switch\nCat6A / Fiber\n\n\n\nConnection steps:\n\nConnect the management port (iLO/BMC) first — this enables remote access\nVerify the link LED lights up on both ends (server NIC and switch)\nConnect production network ports\nVerify link LEDs\nConnect storage network ports (if applicable)\nVerify link LEDs\nEnsure all cable labels are in place\n\n\n\n6.6.3 Step 3: Network Connection Verification\n\nNetwork Connection Verification\n\n\nCheck\nExpected\nActual\nStatus\n\n\n\n\niLO/BMC link LED\nSolid green\n_______\n☐\n\n\nNIC Port 1 link LED\nSolid/blinking green\n_______\n☐\n\n\nNIC Port 2 link LED\nSolid/blinking green\n_______\n☐\n\n\nSwitch port LED for each\nActive\n_______\n☐\n\n\nCable labels on both ends\nPresent and readable\n_______\n☐\n\n\nCables in cable management\nNeat and organized\n_______\n☐\n\n\nNo cables crossing power path\nConfirmed\n_______\n☐",
+    "crumbs": [
+      "Standard Operating Procedures",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>SOP: Power & Network Connections</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/sop-power-network.html#initial-power-on-procedure",
+    "href": "chapters/sop-power-network.html#initial-power-on-procedure",
+    "title": "6  SOP: Power & Network Connections",
+    "section": "6.7 Initial Power-On Procedure",
+    "text": "6.7 Initial Power-On Procedure\nAfter all power and network connections are verified:\n\n6.7.1 Step 1: Pre-Power-On Final Check\n\nAll power connections verified (Maker + Checker)\nAll network connections verified (Maker + Checker)\nAll cable labels in place\nRack door can close without pinching cables\nCamera/phone ready to record the first boot (capture any error messages)\n\n\n\n6.7.2 Step 2: Power On\n\nPress the power button on the server front panel\nObserve and record:\n\nAll fans spin up\nFront panel LEDs light up (note colors and patterns)\nNo error beeps or unusual sounds\nPSU LEDs change from standby to active\n\nWatch the POST (Power-On Self-Test) screen:\n\nRecord any errors or warnings\nNote the detected hardware (RAM, CPUs, drives)\nVerify detected hardware matches the server spec\n\n\n\n\n6.7.3 Step 3: Verify Management Access\n\nCheck if the iLO/BMC port received an IP address (DHCP) or configure static IP\nAccess the iLO/BMC web interface from a management workstation\nVerify:\n\niLO/BMC is accessible\nServer health status shows “OK”\nAll components detected (CPUs, RAM, drives, NICs)\nFirmware version noted\n\n\n\n\n6.7.4 Step 4: Power Redundancy Test\n\n\n\n\n\n\nCritical Test\n\n\n\nThis test verifies that the server survives a single power feed failure.\n\n\n\nWith the server running, disconnect Power Cable A from the PDU\nVerify:\n\nServer continues running without interruption\nPSU 1 shows fault/no power\nPSU 2 shows active\n\nReconnect Power Cable A\nVerify PSU 1 returns to active\nRepeat the test by disconnecting Power Cable B\nVerify same behavior\nReconnect Power Cable B",
+    "crumbs": [
+      "Standard Operating Procedures",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>SOP: Power & Network Connections</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/sop-power-network.html#maker-checker-sign-off",
+    "href": "chapters/sop-power-network.html#maker-checker-sign-off",
+    "title": "6  SOP: Power & Network Connections",
+    "section": "6.8 Maker-Checker Sign-Off",
+    "text": "6.8 Maker-Checker Sign-Off\n\n\n\nItem\nMaker Sign\nChecker Sign\nDate/Time\n\n\n\n\nPower infrastructure verified\n_______\n_______\n_______\n\n\nNetwork infrastructure verified\n_______\n_______\n_______\n\n\nCable labels prepared\n_______\n_______\n_______\n\n\nPower cables connected (redundant)\n_______\n_______\n_______\n\n\nNetwork cables connected\n_______\n_______\n_______\n\n\nInitial power-on successful\n_______\n_______\n_______\n\n\nManagement access verified\n_______\n_______\n_______\n\n\nPower redundancy test passed\n_______\n_______\n_______\n\n\nAll photos taken\n_______\n_______\n_______",
+    "crumbs": [
+      "Standard Operating Procedures",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>SOP: Power & Network Connections</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/sop-power-network.html#cable-management-standards",
+    "href": "chapters/sop-power-network.html#cable-management-standards",
+    "title": "6  SOP: Power & Network Connections",
+    "section": "6.9 Cable Management Standards",
+    "text": "6.9 Cable Management Standards\n\n\n\n\n\n\nflowchart TB\n    subgraph RearView[\"Rear View of Rack\"]\n        direction TB\n        L[\"← LEFT SIDE →\\nManagement Cables\\n(Blue)\"]\n        C[\"← CENTER →\\nPower Cables\\n(Black/Red)\"]\n        R[\"← RIGHT SIDE →\\nProduction Network\\n(Yellow/Green)\"]\n    end\n\n\n\n\nFigure 6.2: Cable Management Layout (Rear of Rack)\n\n\n\n\n\n\n6.9.1 Cable Color Standards\n\nCable Color Standards\n\n\nCable Type\nColor\nExample\n\n\n\n\nPower\nBlack or Red\nC13/C14 power cables\n\n\nManagement Network (iLO)\nBlue\nCat6 blue patch cable\n\n\nProduction Network\nYellow\nCat6A yellow patch cable\n\n\nStorage Network\nGreen\nCat6A / Fiber green\n\n\nCross-connect / Trunk\nOrange\nFiber / DAC",
+    "crumbs": [
+      "Standard Operating Procedures",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>SOP: Power & Network Connections</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/sop-power-network.html#record-keeping",
+    "href": "chapters/sop-power-network.html#record-keeping",
+    "title": "6  SOP: Power & Network Connections",
+    "section": "6.10 Record Keeping",
+    "text": "6.10 Record Keeping\nFor each server’s power and network connection, record:\n\nConnection ticket number\nServer serial number and rack position\nPDU ports used (A and B)\nSwitch ports used (all)\nIP addresses assigned (iLO, production, storage)\nPower-on test results\nRedundancy test results\nMaker-Checker sign-off form\nAll photographs (before and after cable connection)\nAny issues encountered\n\n\n\n\n\n\n\n\nNext Step\n\n\n\nAfter power and network connections are verified, proceed to Server Verification SOP for comprehensive hardware and firmware validation.",
+    "crumbs": [
+      "Standard Operating Procedures",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>SOP: Power & Network Connections</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/sop-server-verification.html",
+    "href": "chapters/sop-server-verification.html",
+    "title": "7  SOP: Server Hardware Verification",
+    "section": "",
+    "text": "7.1 Purpose\nThis SOP defines the procedure for verifying that a newly installed server is fully functional, all components are detected and healthy, firmware is up to date, and the server is ready for operating system provisioning.",
+    "crumbs": [
+      "Standard Operating Procedures",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>SOP: Server Hardware Verification</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/sop-server-verification.html#scope",
+    "href": "chapters/sop-server-verification.html#scope",
+    "title": "7  SOP: Server Hardware Verification",
+    "section": "7.2 Scope",
+    "text": "7.2 Scope\n\nPOST (Power-On Self-Test) verification\nBIOS/UEFI configuration check\nHardware component detection and health check\nFirmware version audit\nBurn-in / stress test\nDocumentation and sign-off",
+    "crumbs": [
+      "Standard Operating Procedures",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>SOP: Server Hardware Verification</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/sop-server-verification.html#pre-verification-requirements",
+    "href": "chapters/sop-server-verification.html#pre-verification-requirements",
+    "title": "7  SOP: Server Hardware Verification",
+    "section": "7.3 Pre-Verification Requirements",
+    "text": "7.3 Pre-Verification Requirements\nBefore starting this SOP, ensure:\n\nServer is physically installed per Rack Fitting SOP\nPower and network are connected per Power & Network SOP\niLO/BMC management access is confirmed\nServer has completed initial POST successfully",
+    "crumbs": [
+      "Standard Operating Procedures",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>SOP: Server Hardware Verification</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/sop-server-verification.html#verification-procedure",
+    "href": "chapters/sop-server-verification.html#verification-procedure",
+    "title": "7  SOP: Server Hardware Verification",
+    "section": "7.4 Verification Procedure",
+    "text": "7.4 Verification Procedure\n\n7.4.1 Step 1: BIOS/UEFI Verification\nAccess the BIOS/UEFI setup (typically F9 or F11 during boot on HP servers):\n\nBIOS/UEFI Verification Checklist\n\n\nSetting\nExpected Value\nActual Value\nStatus\n\n\n\n\nBoot mode\nUEFI\n_______\n☐\n\n\nProcessor(s) detected\n[expected count & model]\n_______\n☐\n\n\nTotal RAM detected\n[expected GB]\n_______\n☐\n\n\nRAM speed\n[expected MHz]\n_______\n☐\n\n\nStorage controllers\n[expected]\n_______\n☐\n\n\nNetwork adapters\n[expected count]\n_______\n☐\n\n\nTPM module\nEnabled\n_______\n☐\n\n\nVirtualization (VT-x/AMD-V)\nEnabled\n_______\n☐\n\n\nSR-IOV\nEnabled\n_______\n☐\n\n\nBoot order\nPXE / Disk as required\n_______\n☐\n\n\n\n\n\n7.4.2 Step 2: iLO/BMC Health Check\nUsing the management web interface:\n\nOverall server health: OK (no amber/red indicators)\nAll fans detected and running at normal speed\nTemperature sensors within normal range\nPower supply status: both PSUs reporting OK\nStorage status: all drives detected and healthy\nMemory status: all DIMMs detected and healthy\nNetwork adapter status: all NICs detected\nEvent log: no critical or warning events\n\n\n\n7.4.3 Step 3: Component Inventory Verification\nCross-reference detected hardware against the purchase order / bill of materials:\n\nComponent Inventory Verification\n\n\nComponent\nExpected\nDetected (from iLO)\nMatch?\n\n\n\n\nCPU Model\n_______\n_______\n☐\n\n\nCPU Count\n_______\n_______\n☐\n\n\nCPU Cores (total)\n_______\n_______\n☐\n\n\nRAM Total (GB)\n_______\n_______\n☐\n\n\nRAM DIMM Count\n_______\n_______\n☐\n\n\nRAM Speed (MHz)\n_______\n_______\n☐\n\n\nDisk Count\n_______\n_______\n☐\n\n\nDisk Size (each)\n_______\n_______\n☐\n\n\nDisk Type (SSD/HDD/NVMe)\n_______\n_______\n☐\n\n\nNIC Count\n_______\n_______\n☐\n\n\nNIC Speed\n_______\n_______\n☐\n\n\nGPU (if any)\n_______\n_______\n☐\n\n\nRAID Controller\n_______\n_______\n☐\n\n\n\n\n\n\n\n\n\nMismatch Found?\n\n\n\nIf any component doesn’t match the expected configuration:\n\nSTOP further provisioning\nDocument the mismatch with screenshots\nFile a ticket\nNotify the Team Lead\nDo not proceed until resolved\n\n\n\n\n\n7.4.4 Step 4: Firmware Audit\nRecord current firmware versions:\n\nFirmware Audit\n\n\nComponent\nCurrent Version\nLatest Available\nAction Needed?\n\n\n\n\niLO/BMC Firmware\n_______\n_______\n☐\n\n\nSystem BIOS/UEFI\n_______\n_______\n☐\n\n\nStorage Controller\n_______\n_______\n☐\n\n\nNetwork Adapter\n_______\n_______\n☐\n\n\nDrive Firmware\n_______\n_______\n☐\n\n\nGPU Firmware (if any)\n_______\n_______\n☐\n\n\n\n\n\n\n\n\n\nNote\n\n\n\nFirmware updates should be planned and executed as a separate activity with proper change management. Do not update firmware without Team Lead approval.\n\n\n\n\n7.4.5 Step 5: Basic Stress Test (Burn-In)\nRun a short stress test to verify stability:\n\nBoot a Linux live USB or PXE environment\nRun memory test: memtest86+ for at least 1 full pass\nRun CPU stress test: stress-ng --cpu $(nproc) --timeout 30m\nRun disk test: fio basic read/write test on all drives\nRun network test: iperf3 to verify NIC throughput\nMonitor temperatures during stress test (via iLO)\n\n\nStress Test Results\n\n\nTest\nDuration\nResult\nMax Temp (°C)\n\n\n\n\nMemory (memtest86+)\n1 pass\n_______\n_______\n\n\nCPU (stress-ng)\n30 min\n_______\n_______\n\n\nDisk (fio)\nPer drive\n_______\n_______\n\n\nNetwork (iperf3)\n5 min\n_______\n_______\n\n\n\nPass Criteria:\n\nZero memory errors\nCPU stress completes without throttling or errors\nDisk I/O matches expected specifications (±10%)\nNetwork throughput matches NIC speed (±5%)\nTemperatures stay within safe range (CPU &lt; 85°C, ambient &lt; 35°C)\n\n\n\n7.4.6 Step 6: Update Namma DSL\nAfter successful verification:\n\nUpdate the server entry in Namma DSL with:\n\nActual hardware specifications (as detected)\nFirmware versions\nRack position\nNetwork port mappings\nIP addresses\nVerification date and status\n\nCommit the DSL changes with a descriptive message\nLink the DSL commit to the verification ticket",
+    "crumbs": [
+      "Standard Operating Procedures",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>SOP: Server Hardware Verification</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/sop-server-verification.html#maker-checker-sign-off",
+    "href": "chapters/sop-server-verification.html#maker-checker-sign-off",
+    "title": "7  SOP: Server Hardware Verification",
+    "section": "7.5 Maker-Checker Sign-Off",
+    "text": "7.5 Maker-Checker Sign-Off\n\n\n\nItem\nMaker Sign\nChecker Sign\nDate/Time\n\n\n\n\nBIOS/UEFI verified\n_______\n_______\n_______\n\n\niLO health check passed\n_______\n_______\n_______\n\n\nComponent inventory matches BOM\n_______\n_______\n_______\n\n\nFirmware versions recorded\n_______\n_______\n_______\n\n\nStress test passed\n_______\n_______\n_______\n\n\nNamma DSL updated\n_______\n_______\n_______\n\n\nServer ready for OS provisioning\n_______\n_______\n_______",
+    "crumbs": [
+      "Standard Operating Procedures",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>SOP: Server Hardware Verification</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/sop-server-verification.html#server-status-classification",
+    "href": "chapters/sop-server-verification.html#server-status-classification",
+    "title": "7  SOP: Server Hardware Verification",
+    "section": "7.6 Server Status Classification",
+    "text": "7.6 Server Status Classification\nAfter verification, classify the server:\n\nServer Status Classification\n\n\n\n\n\n\n\nStatus\nMeaning\nNext Step\n\n\n\n\n✅ Ready\nAll checks passed, server is healthy\nProceed to OS provisioning\n\n\n🟡 Conditional\nMinor non-critical issue (e.g., old firmware)\nDocument and plan remediation\n\n\n🔴 Not Ready\nCritical issue found (missing component, failure)\nFile ticket, escalate, do not provision",
+    "crumbs": [
+      "Standard Operating Procedures",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>SOP: Server Hardware Verification</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/sop-server-verification.html#record-keeping",
+    "href": "chapters/sop-server-verification.html#record-keeping",
+    "title": "7  SOP: Server Hardware Verification",
+    "section": "7.7 Record Keeping",
+    "text": "7.7 Record Keeping\nArchive the following for each server:\n\nVerification ticket number\nAll checklist tables (filled in)\niLO health report screenshot/export\nStress test output logs\nFirmware version report\nMaker-Checker sign-off form\nNamma DSL commit reference\nServer status classification\n\n\n\n\n\n\n\n\nPro Tip\n\n\n\nExport the iLO/BMC health report as a PDF or JSON file and attach it to the verification ticket. This creates an automatic baseline for future comparison.",
+    "crumbs": [
+      "Standard Operating Procedures",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>SOP: Server Hardware Verification</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/maker-checker.html",
+    "href": "chapters/maker-checker.html",
+    "title": "8  Maker-Checker Process",
+    "section": "",
+    "text": "8.1 Purpose\nThe Maker-Checker process is our primary quality assurance mechanism. It ensures that no single person completes and validates their own work. Every critical task requires independent verification by a second person before it is considered complete.",
+    "crumbs": [
+      "Quality & Governance",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Maker-Checker Process</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/maker-checker.html#why-maker-checker",
+    "href": "chapters/maker-checker.html#why-maker-checker",
+    "title": "8  Maker-Checker Process",
+    "section": "8.2 Why Maker-Checker?",
+    "text": "8.2 Why Maker-Checker?\n\n\n\n\n\n\n%%{init: {'theme': 'base', 'themeVariables': { 'clusterBkg': '#ffffff', 'clusterBorder': '#dee2e6' }}}%%\nflowchart LR\n    subgraph Without[\"Without Maker-Checker\"]\n        A1[Person does task] --&gt; A2[Same person says 'done']\n        A2 --&gt; A3[Errors go unnoticed]\n        A3 --&gt; A4[Issues found later — costly]\n    end\n\n    subgraph With[\"With Maker-Checker\"]\n        B1[Maker does task] --&gt; B2[Checker independently verifies]\n        B2 --&gt; B3{Passes?}\n        B3 --&gt;|Yes| B4[Confirmed complete — high quality]\n        B3 --&gt;|No| B5[Issues caught early — low cost]\n        B5 --&gt; B1\n    end\n\n\n\n\nFigure 8.1: Why Maker-Checker Matters\n\n\n\n\n\nBenefits:\n\nCatches errors early — before they become incidents\nKnowledge transfer — Checker learns by reviewing\nShared responsibility — Quality is everyone’s job\nBuilds trust — In the process and in each other\nCreates audit trail — Clear record of who did what and who verified",
+    "crumbs": [
+      "Quality & Governance",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Maker-Checker Process</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/maker-checker.html#roles-responsibilities",
+    "href": "chapters/maker-checker.html#roles-responsibilities",
+    "title": "8  Maker-Checker Process",
+    "section": "8.3 Roles & Responsibilities",
+    "text": "8.3 Roles & Responsibilities\n\n8.3.1 The Maker\n\n\n\n\n\n\n\nResponsibility\nDetails\n\n\n\n\nPerforms the task\nFollowing the relevant SOP step by step\n\n\nSelf-checks first\nReviews their own work before calling the Checker\n\n\nDocuments their work\nTakes photos, fills checklists, records observations\n\n\nHands off cleanly\nProvides all documentation to the Checker\n\n\nAccepts feedback\nIf Checker finds issues, Maker fixes them without ego\n\n\n\n\n\n8.3.2 The Checker\n\n\n\n\n\n\n\nResponsibility\nDetails\n\n\n\n\nIndependently verifies\nDoes NOT assume the Maker got it right\n\n\nUses the checklist\nGoes through every item on the SOP checklist\n\n\nPhysically inspects\nDoesn’t just look at the Maker’s photos — checks in person\n\n\nDocuments findings\nRecords any discrepancies\n\n\nSigns off only when satisfied\nDoes NOT sign off under pressure\n\n\n\n\n\n\n\n\n\nCritical Rule\n\n\n\nThe Checker must never be pressured to sign off. If they are not satisfied, the task goes back to the Maker. This is non-negotiable.",
+    "crumbs": [
+      "Quality & Governance",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Maker-Checker Process</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/maker-checker.html#process-flow",
+    "href": "chapters/maker-checker.html#process-flow",
+    "title": "8  Maker-Checker Process",
+    "section": "8.4 Process Flow",
+    "text": "8.4 Process Flow\n\n\n\n\n\n\nflowchart TD\n    A[Task Assigned] --&gt; B[Maker receives SOP & checklist]\n    B --&gt; C[Maker performs task step-by-step]\n    C --&gt; D[Maker self-reviews using checklist]\n    D --&gt; E[Maker documents work — photos, notes]\n    E --&gt; F[Maker signals: Ready for Check]\n    F --&gt; G[Checker receives documentation]\n    G --&gt; H[Checker independently verifies each item]\n    H --&gt; I{All items pass?}\n    I --&gt;|Yes| J[Checker signs off]\n    I --&gt;|No| K[Checker documents issues]\n    K --&gt; L[Maker reviews and fixes issues]\n    L --&gt; D\n    J --&gt; M[Both Maker & Checker sign the form]\n    M --&gt; N[Task marked COMPLETE in tracker]\n    N --&gt; O[Records archived]\n\n\n\n\nFigure 8.2: Maker-Checker Process Flow",
+    "crumbs": [
+      "Quality & Governance",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Maker-Checker Process</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/maker-checker.html#what-tasks-require-maker-checker",
+    "href": "chapters/maker-checker.html#what-tasks-require-maker-checker",
+    "title": "8  Maker-Checker Process",
+    "section": "8.5 What Tasks Require Maker-Checker?",
+    "text": "8.5 What Tasks Require Maker-Checker?\n\nMaker-Checker Applicability\n\n\n\n\n\n\n\nTask Category\nMaker-Checker Required?\nReason\n\n\n\n\nServer transportation (packing)\n✅ Yes\nPrevent damage\n\n\nServer transportation (receiving/inspection)\n✅ Yes\nVerify condition\n\n\nRack installation\n✅ Yes\nAlignment and safety\n\n\nPower connection\n✅ Yes\nElectrical safety\n\n\nNetwork connection\n✅ Yes\nConnectivity correctness\n\n\nCable labeling\n✅ Yes\nAccuracy\n\n\nServer verification (hardware)\n✅ Yes\nComponent correctness\n\n\nPower redundancy test\n✅ Yes\nCritical reliability test\n\n\nFirmware update\n✅ Yes\nRisk of bricking\n\n\nNamma DSL update\n✅ Yes\nData accuracy\n\n\nDaily learning documentation\n☐ Optional\nEncouraged but not mandatory\n\n\nTaking photographs\n☐ Optional\nBut photos should be reviewed",
+    "crumbs": [
+      "Quality & Governance",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Maker-Checker Process</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/maker-checker.html#maker-checker-sign-off-form-template",
+    "href": "chapters/maker-checker.html#maker-checker-sign-off-form-template",
+    "title": "8  Maker-Checker Process",
+    "section": "8.6 Maker-Checker Sign-Off Form Template",
+    "text": "8.6 Maker-Checker Sign-Off Form Template\nEvery Maker-Checker task uses a standard form:\n\n\n8.6.1 Sign-Off Form\nTask: ________________________________ SOP Reference: ________________________________ Date: ________________________________\n\n\n\n#\nChecklist Item\nMaker Status\nChecker Status\nNotes\n\n\n\n\n1\n_____________\n☐ Done\n☐ Verified\n_____\n\n\n2\n_____________\n☐ Done\n☐ Verified\n_____\n\n\n3\n_____________\n☐ Done\n☐ Verified\n_____\n\n\n…\n…\n…\n…\n…\n\n\n\nMaker Name: __________________ Signature: __________________ Date/Time: __________\nChecker Name: __________________ Signature: __________________ Date/Time: __________\nResult: ☐ PASS — Task complete | ☐ FAIL — Issues found (see notes)",
+    "crumbs": [
+      "Quality & Governance",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Maker-Checker Process</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/maker-checker.html#rotation-policy",
+    "href": "chapters/maker-checker.html#rotation-policy",
+    "title": "8  Maker-Checker Process",
+    "section": "8.7 Rotation Policy",
+    "text": "8.7 Rotation Policy\nTo maximize learning and prevent dependency:\n\nRotate Maker and Checker roles regularly\nThe person who was Maker for server #1 should be Checker for server #2\nThis ensures:\n\nEveryone learns both doing and verifying\nNo one becomes a bottleneck\nFresh eyes catch different things\n\n\n\n\n\n\n\n\n%%{init: {'theme': 'base', 'themeVariables': { 'clusterBkg': '#ffffff', 'clusterBorder': '#dee2e6' }}}%%\nflowchart LR\n    subgraph Server1[\"Server 1\"]\n        A1[Person A: Maker] --&gt; A2[Person B: Checker]\n    end\n    subgraph Server2[\"Server 2\"]\n        B1[Person B: Maker] --&gt; B2[Person C: Checker]\n    end\n    subgraph Server3[\"Server 3\"]\n        C1[Person C: Maker] --&gt; C2[Person A: Checker]\n    end\n\n\n\n\nFigure 8.3: Role Rotation Example",
+    "crumbs": [
+      "Quality & Governance",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Maker-Checker Process</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/maker-checker.html#handling-disagreements",
+    "href": "chapters/maker-checker.html#handling-disagreements",
+    "title": "8  Maker-Checker Process",
+    "section": "8.8 Handling Disagreements",
+    "text": "8.8 Handling Disagreements\nIf the Maker and Checker disagree:\n\nDiscuss the specific concern calmly\nRefer to the SOP — what does the documented standard say?\nIf still unclear, escalate to the Team Lead\nDocument the disagreement — it may reveal an SOP gap\nNever proceed without resolution",
+    "crumbs": [
+      "Quality & Governance",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Maker-Checker Process</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/maker-checker.html#metrics-tracking",
+    "href": "chapters/maker-checker.html#metrics-tracking",
+    "title": "8  Maker-Checker Process",
+    "section": "8.9 Metrics & Tracking",
+    "text": "8.9 Metrics & Tracking\nTrack the following metrics to improve the process:\n\nMaker-Checker Metrics\n\n\n\n\n\n\nMetric\nWhat It Tells Us\n\n\n\n\nFirst-pass success rate\n% of tasks that pass Checker on first attempt\n\n\nAverage issues per check\nHow many items fail per Checker review\n\n\nTime to complete Maker-Checker\nIs the process efficient?\n\n\nIssues caught by Checker vs. found later\nIs the Checker process effective?\n\n\nRole rotation compliance\nAre we rotating as planned?\n\n\n\nTarget: Achieve ≥ 90% first-pass success rate within 3 months.",
+    "crumbs": [
+      "Quality & Governance",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Maker-Checker Process</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/maker-checker.html#integration-with-other-processes",
+    "href": "chapters/maker-checker.html#integration-with-other-processes",
+    "title": "8  Maker-Checker Process",
+    "section": "8.10 Integration with Other Processes",
+    "text": "8.10 Integration with Other Processes\n\nIssue Tracking: If a Checker finds an issue, it’s logged as a ticket\nRCA: If the same issue recurs across multiple Maker-Checker cycles, trigger an RCA\nLearning Module: Common Maker-Checker findings become learning topics\nNamma DSL: Sign-off data can be recorded in the DSL for auditability\n\n\n\n\n\n\n\n\nRemember\n\n\n\nMaker-Checker is not about distrust. It’s about building a culture of quality where everyone takes pride in getting things right the first time.",
+    "crumbs": [
+      "Quality & Governance",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Maker-Checker Process</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/rca-module.html",
+    "href": "chapters/rca-module.html",
+    "title": "9  Root Cause Analysis (RCA) Module",
+    "section": "",
+    "text": "9.1 Purpose\nThe RCA Module defines how the Namma Cloud team investigates incidents, identifies root causes, implements corrective actions, and prevents recurrence. Every incident — no matter how small — is an opportunity to improve.",
+    "crumbs": [
+      "Quality & Governance",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Root Cause Analysis (RCA) Module</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/rca-module.html#purpose",
+    "href": "chapters/rca-module.html#purpose",
+    "title": "9  Root Cause Analysis (RCA) Module",
+    "section": "",
+    "text": "Our RCA Philosophy\n\n\n\nWe don’t do RCA to assign blame. We do RCA to understand systems, improve processes, and grow as a team.",
+    "crumbs": [
+      "Quality & Governance",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Root Cause Analysis (RCA) Module</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/rca-module.html#when-to-trigger-an-rca",
+    "href": "chapters/rca-module.html#when-to-trigger-an-rca",
+    "title": "9  Root Cause Analysis (RCA) Module",
+    "section": "9.2 When to Trigger an RCA",
+    "text": "9.2 When to Trigger an RCA\nAn RCA must be initiated for:\n\nRCA Trigger Events\n\n\n\n\n\n\n\nTrigger\nExample\nTimeline\n\n\n\n\nHardware damage\nServer damaged during transport\nRCA within 24 hours\n\n\nInstallation failure\nServer doesn’t fit in rack\nRCA within 48 hours\n\n\nConfiguration error\nWrong network port connected\nRCA within 48 hours\n\n\nSafety incident\nNear-miss or actual injury\nRCA within 12 hours\n\n\nRepeat issue\nSame problem occurs twice\nRCA within 24 hours\n\n\nProcess deviation\nSOP not followed\nRCA within 48 hours\n\n\nUnexpected downtime\nServer fails after installation\nRCA within 24 hours\n\n\n\nAn RCA should be considered for:\n\nMaker-Checker failures (task rejected by Checker)\nNear-misses that could have become incidents\nProcess inefficiencies discovered during work\nNew learnings that reveal gaps in SOPs",
+    "crumbs": [
+      "Quality & Governance",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Root Cause Analysis (RCA) Module</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/rca-module.html#the-rca-process",
+    "href": "chapters/rca-module.html#the-rca-process",
+    "title": "9  Root Cause Analysis (RCA) Module",
+    "section": "9.3 The RCA Process",
+    "text": "9.3 The RCA Process\n\n\n\n\n\n\nflowchart TD\n    A[Incident Occurs] --&gt; B[Immediate Response]\n    B --&gt; C[Document: What happened?]\n    C --&gt; D[File Incident Ticket]\n    D --&gt; E[Assemble RCA Team]\n    E --&gt; F[Gather Evidence]\n    F --&gt; G[Timeline Analysis]\n    G --&gt; H[Root Cause Identification — 5 Whys]\n    H --&gt; I[Contributing Factors]\n    I --&gt; J[Corrective Actions — CAPA]\n    J --&gt; K[Preventive Actions]\n    K --&gt; L[Update SOPs & Checklists]\n    L --&gt; M[Share Learnings with Team]\n    M --&gt; N[Track Action Completion]\n    N --&gt; O[Verify Effectiveness]\n    O --&gt; P[Close RCA]\n\n\n\n\nFigure 9.1: RCA Process Flow",
+    "crumbs": [
+      "Quality & Governance",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Root Cause Analysis (RCA) Module</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/rca-module.html#step-by-step-rca-guide",
+    "href": "chapters/rca-module.html#step-by-step-rca-guide",
+    "title": "9  Root Cause Analysis (RCA) Module",
+    "section": "9.4 Step-by-Step RCA Guide",
+    "text": "9.4 Step-by-Step RCA Guide\n\n9.4.1 Step 1: Immediate Response (Within 1 Hour)\nWhen an incident occurs:\n\nEnsure safety — If anyone is at risk, address safety first\nStop the activity — Don’t continue with the task\nPreserve evidence — Take photographs, don’t clean up or fix anything yet\nDocument immediately:\n\nWhat happened?\nWhen did it happen?\nWhere did it happen?\nWho was involved?\nWhat was being done at the time?\n\nNotify the Team Lead\nFile an incident ticket\n\n\n\n\n\n\n\nQuick Documentation\n\n\n\nUse your phone to:\n\nTake photos of the incident\nRecord a voice note describing what happened (in any language)\nNote the exact time\n\nThis can be formalized later, but capture it NOW while it’s fresh.\n\n\n\n\n9.4.2 Step 2: Gather Evidence (Within 24 Hours)\nCollect all relevant information:\n\nPhotographs (before, during, after)\nChecklists (were they completed? any items missed?)\nSOP version that was being followed\nStatements from team members involved\nEnvironmental conditions (temperature, humidity, lighting)\nEquipment specifications\nAny prior similar incidents\nMaker-Checker sign-off forms (if applicable)\n\n\n\n9.4.3 Step 3: Build a Timeline\nCreate a chronological timeline of events:\n\n\n\nTime\nEvent\nWho\nNotes\n\n\n\n\n_____\n_____\n_____\n_____\n\n\n_____\n_____\n_____\n_____\n\n\n_____\n_____\n_____\n_____\n\n\n\nFocus on: What happened just before the incident? What changed?\n\n\n9.4.4 Step 4: The 5 Whys\nThe 5 Whys technique helps us dig deeper than the surface-level cause:\n\n\n\n\n\n\nflowchart TD\n    P[\"Problem: Server slightly damaged during transport\"] --&gt; W1\n    W1[\"Why 1: Why was it damaged?\\n→ It shifted inside the packaging\"] --&gt; W2\n    W2[\"Why 2: Why did it shift?\\n→ Packaging did not fit the server tightly\"] --&gt; W3\n    W3[\"Why 3: Why didn't the packaging fit?\\n→ Generic packaging was used, not custom-fit\"] --&gt; W4\n    W4[\"Why 4: Why was generic packaging used?\\n→ No standard packaging specification existed\"] --&gt; W5\n    W5[\"Why 5: Why was there no specification?\\n→ Packaging was not included in the SOP\"]\n\n    W5 --&gt; RC[\"ROOT CAUSE:\\nSOP did not include packaging specifications\\nfor different server types\"]\n\n\n\n\nFigure 9.2: 5 Whys Example — Server Damaged During Transport\n\n\n\n\n\n\n\n\n\n\n\n5 Whys Guidelines\n\n\n\n\nKeep asking “Why?” until you reach a systemic cause (process, training, tool gap)\nIf you find yourself blaming a person, ask “Why?” again — there’s always a system behind the human action\nSometimes you need more than 5 Whys, sometimes fewer. The number is a guide, not a rule.\nMultiple root causes are possible — investigate all branches\n\n\n\n\n\n9.4.5 Step 5: Identify Contributing Factors\nBeyond the root cause, identify factors that contributed:\n\nContributing Factor Analysis\n\n\nCategory\nContributing Factor\nPresent?\n\n\n\n\nProcess\nSOP missing or incomplete\n☐\n\n\nProcess\nChecklist not followed\n☐\n\n\nTraining\nTeam member not trained on this task\n☐\n\n\nTraining\nTraining was insufficient\n☐\n\n\nEquipment\nWrong tools or materials used\n☐\n\n\nEquipment\nEquipment was faulty\n☐\n\n\nEnvironment\nLighting, space, or temperature issues\n☐\n\n\nCommunication\nInstructions unclear or misunderstood\n☐\n\n\nCommunication\nLanguage barrier\n☐\n\n\nTime pressure\nRushing to meet a deadline\n☐\n\n\nVerification\nMaker-Checker not performed\n☐\n\n\nDocumentation\nSpecifications not available\n☐\n\n\n\n\n\n9.4.6 Step 6: Define Corrective & Preventive Actions (CAPA)\nFor each root cause and contributing factor, define:\n\n9.4.6.1 Corrective Actions (Fix the immediate problem)\n\n\n\n#\nAction\nOwner\nDeadline\nStatus\n\n\n\n\n1\n_______\n_______\n_______\n☐\n\n\n2\n_______\n_______\n_______\n☐\n\n\n3\n_______\n_______\n_______\n☐\n\n\n\n\n\n9.4.6.2 Preventive Actions (Prevent recurrence)\n\n\n\n#\nAction\nOwner\nDeadline\nStatus\n\n\n\n\n1\n_______\n_______\n_______\n☐\n\n\n2\n_______\n_______\n_______\n☐\n\n\n3\n_______\n_______\n_______\n☐\n\n\n\nExamples of CAPA:\n\nExample CAPA Actions\n\n\nType\nExample\n\n\n\n\nCorrective\nReplace damaged server component\n\n\nCorrective\nRe-pack remaining servers with proper materials\n\n\nPreventive\nUpdate transportation SOP with packaging specifications\n\n\nPreventive\nCreate a packaging checklist for each server type\n\n\nPreventive\nAdd “packaging inspection” to Maker-Checker process\n\n\nPreventive\nTraining session on proper packaging techniques\n\n\n\n\n\n\n9.4.7 Step 7: Update SOPs & Checklists\nIf the RCA reveals an SOP gap:\n\nDraft the SOP update\nReview with Team Lead\nGet approval\nPublish the updated SOP\nBrief the team on the change\nRecord the change with version number\n\n\n\n9.4.8 Step 8: Share Learnings\nEvery RCA culminates in a learning session:\n\nPresent the incident (what happened)\nWalk through the 5 Whys\nExplain the root cause\nDescribe the CAPA\nShow the updated SOP/checklist\nOpen for questions and discussion\nKey message: “This is how we get better, together”",
+    "crumbs": [
+      "Quality & Governance",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Root Cause Analysis (RCA) Module</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/rca-module.html#rca-report-template",
+    "href": "chapters/rca-module.html#rca-report-template",
+    "title": "9  Root Cause Analysis (RCA) Module",
+    "section": "9.5 RCA Report Template",
+    "text": "9.5 RCA Report Template\n\n\n9.5.1 Namma Cloud — RCA Report\n\n\n\nField\nDetails\n\n\n\n\nIncident ID\n_______\n\n\nDate of Incident\n_______\n\n\nDate of RCA\n_______\n\n\nRCA Led By\n_______\n\n\nTeam Members Involved\n_______\n\n\n\n1. Incident Summary Describe what happened in 2-3 sentences.\n2. Timeline of Events | Time | Event | |——|——-| | | |\n3. 5 Whys Analysis | # | Why? | Answer | |—|——|——–| | 1 | | | | 2 | | | | 3 | | | | 4 | | | | 5 | | |\nRoot Cause: ________________________________________________\n4. Contributing Factors List all contributing factors identified.\n5. Corrective Actions | # | Action | Owner | Deadline | |—|——–|——-|———-| | | | | |\n6. Preventive Actions | # | Action | Owner | Deadline | |—|——–|——-|———-| | | | | |\n7. SOP/Checklist Updates List any SOPs or checklists that were updated as a result.\n8. Lessons Learned What did we learn? What should the whole team know?\n9. Sign-Off | Role | Name | Signature | Date | |——|——|———–|——| | RCA Lead | | | | | Team Lead | | | | | Project Lead | | | |",
+    "crumbs": [
+      "Quality & Governance",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Root Cause Analysis (RCA) Module</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/rca-module.html#rca-tracking-dashboard",
+    "href": "chapters/rca-module.html#rca-tracking-dashboard",
+    "title": "9  Root Cause Analysis (RCA) Module",
+    "section": "9.6 RCA Tracking Dashboard",
+    "text": "9.6 RCA Tracking Dashboard\nMaintain a running tracker of all RCAs:\n\n\n\n\n\n\n\n\n\n\n\n\nID\nIncident\nDate\nRoot Cause\nCAPA Count\nStatus\nDays Open\n\n\n\n\nRCA-001\nServer damaged in transport\n_______\nPackaging spec missing\n4\n_______\n_______\n\n\nRCA-002\n_______\n_______\n_______\n_______\n_______\n_______\n\n\n\nTargets:\n\nRCA initiated within 24 hours of incident\nRCA completed within 72 hours\nAll CAPA items completed within 2 weeks\nZero repeat incidents (same root cause)",
+    "crumbs": [
+      "Quality & Governance",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Root Cause Analysis (RCA) Module</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/rca-module.html#real-world-example-server-damaged-during-transport",
+    "href": "chapters/rca-module.html#real-world-example-server-damaged-during-transport",
+    "title": "9  Root Cause Analysis (RCA) Module",
+    "section": "9.7 Real-World Example: Server Damaged During Transport",
+    "text": "9.7 Real-World Example: Server Damaged During Transport\n\n\n\n\n\n\nCase Study: RCA-001\n\n\n\nIncident: During transportation from the guest house to the data center, one HP server was found to have slight physical damage upon arrival.\n5 Whys:\n\nWhy was the server damaged? → It shifted during transport\nWhy did it shift? → Packaging was not snug around the server\nWhy wasn’t packaging snug? → Generic padding was used instead of custom-fit packaging\nWhy was generic padding used? → No packaging standard existed for this type of transport\nWhy was there no standard? → The transportation SOP did not include packaging specifications\n\nRoot Cause: Transportation SOP lacked specific packaging requirements for different server types and transport scenarios.\nCAPA:\n\n✅ Created detailed packaging specifications (see Transportation SOP)\n✅ Added shock and moisture indicators to packaging checklist\n✅ Added Maker-Checker process for packaging verification\n✅ Created separate packaging guidelines for branded vs assembled servers\n✅ Conducted training session on proper server packaging\n\nResult: No further transport damage incidents after implementing these changes.\n\n\n\n\n\n\n\n\n\nRemember\n\n\n\n“Every incident we investigate and learn from makes our next operation better. RCA is not punishment — it’s our most powerful learning tool.”",
+    "crumbs": [
+      "Quality & Governance",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Root Cause Analysis (RCA) Module</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/issue-tracking.html",
+    "href": "chapters/issue-tracking.html",
+    "title": "10  Issue Tracking & Ticketing",
+    "section": "",
+    "text": "10.1 Purpose\nEvery issue, deviation, or improvement opportunity must be captured in a ticket. Our ticketing system is the single source of truth for what happened, what’s being done about it, and what was learned.",
+    "crumbs": [
+      "Quality & Governance",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Issue Tracking & Ticketing</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/issue-tracking.html#why-track-issues",
+    "href": "chapters/issue-tracking.html#why-track-issues",
+    "title": "10  Issue Tracking & Ticketing",
+    "section": "10.2 Why Track Issues?",
+    "text": "10.2 Why Track Issues?\n\nNothing falls through the cracks — Every issue gets attention\nAccountability — Every ticket has an owner\nTransparency — Anyone can see the status of any issue\nTrends — We can spot patterns and systemic problems\nAudit trail — Full history of actions taken\nLearning — Issues become training material",
+    "crumbs": [
+      "Quality & Governance",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Issue Tracking & Ticketing</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/issue-tracking.html#when-to-create-a-ticket",
+    "href": "chapters/issue-tracking.html#when-to-create-a-ticket",
+    "title": "10  Issue Tracking & Ticketing",
+    "section": "10.3 When to Create a Ticket",
+    "text": "10.3 When to Create a Ticket\n\nWhen to Create Tickets\n\n\nSituation\nCreate Ticket?\nPriority\n\n\n\n\nHardware damage discovered\n✅ Yes\nHigh\n\n\nServer doesn’t fit in rack\n✅ Yes\nHigh\n\n\nMaker-Checker rejection\n✅ Yes\nMedium\n\n\nSOP step unclear or missing\n✅ Yes\nMedium\n\n\nCable label incorrect\n✅ Yes\nLow\n\n\nNear-miss safety incident\n✅ Yes\nHigh\n\n\nNew idea for improvement\n✅ Yes\nLow\n\n\nLearning gap identified\n✅ Yes\nMedium\n\n\nEquipment/tool needed\n✅ Yes\nMedium\n\n\nQuestion about a procedure\n✅ Yes\nLow\n\n\n\n\n\n\n\n\n\nRule of Thumb\n\n\n\nWhen in doubt, create a ticket. It’s always better to have a ticket that gets closed quickly than to have an issue that goes untracked.",
+    "crumbs": [
+      "Quality & Governance",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Issue Tracking & Ticketing</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/issue-tracking.html#ticket-structure",
+    "href": "chapters/issue-tracking.html#ticket-structure",
+    "title": "10  Issue Tracking & Ticketing",
+    "section": "10.4 Ticket Structure",
+    "text": "10.4 Ticket Structure\nEvery ticket must include:\n\n10.4.1 Required Fields\n\nRequired Ticket Fields\n\n\n\n\n\n\n\nField\nDescription\nExample\n\n\n\n\nTitle\nClear, concise summary\n“Server SRV03 — alignment issue during rack installation”\n\n\nType\nCategory of the issue\nIncident / Defect / Improvement / Question\n\n\nPriority\nUrgency level\nCritical / High / Medium / Low\n\n\nReporter\nWho found the issue\nTeam member name\n\n\nAssignee\nWho is responsible for resolution\nTeam member or Team Lead\n\n\nDate/Time\nWhen the issue was found\n2026-02-20 10:30 AM\n\n\nLocation\nWhere the issue occurred\nRack A, 15U-16U\n\n\nServer ID\nWhich server (if applicable)\nSRV03 / Serial: HP-DL385-xxxxx\n\n\nDescription\nDetailed description\nWhat happened, what was expected, what actually happened\n\n\nEvidence\nSupporting materials\nPhotos, logs, checklist copies\n\n\n\n\n\n10.4.2 Ticket Types\n\n\n\n\n\n\nflowchart TD\n    A[New Issue] --&gt; B{What type?}\n    B --&gt; C[\"🔴 Incident\\nSomething went wrong\"]\n    B --&gt; D[\"🟡 Defect\\nSomething doesn't work as expected\"]\n    B --&gt; E[\"🔵 Improvement\\nSomething could be better\"]\n    B --&gt; F[\"⚪ Question\\nNeed clarification\"]\n\n    C --&gt; G[Requires RCA]\n    D --&gt; H[Requires investigation]\n    E --&gt; I[Added to backlog]\n    F --&gt; J[Answered and documented]\n\n\n\n\nFigure 10.1: Ticket Type Classification",
+    "crumbs": [
+      "Quality & Governance",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Issue Tracking & Ticketing</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/issue-tracking.html#ticket-lifecycle",
+    "href": "chapters/issue-tracking.html#ticket-lifecycle",
+    "title": "10  Issue Tracking & Ticketing",
+    "section": "10.5 Ticket Lifecycle",
+    "text": "10.5 Ticket Lifecycle\n\n\n\n\n\n\nstateDiagram-v2\n    [*] --&gt; Open: Ticket Created\n    Open --&gt; InProgress: Assigned & Work Started\n    InProgress --&gt; UnderReview: Fix/Action Completed\n    UnderReview --&gt; Resolved: Verified by Checker\n    UnderReview --&gt; InProgress: Checker Rejected\n    Resolved --&gt; Closed: No Further Action\n    Resolved --&gt; RCATriggered: Needs RCA\n    RCATriggered --&gt; Closed: RCA Complete & CAPA Done\n\n    Open --&gt; Duplicate: Already Reported\n    Open --&gt; WontFix: Accepted Risk\n\n\n\n\nFigure 10.2: Ticket Lifecycle\n\n\n\n\n\n\n10.5.1 Status Definitions\n\nTicket Status Definitions\n\n\nStatus\nMeaning\nWho Updates\n\n\n\n\nOpen\nIssue reported, not yet started\nReporter\n\n\nIn Progress\nBeing worked on\nAssignee\n\n\nUnder Review\nWork done, needs verification\nAssignee\n\n\nResolved\nVerified and fixed\nChecker / Team Lead\n\n\nRCA Triggered\nNeeds root cause analysis\nTeam Lead\n\n\nClosed\nFully complete, all actions done\nTeam Lead\n\n\nDuplicate\nSame as an existing ticket\nAnyone\n\n\nWon’t Fix\nAccepted risk, documented reason\nTeam Lead",
+    "crumbs": [
+      "Quality & Governance",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Issue Tracking & Ticketing</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/issue-tracking.html#priority-definitions-slas",
+    "href": "chapters/issue-tracking.html#priority-definitions-slas",
+    "title": "10  Issue Tracking & Ticketing",
+    "section": "10.6 Priority Definitions & SLAs",
+    "text": "10.6 Priority Definitions & SLAs\n\nPriority SLAs\n\n\n\n\n\n\n\n\nPriority\nDefinition\nResponse Time\nResolution Time\n\n\n\n\nCritical\nSafety hazard or infrastructure at risk\nImmediate\n4 hours\n\n\nHigh\nBlocking installation or operation\n1 hour\n24 hours\n\n\nMedium\nNeeds attention, not blocking\n4 hours\n72 hours\n\n\nLow\nMinor issue or improvement idea\nNext standup\n1 week",
+    "crumbs": [
+      "Quality & Governance",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Issue Tracking & Ticketing</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/issue-tracking.html#ticket-templates",
+    "href": "chapters/issue-tracking.html#ticket-templates",
+    "title": "10  Issue Tracking & Ticketing",
+    "section": "10.7 Ticket Templates",
+    "text": "10.7 Ticket Templates\n\n10.7.1 Template: Hardware Damage\nTitle: [Server ID] — Hardware damage during [activity]\nType: Incident\nPriority: High\n\nDescription:\n- Server: [ID and model]\n- Activity during which damage occurred: [transport/installation/etc.]\n- Description of damage: [detailed description]\n- Severity of damage: [cosmetic/functional/severe]\n- Photos attached: [yes/no — attach below]\n\nImpact:\n- Is the server usable? [yes/no/unknown]\n- Does this block other work? [yes/no]\n\nImmediate Actions Taken:\n- [What was done immediately]\n\nRCA Required: [Yes/No]\n\n\n10.7.2 Template: Installation Issue\nTitle: [Server ID] — [Issue] during rack installation\nType: Defect\nPriority: [High/Medium]\n\nDescription:\n- Server: [ID and model]\n- Rack: [Rack ID and U position]\n- Issue: [detailed description of the problem]\n- Expected: [what should have happened]\n- Actual: [what actually happened]\n- Photos attached: [yes/no]\n\nRoot Cause (if known):\n- [Initial assessment]\n\nWorkaround Applied:\n- [Any temporary fix]\n\nSOP Update Needed: [Yes/No — which SOP?]\n\n\n10.7.3 Template: SOP Improvement\nTitle: SOP Improvement — [SOP Name] — [Brief description]\nType: Improvement\nPriority: Low\n\nDescription:\n- SOP affected: [name and version]\n- Section: [which section]\n- Current issue: [what's unclear/missing/wrong]\n- Suggested improvement: [your suggestion]\n- Discovered during: [what task/activity]\n\nImpact of Not Fixing:\n- [What could go wrong if we don't improve this]",
+    "crumbs": [
+      "Quality & Governance",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Issue Tracking & Ticketing</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/issue-tracking.html#ticket-management-best-practices",
+    "href": "chapters/issue-tracking.html#ticket-management-best-practices",
+    "title": "10  Issue Tracking & Ticketing",
+    "section": "10.8 Ticket Management Best Practices",
+    "text": "10.8 Ticket Management Best Practices\n\n10.8.1 For Reporters\n\nCreate tickets immediately — don’t wait until end of day\nBe specific — “Server damaged” is not enough; describe the damage\nAttach photos — A picture is worth a thousand words\nUse the template — It ensures you don’t forget important details\nFollow up — Check your tickets regularly\n\n\n\n10.8.2 For Assignees\n\nAcknowledge quickly — Move to “In Progress” when you start\nUpdate regularly — Add comments as you work on it\nDon’t close silently — Add a resolution comment before closing\nLink related tickets — If issues are connected, link them\nTrigger RCA if needed — Don’t wait to be told\n\n\n\n10.8.3 For Team Lead\n\nReview all new tickets daily — During or before standup\nEnsure proper prioritization — Adjust if needed\nTrack SLAs — Are we responding and resolving on time?\nSpot trends — Are the same types of issues recurring?\nClose the loop — Ensure RCA actions are completed",
+    "crumbs": [
+      "Quality & Governance",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Issue Tracking & Ticketing</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/issue-tracking.html#metrics-reporting",
+    "href": "chapters/issue-tracking.html#metrics-reporting",
+    "title": "10  Issue Tracking & Ticketing",
+    "section": "10.9 Metrics & Reporting",
+    "text": "10.9 Metrics & Reporting\n\n10.9.1 Weekly Ticket Dashboard\n\n\n\nMetric\nThis Week\nLast Week\nTrend\n\n\n\n\nTickets opened\n_______\n_______\n_______\n\n\nTickets resolved\n_______\n_______\n_______\n\n\nTickets overdue\n_______\n_______\n_______\n\n\nAverage resolution time\n_______\n_______\n_______\n\n\nRCAs triggered\n_______\n_______\n_______\n\n\nSOP updates from tickets\n_______\n_______\n_______\n\n\n\n\n\n10.9.2 Monthly Trends\nTrack and review monthly:\n\nTop 3 issue categories — Where are most issues coming from?\nRepeat issues — Any root causes not fully addressed?\nSLA compliance — Are we meeting response/resolution targets?\nImprovement ideas implemented — Are we acting on suggestions?\n\n\n\n\n\n\n\n\nIntegration Note\n\n\n\nAs Namma DSL matures, ticket metadata will be integrated into the DSL for automated tracking and reporting. For now, maintain tickets in our designated tracking tool and reference DSL entries where applicable.",
+    "crumbs": [
+      "Quality & Governance",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Issue Tracking & Ticketing</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/learning-module.html",
+    "href": "chapters/learning-module.html",
+    "title": "11  Learning & Upskilling Module",
+    "section": "",
+    "text": "11.1 Purpose\nThe Learning Module ensures that every team member continuously grows their skills, knowledge, and confidence. Our team comes from diverse backgrounds — some members are learning technical concepts and English language simultaneously. This module is designed to meet everyone where they are and take them further.",
+    "crumbs": [
+      "Learning & Technology",
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Learning & Upskilling Module</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/learning-module.html#learning-philosophy",
+    "href": "chapters/learning-module.html#learning-philosophy",
+    "title": "11  Learning & Upskilling Module",
+    "section": "11.2 Learning Philosophy",
+    "text": "11.2 Learning Philosophy\n\n“Tell me and I forget. Show me and I remember. Involve me and I understand.”\n\nOur learning approach:\n\n\n\n\n\n\nflowchart LR\n    A[\"Learn\\n(Understand concept)\"] --&gt; B[\"Do\\n(Practice hands-on)\"]\n    B --&gt; C[\"Verify\\n(Maker-Checker)\"]\n    C --&gt; D[\"Teach\\n(Share with team)\"]\n    D --&gt; E[\"Improve\\n(Find better ways)\"]\n    E --&gt; A\n\n\n\n\nFigure 11.1: Namma Cloud Learning Approach\n\n\n\n\n\nKey Principles:\n\nLearn by doing — Every concept is tied to a real task\nSmall daily doses — 15-30 minutes of learning every day\nAI-assisted but human-verified — Use AI to learn, verify with practice\nNo judgment — Every question is valid, every pace is respected\nMulti-language support — Learn in whatever language works best, document in English (with AI help)",
+    "crumbs": [
+      "Learning & Technology",
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Learning & Upskilling Module</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/learning-module.html#learning-structure",
+    "href": "chapters/learning-module.html#learning-structure",
+    "title": "11  Learning & Upskilling Module",
+    "section": "11.3 Learning Structure",
+    "text": "11.3 Learning Structure\n\n11.3.1 Daily Learning (15 minutes)\nPart of the daily standup — the last 5-10 minutes are dedicated to learning:\n\nDaily Learning Schedule\n\n\n\n\n\n\n\nDay\nFocus Area\nFormat\n\n\n\n\nMonday\nHardware Concept\n5-min explainer by Team Lead or video\n\n\nTuesday\nSOP Deep-Dive\nWalk through one SOP section in detail\n\n\nWednesday\nTool/AI Training\nPractice using a tool or AI assistant\n\n\nThursday\nIncident Review\nLearn from a recent issue or RCA\n\n\nFriday\nOpen Discussion\nTeam members ask questions, share learnings\n\n\n\n\n\n11.3.2 Weekly Deep-Dive (1 hour)\nEvery week, one focused session:\n\nHands-on workshop on a specific skill\nGuest speaker (internal or external)\nVideo tutorial followed by discussion\nPractice exercise with Maker-Checker\n\n\n\n11.3.3 Monthly Assessment\n\nInformal skills check (not an exam — a guided conversation)\nReview of learning log entries\nGoal setting for next month\nCelebration of progress",
+    "crumbs": [
+      "Learning & Technology",
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Learning & Upskilling Module</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/learning-module.html#learning-tracks",
+    "href": "chapters/learning-module.html#learning-tracks",
+    "title": "11  Learning & Upskilling Module",
+    "section": "11.4 Learning Tracks",
+    "text": "11.4 Learning Tracks\n\n11.4.1 Track 1: Physical Infrastructure (Months 1-3)\n\nTrack 1: Physical Infrastructure Curriculum\n\n\n\n\n\n\n\n\nWeek\nTopic\nLearning Goal\nPractice Activity\n\n\n\n\n1\nServer Hardware Basics\nIdentify server components\nOpen a server, name each part\n\n\n2\nServer Types\nUnderstand rack, tower, blade\nCompare HP DL385 vs assembled\n\n\n3\nRack Infrastructure\nUnderstand U sizing, rails, shelves\nMeasure and map a rack\n\n\n4\nSafe Handling\nLifting, ESD, packaging\nPractice packing a server\n\n\n5\nPower Systems\nPDU, UPS, redundancy\nTrace power path in data center\n\n\n6\nNetwork Cabling\nCable types, connectors, labeling\nMake and label a patch cable\n\n\n7\nServer Installation\nFull rack installation process\nInstall a server (supervised)\n\n\n8\nServer Verification\nPOST, BIOS, health checks\nVerify a server using checklist\n\n\n9\nTroubleshooting Basics\nCommon issues and solutions\nDiagnose a simulated problem\n\n\n10\nCable Management\nStandards, routing, documentation\nRe-route cables in a rack\n\n\n11\nEnvironmental Monitoring\nTemperature, humidity, airflow\nRead and interpret sensor data\n\n\n12\nReview & Assessment\nComprehensive review\nFull server install, solo (checked)\n\n\n\n\n\n11.4.2 Track 2: Networking Fundamentals (Months 3-6)\n\nTrack 2: Networking Curriculum\n\n\nWeek\nTopic\nLearning Goal\n\n\n\n\n1-2\nWhat is a Network?\nIP addresses, subnets, DNS basics\n\n\n3-4\nSwitches & Routers\nWhat they do, how they connect\n\n\n5-6\nVLANs\nWhy we separate traffic\n\n\n7-8\nNetwork Troubleshooting\nping, traceroute, basic diagnosis\n\n\n9-10\nManagement Networks\niLO/BMC, out-of-band management\n\n\n11-12\nNetwork Security Basics\nFirewalls, access control\n\n\n\n\n\n11.4.3 Track 3: Linux & OS Basics (Months 3-6)\n\nTrack 3: Linux Curriculum\n\n\nWeek\nTopic\nLearning Goal\n\n\n\n\n1-2\nWhat is Linux?\nBasic concepts, why we use it\n\n\n3-4\nCommand Line Basics\nNavigation, files, permissions\n\n\n5-6\nSystem Administration\nUsers, services, logs\n\n\n7-8\nStorage Basics\nDisks, partitions, filesystems\n\n\n9-10\nNetworking on Linux\nIP config, hostname, ports\n\n\n11-12\nScripting Introduction\nBasic bash scripts for automation\n\n\n\n\n\n11.4.4 Track 4: Namma DSL & Cloud Concepts (Months 6-9)\n\nTrack 4: DSL & Cloud Curriculum\n\n\nWeek\nTopic\nLearning Goal\n\n\n\n\n1-2\nWhat is Namma DSL?\nPurpose, structure, how to read it\n\n\n3-4\nUsing the DSL\nCheck out, edit, commit changes\n\n\n5-6\nDigital Twin Concept\nHow DSL represents our data center\n\n\n7-8\nOpenStack Basics\nWhat is virtualization, basic concepts\n\n\n9-10\nKubernetes Basics\nWhat is containerization, basic concepts\n\n\n11-12\nPutting It All Together\nHow all layers connect\n\n\n\n\n\n11.4.5 Track 5: Advanced Operations (Months 9-12)\n\nTrack 5: Advanced Operations Curriculum\n\n\n\n\n\n\n\nWeek\nTopic\nLearning Goal\n\n\n\n\n1-4\nMonitoring & Alerting\nSet up and interpret dashboards\n\n\n5-8\nCapacity Planning\nUnderstand resource usage and planning\n\n\n9-12\nFull Stack Troubleshooting\nDiagnose issues across all layers",
+    "crumbs": [
+      "Learning & Technology",
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Learning & Upskilling Module</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/learning-module.html#learning-with-ai",
+    "href": "chapters/learning-module.html#learning-with-ai",
+    "title": "11  Learning & Upskilling Module",
+    "section": "11.5 Learning with AI",
+    "text": "11.5 Learning with AI\n\n11.5.1 How to Use AI for Learning\nAI is your study buddy, not your answer sheet.\n\n\n\n\n\n\nflowchart TD\n    A[You encounter something new] --&gt; B[Try to understand it yourself first — even 2 minutes]\n    B --&gt; C[Ask AI to explain it simply]\n    C --&gt; D[Read the explanation carefully]\n    D --&gt; E{Do you understand?}\n    E --&gt;|Mostly| F[Ask AI for an example]\n    E --&gt;|Not really| G[Ask AI to explain differently / simpler]\n    G --&gt; D\n    F --&gt; H[Try to do it yourself]\n    H --&gt; I{Did it work?}\n    I --&gt;|Yes| J[Write down what you learned — in your own words]\n    I --&gt;|No| K[Ask AI what might be wrong]\n    K --&gt; H\n    J --&gt; L[Share with a teammate — teach them]\n\n\n\n\nFigure 11.2: Using AI for Learning\n\n\n\n\n\n\n\n11.5.2 AI Learning Prompts\nHere are example prompts team members can use:\n\nAI Prompts for Learning\n\n\n\n\n\n\nSituation\nPrompt to Use\n\n\n\n\nDon’t understand a term\n“Explain [term] in simple words with an example”\n\n\nNeed to learn a skill\n“Teach me step by step how to [skill], like I’m a beginner”\n\n\nTroubleshooting\n“I see [symptom]. What could be the cause?”\n\n\nVerifying understanding\n“I think [concept] means [your understanding]. Am I right?”\n\n\nLanguage help\n“How do I say [phrase in your language] in English?”\n\n\nSOP help\n“I’m following SOP for [task]. I’m stuck at [step]. Help me understand what to do”\n\n\n\n\n\n\n\n\n\nThe Golden Rule of AI Learning\n\n\n\nAlways verify what AI tells you by:\n\nChecking against the SOP\nAsking a teammate or Team Lead\nTesting it in practice\nUsing your own judgment — does it make sense?",
+    "crumbs": [
+      "Learning & Technology",
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Learning & Upskilling Module</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/learning-module.html#learning-log",
+    "href": "chapters/learning-module.html#learning-log",
+    "title": "11  Learning & Upskilling Module",
+    "section": "11.6 Learning Log",
+    "text": "11.6 Learning Log\nEvery team member maintains a Learning Log — a simple daily record:\n\n11.6.1 Learning Log Template\n\n\n\n\n\n\n\n\n\nDate\nWhat I Learned\nHow I Learned It\nWhat I’m Still Curious About\n\n\n\n\n_______\n_______\n_______\n_______\n\n\n_______\n_______\n_______\n_______\n\n\n\nGuidelines:\n\nWrite at least one entry per day\nIt can be as short as one sentence\nWrite in any language — you can translate later with AI help\nShare interesting entries during Friday’s open discussion\nTeam Lead reviews logs weekly (for support, not evaluation)",
+    "crumbs": [
+      "Learning & Technology",
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Learning & Upskilling Module</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/learning-module.html#skill-matrix",
+    "href": "chapters/learning-module.html#skill-matrix",
+    "title": "11  Learning & Upskilling Module",
+    "section": "11.7 Skill Matrix",
+    "text": "11.7 Skill Matrix\nTrack team skills with a visual matrix:\n\n11.7.1 Skill Levels\n\n\n\nLevel\nSymbol\nMeaning\n\n\n\n\n0 — Not started\n⬜\nHaven’t begun learning\n\n\n1 — Awareness\n🟨\nKnows the concept exists\n\n\n2 — Basic\n🟧\nCan do with guidance\n\n\n3 — Competent\n🟩\nCan do independently\n\n\n4 — Expert\n🟦\nCan teach others\n\n\n\n\n\n11.7.2 Example Skill Matrix\n\nTeam Skill Matrix (Example)\n\n\nSkill\nPerson A\nPerson B\nPerson C\nPerson D\n\n\n\n\nServer handling\n🟩\n🟧\n🟩\n🟧\n\n\nRack installation\n🟧\n🟧\n🟨\n🟨\n\n\nPower connection\n🟩\n🟨\n🟧\n🟨\n\n\nNetwork cabling\n🟧\n🟨\n🟨\n🟨\n\n\nMaker-Checker (checker)\n🟧\n🟧\n🟨\n🟨\n\n\nAI tool usage\n🟧\n🟨\n🟧\n🟨\n\n\nEnglish communication\n🟩\n🟨\n🟧\n🟨\n\n\nDocumentation\n🟧\n🟨\n🟨\n🟨\n\n\n\nUpdated: Monthly, during assessment conversations.",
+    "crumbs": [
+      "Learning & Technology",
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Learning & Upskilling Module</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/learning-module.html#mentorship-buddy-system",
+    "href": "chapters/learning-module.html#mentorship-buddy-system",
+    "title": "11  Learning & Upskilling Module",
+    "section": "11.8 Mentorship & Buddy System",
+    "text": "11.8 Mentorship & Buddy System\n\n11.8.1 Buddy Pairs\n\nPair experienced members with newer members\nBuddies work together on tasks\nNatural Maker-Checker pairing\nRotate buddies monthly for broader learning\n\n\n\n11.8.2 Team Lead as Coach\nThe Team Lead:\n\nIdentifies learning gaps through daily observation\nCreates targeted mini-lessons\nProvides encouragement and constructive feedback\nConnects team with resources (videos, AI tools, external help)\nTracks progress without creating pressure",
+    "crumbs": [
+      "Learning & Technology",
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Learning & Upskilling Module</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/learning-module.html#language-support",
+    "href": "chapters/learning-module.html#language-support",
+    "title": "11  Learning & Upskilling Module",
+    "section": "11.9 Language Support",
+    "text": "11.9 Language Support\nFor team members building English skills:\n\nTechnical vocabulary list — Key terms with local language translations (see Glossary)\nVisual SOPs — Diagrams and photos supplement written instructions\nAI translation — Use AI to translate concepts\nPractice in standups — Encourage English usage in a safe environment\nBilingual labels — Where helpful, label equipment in both languages\n\n\n\n\n\n\n\n\nGrowth Mindset\n\n\n\nEvery expert was once a beginner. Every skill you have today was once something you couldn’t do. Keep learning, keep growing, keep asking questions.",
+    "crumbs": [
+      "Learning & Technology",
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Learning & Upskilling Module</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/namma-dsl.html",
+    "href": "chapters/namma-dsl.html",
+    "title": "12  Namma DSL Integration",
+    "section": "",
+    "text": "12.1 What is Namma DSL?\nNamma DSL (Domain-Specific Language) is the specification language that describes our entire data center — from physical hardware to application workloads. Think of it as the digital twin of our infrastructure: everything that exists physically in the data center has a corresponding description in Namma DSL.\nflowchart TB\n    subgraph Physical[\"Physical Data Center\"]\n        P1[Servers]\n        P2[Racks]\n        P3[Network]\n        P4[Power]\n    end\n\n    subgraph DSL[\"Namma DSL (Digital Twin)\"]\n        D1[Server Specs]\n        D2[Rack Layouts]\n        D3[Network Topology]\n        D4[Power Maps]\n        D5[OpenStack Config]\n        D6[Kubernetes Config]\n        D7[App Definitions]\n        D8[Pricing & Capacity]\n        D9[Test Specs]\n    end\n\n    P1 &lt;--&gt;|mirrors| D1\n    P2 &lt;--&gt;|mirrors| D2\n    P3 &lt;--&gt;|mirrors| D3\n    P4 &lt;--&gt;|mirrors| D4\n\n    subgraph Tools[\"Tools & Interfaces\"]\n        T1[Web UI]\n        T2[File Check-in]\n        T3[Validation Engine]\n        T4[Reports & Dashboards]\n    end\n\n    DSL &lt;--&gt; Tools\n\n\n\n\nFigure 12.1: Namma DSL — Digital Twin of the Data Center",
+    "crumbs": [
+      "Learning & Technology",
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Namma DSL Integration</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/namma-dsl.html#why-namma-dsl-matters-for-the-admin-team",
+    "href": "chapters/namma-dsl.html#why-namma-dsl-matters-for-the-admin-team",
+    "title": "12  Namma DSL Integration",
+    "section": "12.2 Why Namma DSL Matters for the Admin Team",
+    "text": "12.2 Why Namma DSL Matters for the Admin Team\nEven though DSL sounds like a “software thing,” it directly affects the admin team:\n\nPhysical Actions ↔︎ DSL Updates\n\n\n\n\n\n\nWhat You Do Physically\nWhat Changes in DSL\n\n\n\n\nInstall a new server\nServer entry added with specs, rack position, network config\n\n\nMove a server to a different rack position\nRack layout updated\n\n\nConnect a server to network\nNetwork topology updated with port mappings\n\n\nReplace a faulty drive\nHardware spec updated, incident linked\n\n\nComplete a verification checklist\nServer status changed to “verified”\n\n\nRCA leads to SOP change\nSOP version reference updated",
+    "crumbs": [
+      "Learning & Technology",
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Namma DSL Integration</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/namma-dsl.html#dsl-structure-overview",
+    "href": "chapters/namma-dsl.html#dsl-structure-overview",
+    "title": "12  Namma DSL Integration",
+    "section": "12.3 DSL Structure Overview",
+    "text": "12.3 DSL Structure Overview\nThe Namma DSL is organized in layers:\nnamma-cloud/\n├── hardware/\n│   ├── servers/\n│   │   ├── srv001.yaml          # Individual server spec\n│   │   ├── srv002.yaml\n│   │   └── ...\n│   ├── racks/\n│   │   ├── rack-a.yaml          # Rack layout and capacity\n│   │   └── ...\n│   ├── network/\n│   │   ├── topology.yaml        # Network topology\n│   │   ├── switches.yaml        # Switch configurations\n│   │   └── ip-plan.yaml         # IP address plan\n│   └── power/\n│       ├── pdu-layout.yaml      # PDU assignments\n│       └── ups-config.yaml      # UPS configuration\n├── platform/\n│   ├── openstack/               # OpenStack configurations\n│   └── kubernetes/              # Kubernetes configurations\n├── applications/                # Application definitions\n├── monitoring/                  # Monitoring & alerting rules\n├── pricing/                     # Cost and capacity data\n├── testing/                     # Test specifications\n└── compatibility/               # Hardware/software compatibility matrix",
+    "crumbs": [
+      "Learning & Technology",
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Namma DSL Integration</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/namma-dsl.html#how-the-admin-team-interacts-with-dsl",
+    "href": "chapters/namma-dsl.html#how-the-admin-team-interacts-with-dsl",
+    "title": "12  Namma DSL Integration",
+    "section": "12.4 How the Admin Team Interacts with DSL",
+    "text": "12.4 How the Admin Team Interacts with DSL\n\n12.4.1 Option 1: Web UI (Coming Soon)\nA web-based interface where team members can:\n\nView the current state of the data center\nUpdate server details through a form\nSee the rack layout visually\nTrack verification status\nGenerate reports\n\n\n\n12.4.2 Option 2: File Check-in (Current Method)\nFor now, the team interacts with DSL through file editing:\n\n12.4.2.1 Step-by-Step: Updating a Server Entry\n\nCheck out the latest DSL files:\ngit pull origin main\nNavigate to the server file:\ncd namma-cloud/hardware/servers/\nEdit the server file (e.g., srv001.yaml):\n# Server: SRV001\n# Last Updated: 2026-02-20\n# Updated By: [Your Name]\n\nserver:\n  id: SRV001\n  model: HP ProLiant DL385 Gen10 Plus\n  serial_number: HP-DL385-XXXXX\n  status: verified  # Options: received, installed, verified, active, maintenance\n\n  location:\n    data_center: NC-DC-01\n    rack: Rack-A\n    position: 15U-16U\n\n  hardware:\n    cpu:\n      model: AMD EPYC 7313\n      count: 2\n      cores_per_cpu: 16\n      total_cores: 32\n    memory:\n      total_gb: 256\n      dimm_count: 16\n      speed_mhz: 3200\n    storage:\n      - type: NVMe SSD\n        size_gb: 960\n        count: 4\n      - type: HDD\n        size_gb: 4000\n        count: 8\n    network:\n      - port: iLO\n        ip: 10.0.1.101\n        switch: MGMT-SW1\n        switch_port: 48\n      - port: ETH0\n        ip: 10.0.10.101\n        switch: PROD-SW1\n        switch_port: 24\n      - port: ETH1\n        ip: 10.0.10.102\n        switch: PROD-SW1\n        switch_port: 25\n\n  power:\n    psu_a:\n      pdu: PDU-A\n      port: 12\n    psu_b:\n      pdu: PDU-B\n      port: 12\n\n  verification:\n    date: 2026-02-20\n    verified_by: [Name]\n    checker: [Name]\n    stress_test: passed\n    firmware_audit: completed\n\n  incidents: []\n  notes: []\nReview your changes (self-check):\ngit diff\nCommit with a descriptive message:\ngit add srv001.yaml\ngit commit -m \"SRV001: Updated verification status after hardware check\"\nPush for review:\ngit push origin main\nChecker reviews the change (part of Maker-Checker process)\n\n\n\n\n\n\n\nDon’t Worry About Mistakes\n\n\n\nThe DSL is version-controlled. Every change is tracked, and any change can be reverted. Focus on accuracy, and don’t fear making updates.",
+    "crumbs": [
+      "Learning & Technology",
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Namma DSL Integration</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/namma-dsl.html#dsl-driven-validation",
+    "href": "chapters/namma-dsl.html#dsl-driven-validation",
+    "title": "12  Namma DSL Integration",
+    "section": "12.5 DSL-Driven Validation",
+    "text": "12.5 DSL-Driven Validation\nNamma DSL includes validation rules that automatically check:\n\nDSL Validation Rules\n\n\nValidation\nWhat It Checks\n\n\n\n\nServer exists in rack\nIs the server position recorded and valid?\n\n\nNetwork consistency\nDo all IP addresses match the IP plan?\n\n\nPower redundancy\nAre both PSUs connected to different PDUs?\n\n\nCapacity limits\nIs the rack over its weight/power limit?\n\n\nNaming standards\nDo server IDs follow the naming convention?\n\n\nCompleteness\nAre all required fields filled in?\n\n\n\nWhen you commit a change, the validation engine runs automatically and reports:\n\n✅ All checks passed → Change is accepted\n⚠️ Warning → Change is accepted but review recommended\n❌ Error → Change is rejected, must fix before re-committing",
+    "crumbs": [
+      "Learning & Technology",
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Namma DSL Integration</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/namma-dsl.html#dsl-and-the-bigger-picture",
+    "href": "chapters/namma-dsl.html#dsl-and-the-bigger-picture",
+    "title": "12  Namma DSL Integration",
+    "section": "12.6 DSL and the Bigger Picture",
+    "text": "12.6 DSL and the Bigger Picture\n\n\n\n\n\n\nflowchart LR\n    subgraph Admin[\"Admin Team Activities\"]\n        A1[Install Server]\n        A2[Connect Power/Network]\n        A3[Verify Hardware]\n        A4[Report Issue]\n    end\n\n    subgraph DSL[\"Namma DSL\"]\n        D1[Hardware Specs]\n        D2[Network Topology]\n        D3[Status Tracking]\n        D4[Incident Log]\n    end\n\n    subgraph Automation[\"Automation Layer\"]\n        AU1[OS Provisioning]\n        AU2[OpenStack Deployment]\n        AU3[K8s Configuration]\n        AU4[Monitoring Setup]\n    end\n\n    A1 --&gt; D1\n    A2 --&gt; D2\n    A3 --&gt; D3\n    A4 --&gt; D4\n\n    D1 --&gt; AU1\n    D2 --&gt; AU2\n    D3 --&gt; AU3\n    D4 --&gt; AU4\n\n\n\n\nFigure 12.2: Namma DSL in the Ecosystem\n\n\n\n\n\nThe admin team’s updates to DSL directly feed the automation layer:\n\nWhen a server is marked “verified” in DSL → OS provisioning can begin automatically\nWhen network details are updated → Network configuration is auto-generated\nWhen an incident is logged → Monitoring alerts are adjusted",
+    "crumbs": [
+      "Learning & Technology",
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Namma DSL Integration</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/namma-dsl.html#learning-dsl-getting-started",
+    "href": "chapters/namma-dsl.html#learning-dsl-getting-started",
+    "title": "12  Namma DSL Integration",
+    "section": "12.7 Learning DSL: Getting Started",
+    "text": "12.7 Learning DSL: Getting Started\n\n12.7.1 For Beginners\n\nWeek 1: Understand YAML format (simple key-value pairs)\nWeek 2: Read existing server files — understand the structure\nWeek 3: Make your first edit (with Checker oversight)\nWeek 4: Commit your first change independently\n\n\n\n12.7.2 Practice Exercise\nTry reading this and answering the questions:\nserver:\n  id: SRV005\n  model: Assembled Custom\n  status: installed\n  location:\n    rack: Rack-B\n    position: 7U-10U\n  hardware:\n    cpu:\n      count: 2\n      total_cores: 24\n    memory:\n      total_gb: 128\nQuestions:\n\nWhat is this server’s ID?\nWhat rack is it in?\nHow many CPU cores does it have?\nHow much RAM does it have?\nWhat is its current status?\nIs it a branded or assembled server?\n\n(Answers: SRV005, Rack-B, 24, 128 GB, installed, assembled)\n\n\n\n\n\n\n\nFuture Vision\n\n\n\nAs Namma DSL matures, the admin team will have a full web UI with:\n\nVisual rack layout editor\nDrag-and-drop server placement\nAutomated checklist integration\nReal-time validation feedback\nMobile app for on-the-floor updates\n\nThe current file-based workflow is the foundation. Every file you update today is building the digital twin that will power tomorrow’s automation.",
+    "crumbs": [
+      "Learning & Technology",
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Namma DSL Integration</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/appendix-checklists.html",
+    "href": "chapters/appendix-checklists.html",
+    "title": "Appendix A: Checklists",
+    "section": "",
+    "text": "Checklist 1: Server Transportation — Pre-Transport\nServer ID: ________________ Date: ________________ Maker: ________________ Checker: ________________\nMaker Signature: ________________ Checker Signature: ________________",
+    "crumbs": [
+      "Appendices",
+      "Appendix A: Checklists"
+    ]
+  },
+  {
+    "objectID": "chapters/appendix-checklists.html#checklist-1-server-transportation-pre-transport",
+    "href": "chapters/appendix-checklists.html#checklist-1-server-transportation-pre-transport",
+    "title": "Appendix A: Checklists",
+    "section": "",
+    "text": "#\nItem\nDone?\n\n\n\n\n1\nServer serial number recorded\n☐\n\n\n2\nPhotos taken (6 angles)\n☐\n\n\n3\nServer weight recorded\n☐\n\n\n4\nAnti-static bag applied\n☐\n\n\n5\nFoam padding (2” minimum all sides)\n☐\n\n\n6\nOuter box/crate secured\n☐\n\n\n7\nFragile labels on all sides + top\n☐\n\n\n8\n“This Side Up” labels applied\n☐\n\n\n9\nShock indicator attached\n☐\n\n\n10\nMoisture indicator placed inside\n☐\n\n\n11\nFor assembled: internal components checked\n☐\n\n\n12\nFor assembled: component list taped inside lid\n☐\n\n\n13\nVehicle clean, dry, with proper suspension\n☐\n\n\n14\nTie-down straps available\n☐\n\n\n15\nTransportation ticket created\n☐",
+    "crumbs": [
+      "Appendices",
+      "Appendix A: Checklists"
+    ]
+  },
+  {
+    "objectID": "chapters/appendix-checklists.html#checklist-2-server-transportation-post-transport",
+    "href": "chapters/appendix-checklists.html#checklist-2-server-transportation-post-transport",
+    "title": "Appendix A: Checklists",
+    "section": "Checklist 2: Server Transportation — Post-Transport",
+    "text": "Checklist 2: Server Transportation — Post-Transport\nServer ID: ________________ Date: ________________ Maker: ________________ Checker: ________________\n\n\n\n#\nItem\nDone?\n\n\n\n\n1\nCargo condition photo taken (before unloading)\n☐\n\n\n2\nShock indicator checked\n☐\n\n\n3\nMoisture indicator checked\n☐\n\n\n4\nPackaging visual inspection\n☐\n\n\n5\nPackaging opened — contents photographed\n☐\n\n\n6\nServer exterior visual inspection\n☐\n\n\n7\nAll ports and connectors inspected\n☐\n\n\n8\nFor assembled: chassis opened, components inspected\n☐\n\n\n9\nPre vs post-transport photos compared\n☐\n\n\n10\nCondition classification assigned (Green/Yellow/Red)\n☐\n\n\n11\nAny issues ticketed?\n☐\n\n\n\nCondition: ☐ Green ☐ Yellow ☐ Red\nMaker Signature: ________________ Checker Signature: ________________",
+    "crumbs": [
+      "Appendices",
+      "Appendix A: Checklists"
+    ]
+  },
+  {
+    "objectID": "chapters/appendix-checklists.html#checklist-3-rack-preparation",
+    "href": "chapters/appendix-checklists.html#checklist-3-rack-preparation",
+    "title": "Appendix A: Checklists",
+    "section": "Checklist 3: Rack Preparation",
+    "text": "Checklist 3: Rack Preparation\nRack ID: ________________ Date: ________________ Maker: ________________ Checker: ________________\n\n\n\n#\nItem\nDone?\n\n\n\n\n1\nRack bolted to floor\n☐\n\n\n2\nStabilizer feet extended\n☐\n\n\n3\nRack leveled (spirit level)\n☐\n\n\n4\nPDUs installed and tested\n☐\n\n\n5\nCable management in place\n☐\n\n\n6\nU numbers labeled\n☐\n\n\n7\nFront clearance ≥ 1m\n☐\n\n\n8\nRear clearance ≥ 0.8m\n☐\n\n\n9\nTemperature within spec (18-27°C)\n☐\n\n\n10\nRack layout plan documented\n☐\n\n\n\nMaker Signature: ________________ Checker Signature: ________________",
+    "crumbs": [
+      "Appendices",
+      "Appendix A: Checklists"
+    ]
+  },
+  {
+    "objectID": "chapters/appendix-checklists.html#checklist-4-server-installation",
+    "href": "chapters/appendix-checklists.html#checklist-4-server-installation",
+    "title": "Appendix A: Checklists",
+    "section": "Checklist 4: Server Installation",
+    "text": "Checklist 4: Server Installation\nServer ID: ________________ Rack: ________________ Position: ________U Date: ________________\nMaker: ________________ Checker: ________________\n\n\n\n#\nItem\nDone?\n\n\n\n\n1\nServer compatibility verified (width, depth, weight)\n☐\n\n\n2\nRail kit / shelf selected and rated\n☐\n\n\n3\nRails/shelf installed at correct U\n☐\n\n\n4\nRails/shelf level (spirit level)\n☐\n\n\n5\nRails/shelf firmly secured\n☐\n\n\n6\nServer mounted (2-person lift)\n☐\n\n\n7\nServer fully seated\n☐\n\n\n8\nServer secured (thumbscrews/retainers)\n☐\n\n\n9\nServer is level\n☐\n\n\n10\nFront panel accessible\n☐\n\n\n11\nDrive bays accessible\n☐\n\n\n12\nRear ports accessible\n☐\n\n\n13\nNo contact with neighboring equipment\n☐\n\n\n14\nAirflow path clear\n☐\n\n\n15\nFront label attached\n☐\n\n\n16\nRear label attached\n☐\n\n\n17\nPhotos taken (front, rear, context)\n☐\n\n\n\nMaker Signature: ________________ Checker Signature: ________________",
+    "crumbs": [
+      "Appendices",
+      "Appendix A: Checklists"
+    ]
+  },
+  {
+    "objectID": "chapters/appendix-checklists.html#checklist-5-power-connection",
+    "href": "chapters/appendix-checklists.html#checklist-5-power-connection",
+    "title": "Appendix A: Checklists",
+    "section": "Checklist 5: Power Connection",
+    "text": "Checklist 5: Power Connection\nServer ID: ________________ Date: ________________ Maker: ________________ Checker: ________________\n\n\n\n#\nItem\nDone?\n\n\n\n\n1\nPDU outlets identified (A and B)\n☐\n\n\n2\nPDU capacity verified (≥20% remaining)\n☐\n\n\n3\nPower cable type verified\n☐\n\n\n4\nPower cables routed through cable management\n☐\n\n\n5\nPower separated from network cables\n☐\n\n\n6\nCable A connected (PSU 1 → PDU A)\n☐\n\n\n7\nCable B connected (PSU 2 → PDU B)\n☐\n\n\n8\nCable retention clips applied\n☐\n\n\n9\nPSU 1 LED shows standby\n☐\n\n\n10\nPSU 2 LED shows standby\n☐\n\n\n11\nCable labels attached (both ends, both cables)\n☐\n\n\n\nMaker Signature: ________________ Checker Signature: ________________",
+    "crumbs": [
+      "Appendices",
+      "Appendix A: Checklists"
+    ]
+  },
+  {
+    "objectID": "chapters/appendix-checklists.html#checklist-6-network-connection",
+    "href": "chapters/appendix-checklists.html#checklist-6-network-connection",
+    "title": "Appendix A: Checklists",
+    "section": "Checklist 6: Network Connection",
+    "text": "Checklist 6: Network Connection\nServer ID: ________________ Date: ________________ Maker: ________________ Checker: ________________\n\n\n\n#\nItem\nDone?\n\n\n\n\n1\nSwitch ports identified and configured\n☐\n\n\n2\nCable types verified\n☐\n\n\n3\nCables labeled (both ends)\n☐\n\n\n4\niLO/BMC port connected\n☐\n\n\n5\niLO/BMC link LED active\n☐\n\n\n6\nNIC Port 1 connected\n☐\n\n\n7\nNIC Port 1 link LED active\n☐\n\n\n8\nNIC Port 2 connected (if applicable)\n☐\n\n\n9\nNIC Port 2 link LED active\n☐\n\n\n10\nSwitch LEDs confirmed for all ports\n☐\n\n\n11\nCables routed through cable management\n☐\n\n\n12\nNo cables crossing power paths\n☐\n\n\n\nMaker Signature: ________________ Checker Signature: ________________",
+    "crumbs": [
+      "Appendices",
+      "Appendix A: Checklists"
+    ]
+  },
+  {
+    "objectID": "chapters/appendix-checklists.html#checklist-7-initial-power-on",
+    "href": "chapters/appendix-checklists.html#checklist-7-initial-power-on",
+    "title": "Appendix A: Checklists",
+    "section": "Checklist 7: Initial Power-On",
+    "text": "Checklist 7: Initial Power-On\nServer ID: ________________ Date: ________________ Maker: ________________ Checker: ________________\n\n\n\n#\nItem\nDone?\n\n\n\n\n1\nAll connections verified (pre-check)\n☐\n\n\n2\nRack door can close without pinching\n☐\n\n\n3\nPower button pressed\n☐\n\n\n4\nFans spin up\n☐\n\n\n5\nFront panel LEDs normal\n☐\n\n\n6\nNo error beeps\n☐\n\n\n7\nPSU LEDs show active\n☐\n\n\n8\nPOST screen observed — no errors\n☐\n\n\n9\nHardware detected matches spec\n☐\n\n\n10\niLO/BMC accessible via network\n☐\n\n\n11\nServer health shows “OK”\n☐\n\n\n12\nPower redundancy test — Cable A removed, server stays on\n☐\n\n\n13\nPower redundancy test — Cable A reconnected\n☐\n\n\n14\nPower redundancy test — Cable B removed, server stays on\n☐\n\n\n15\nPower redundancy test — Cable B reconnected\n☐\n\n\n\nMaker Signature: ________________ Checker Signature: ________________",
+    "crumbs": [
+      "Appendices",
+      "Appendix A: Checklists"
+    ]
+  },
+  {
+    "objectID": "chapters/appendix-checklists.html#checklist-8-server-verification",
+    "href": "chapters/appendix-checklists.html#checklist-8-server-verification",
+    "title": "Appendix A: Checklists",
+    "section": "Checklist 8: Server Verification",
+    "text": "Checklist 8: Server Verification\nServer ID: ________________ Date: ________________ Maker: ________________ Checker: ________________\n\n\n\n#\nItem\nDone?\n\n\n\n\n1\nBIOS/UEFI settings verified\n☐\n\n\n2\nAll CPUs detected\n☐\n\n\n3\nAll RAM detected (correct size and speed)\n☐\n\n\n4\nAll storage drives detected\n☐\n\n\n5\nAll NICs detected\n☐\n\n\n6\niLO health report — no warnings\n☐\n\n\n7\nComponent inventory matches BOM\n☐\n\n\n8\nFirmware versions recorded\n☐\n\n\n9\nMemory test passed (memtest86+)\n☐\n\n\n10\nCPU stress test passed\n☐\n\n\n11\nDisk I/O test passed\n☐\n\n\n12\nNetwork throughput test passed\n☐\n\n\n13\nTemperatures within limits during stress\n☐\n\n\n14\nNamma DSL updated\n☐\n\n\n15\nServer status classified (Ready/Conditional/Not Ready)\n☐\n\n\n\nStatus: ☐ Ready ☐ Conditional ☐ Not Ready\nMaker Signature: ________________ Checker Signature: ________________\n\n\n\n\n\n\n\nPrinting Tip\n\n\n\nPrint these checklists on heavy paper or laminate them for reuse with dry-erase markers. Keep a stack of fresh copies at each workstation.",
+    "crumbs": [
+      "Appendices",
+      "Appendix A: Checklists"
+    ]
+  },
+  {
+    "objectID": "chapters/appendix-glossary.html",
+    "href": "chapters/appendix-glossary.html",
+    "title": "Appendix B: Glossary",
+    "section": "",
+    "text": "A",
+    "crumbs": [
+      "Appendices",
+      "Appendix B: Glossary"
+    ]
+  },
+  {
+    "objectID": "chapters/appendix-glossary.html#a",
+    "href": "chapters/appendix-glossary.html#a",
+    "title": "Appendix B: Glossary",
+    "section": "",
+    "text": "Airflow\n\nThe movement of air through the data center and server racks. Servers pull cool air from the front (cold aisle) and exhaust hot air from the rear (hot aisle). Proper airflow prevents overheating.\n\nAnti-Static Bag\n\nA special bag that protects electronic components from static electricity damage. Servers and components should be wrapped in these during transport.\n\nAssembled Server\n\nA server that is custom-built from individual components (as opposed to a branded server from HP, Dell, etc.). May require special handling due to less standardized construction.",
+    "crumbs": [
+      "Appendices",
+      "Appendix B: Glossary"
+    ]
+  },
+  {
+    "objectID": "chapters/appendix-glossary.html#b",
+    "href": "chapters/appendix-glossary.html#b",
+    "title": "Appendix B: Glossary",
+    "section": "B",
+    "text": "B\n\nBIOS (Basic Input/Output System)\n\nThe firmware that runs when a server first powers on. It initializes hardware and hands control to the operating system. Modern servers use UEFI instead of traditional BIOS.\n\nBlank Panel\n\nA flat panel that fills empty rack spaces. Prevents hot air from the back of the rack from mixing with cold air at the front.\n\nBMC (Baseboard Management Controller)\n\nA small computer on the server motherboard that allows remote management (power on/off, health monitoring) even when the server’s main OS is not running. HP calls their BMC “iLO.”\n\nBurn-In Test\n\nA stress test run on new hardware to verify it works reliably under load. Helps catch early failures.",
+    "crumbs": [
+      "Appendices",
+      "Appendix B: Glossary"
+    ]
+  },
+  {
+    "objectID": "chapters/appendix-glossary.html#c",
+    "href": "chapters/appendix-glossary.html#c",
+    "title": "Appendix B: Glossary",
+    "section": "C",
+    "text": "C\n\nCable Management\n\nThe practice of organizing cables neatly in racks. Good cable management improves airflow, makes maintenance easier, and reduces errors.\n\nCAPA (Corrective and Preventive Action)\n\nActions taken after an incident — corrective actions fix the immediate problem, preventive actions stop it from happening again.\n\nCat6 / Cat6A\n\nCategories of Ethernet network cables. Cat6 supports up to 1 Gbps (gigabit per second). Cat6A supports up to 10 Gbps. We use Cat6A for production network and Cat6 for management.\n\nCold Aisle\n\nThe aisle in a data center where the front of the racks face. This is where cool air is supplied. Servers pull air in from this side.",
+    "crumbs": [
+      "Appendices",
+      "Appendix B: Glossary"
+    ]
+  },
+  {
+    "objectID": "chapters/appendix-glossary.html#d",
+    "href": "chapters/appendix-glossary.html#d",
+    "title": "Appendix B: Glossary",
+    "section": "D",
+    "text": "D\n\nDAC (Direct Attach Copper)\n\nA type of high-speed cable used to connect servers or switches at short distances (1-7 meters). Used for 10 Gbps, 25 Gbps, or faster connections.\n\nDigital Twin\n\nA digital representation of a physical system. In our case, Namma DSL is the digital twin of our data center — every physical component has a corresponding digital description.\n\nDIMM (Dual Inline Memory Module)\n\nA type of RAM (memory) module that plugs into the server motherboard. Servers typically have multiple DIMM slots.\n\nDSL (Domain-Specific Language)\n\nA specialized language designed for a particular purpose. Namma DSL is designed specifically for describing data center infrastructure.",
+    "crumbs": [
+      "Appendices",
+      "Appendix B: Glossary"
+    ]
+  },
+  {
+    "objectID": "chapters/appendix-glossary.html#e",
+    "href": "chapters/appendix-glossary.html#e",
+    "title": "Appendix B: Glossary",
+    "section": "E",
+    "text": "E\n\nESD (Electrostatic Discharge)\n\nA sudden flow of electricity between two objects. Can damage electronic components. Prevented by wearing anti-static wrist straps and using anti-static bags.\n\nEthernet\n\nThe most common type of network connection. Uses cables (Cat5e, Cat6, Cat6A) and connectors (RJ45) to connect devices.",
+    "crumbs": [
+      "Appendices",
+      "Appendix B: Glossary"
+    ]
+  },
+  {
+    "objectID": "chapters/appendix-glossary.html#f",
+    "href": "chapters/appendix-glossary.html#f",
+    "title": "Appendix B: Glossary",
+    "section": "F",
+    "text": "F\n\nFirmware\n\nSoftware that is permanently stored in hardware (like the server’s BIOS/UEFI or iLO). Can be updated but is different from regular software.\n\nForm Factor\n\nThe physical size and shape of a server. Measured in “U” (rack units). A 1U server is 1.75 inches tall. Common sizes: 1U, 2U, 4U.",
+    "crumbs": [
+      "Appendices",
+      "Appendix B: Glossary"
+    ]
+  },
+  {
+    "objectID": "chapters/appendix-glossary.html#g",
+    "href": "chapters/appendix-glossary.html#g",
+    "title": "Appendix B: Glossary",
+    "section": "G",
+    "text": "G\n\nGitOps\n\nA practice where infrastructure is managed through Git (version control). Changes are made by editing files and committing them, just like software code.",
+    "crumbs": [
+      "Appendices",
+      "Appendix B: Glossary"
+    ]
+  },
+  {
+    "objectID": "chapters/appendix-glossary.html#h",
+    "href": "chapters/appendix-glossary.html#h",
+    "title": "Appendix B: Glossary",
+    "section": "H",
+    "text": "H\n\nHot Aisle\n\nThe aisle where the rear of the racks face. This is where servers exhaust hot air. Temperature is higher here than the cold aisle.\n\nHP DL385\n\nHP ProLiant DL385 — a 2U rack server from HP. “DL” stands for “Density Line.” This is one of our primary server models.",
+    "crumbs": [
+      "Appendices",
+      "Appendix B: Glossary"
+    ]
+  },
+  {
+    "objectID": "chapters/appendix-glossary.html#i",
+    "href": "chapters/appendix-glossary.html#i",
+    "title": "Appendix B: Glossary",
+    "section": "I",
+    "text": "I\n\niLO (Integrated Lights-Out)\n\nHP’s remote management technology (a type of BMC). Allows you to manage the server remotely — power on/off, view health, access the console — even when the server’s OS is not running.\n\nIP Address\n\nA unique number assigned to each device on a network (like a postal address for computers). Example: 10.0.1.101.",
+    "crumbs": [
+      "Appendices",
+      "Appendix B: Glossary"
+    ]
+  },
+  {
+    "objectID": "chapters/appendix-glossary.html#k",
+    "href": "chapters/appendix-glossary.html#k",
+    "title": "Appendix B: Glossary",
+    "section": "K",
+    "text": "K\n\nKubernetes (K8s)\n\nA system for managing containerized applications across multiple servers. Part of our cloud platform stack.",
+    "crumbs": [
+      "Appendices",
+      "Appendix B: Glossary"
+    ]
+  },
+  {
+    "objectID": "chapters/appendix-glossary.html#l",
+    "href": "chapters/appendix-glossary.html#l",
+    "title": "Appendix B: Glossary",
+    "section": "L",
+    "text": "L\n\nLink LED\n\nA small light on a network port that indicates whether a cable is connected and working. Usually green when active.",
+    "crumbs": [
+      "Appendices",
+      "Appendix B: Glossary"
+    ]
+  },
+  {
+    "objectID": "chapters/appendix-glossary.html#m",
+    "href": "chapters/appendix-glossary.html#m",
+    "title": "Appendix B: Glossary",
+    "section": "M",
+    "text": "M\n\nMaker-Checker\n\nA quality assurance process where one person (Maker) performs a task and another person (Checker) independently verifies it. Standard practice at Namma Cloud.",
+    "crumbs": [
+      "Appendices",
+      "Appendix B: Glossary"
+    ]
+  },
+  {
+    "objectID": "chapters/appendix-glossary.html#n",
+    "href": "chapters/appendix-glossary.html#n",
+    "title": "Appendix B: Glossary",
+    "section": "N",
+    "text": "N\n\nNamma Cloud\n\nOur private cloud infrastructure project. “Namma” means “ours” in Kannada.\n\nNamma DSL\n\nOur custom domain-specific language for describing and managing the entire data center infrastructure. Acts as a digital twin.\n\nNIC (Network Interface Card)\n\nThe component in a server that provides network connectivity. Servers typically have multiple NICs for different networks.\n\nNVMe (Non-Volatile Memory Express)\n\nA type of very fast storage drive. Faster than traditional SSDs connected via SATA.",
+    "crumbs": [
+      "Appendices",
+      "Appendix B: Glossary"
+    ]
+  },
+  {
+    "objectID": "chapters/appendix-glossary.html#o",
+    "href": "chapters/appendix-glossary.html#o",
+    "title": "Appendix B: Glossary",
+    "section": "O",
+    "text": "O\n\nOpenStack\n\nAn open-source platform for creating and managing cloud computing resources (virtual machines, networks, storage). Part of our cloud stack.",
+    "crumbs": [
+      "Appendices",
+      "Appendix B: Glossary"
+    ]
+  },
+  {
+    "objectID": "chapters/appendix-glossary.html#p",
+    "href": "chapters/appendix-glossary.html#p",
+    "title": "Appendix B: Glossary",
+    "section": "P",
+    "text": "P\n\nPatch Cable\n\nA short network cable used to connect a server’s port to a patch panel or switch.\n\nPatch Panel\n\nA panel with multiple network ports, used as a central connection point in the rack.\n\nPCIe (Peripheral Component Interconnect Express)\n\nA type of expansion slot on a server motherboard. Used for GPUs, network cards, and storage controllers.\n\nPDU (Power Distribution Unit)\n\nA device in the rack that distributes electrical power to multiple servers. Like a power strip but designed for data centers.\n\nPOST (Power-On Self-Test)\n\nThe initial test that runs when a server powers on. Checks that basic hardware (CPU, RAM, storage) is functioning.\n\nPSU (Power Supply Unit)\n\nThe component inside a server that converts AC power from the wall into DC power for the server’s components. Servers typically have 2 PSUs for redundancy.",
+    "crumbs": [
+      "Appendices",
+      "Appendix B: Glossary"
+    ]
+  },
+  {
+    "objectID": "chapters/appendix-glossary.html#r",
+    "href": "chapters/appendix-glossary.html#r",
+    "title": "Appendix B: Glossary",
+    "section": "R",
+    "text": "R\n\nRack\n\nA standard frame for mounting servers and networking equipment. Standard width is 19 inches. Height is measured in U (rack units). Common sizes: 42U, 48U.\n\nRack Unit (U)\n\nA unit of measurement for rack space. 1U = 1.75 inches (44.45 mm) of vertical space.\n\nRail Kit\n\nSliding rails that mount inside a rack to hold a server. Allow the server to slide in and out for maintenance.\n\nRCA (Root Cause Analysis)\n\nThe process of investigating an incident to find the underlying cause and prevent recurrence.\n\nRedundancy\n\nHaving backup systems so that if one fails, the other takes over. Example: two power supplies connected to two different PDUs.",
+    "crumbs": [
+      "Appendices",
+      "Appendix B: Glossary"
+    ]
+  },
+  {
+    "objectID": "chapters/appendix-glossary.html#s",
+    "href": "chapters/appendix-glossary.html#s",
+    "title": "Appendix B: Glossary",
+    "section": "S",
+    "text": "S\n\nSOP (Standard Operating Procedure)\n\nA documented, step-by-step procedure for performing a task consistently and correctly.\n\nSpirit Level\n\nA tool used to check if a surface is perfectly horizontal (level). Used to ensure racks and rails are properly aligned.\n\nSR-IOV (Single Root I/O Virtualization)\n\nA technology that allows a single network adapter to appear as multiple virtual adapters. Important for virtualization performance.\n\nSSD (Solid State Drive)\n\nA type of storage drive with no moving parts. Faster and more reliable than traditional hard disk drives (HDDs).\n\nStress Test\n\nRunning a server at maximum capacity to verify stability and detect hardware issues.",
+    "crumbs": [
+      "Appendices",
+      "Appendix B: Glossary"
+    ]
+  },
+  {
+    "objectID": "chapters/appendix-glossary.html#t",
+    "href": "chapters/appendix-glossary.html#t",
+    "title": "Appendix B: Glossary",
+    "section": "T",
+    "text": "T\n\nTPM (Trusted Platform Module)\n\nA security chip on the server motherboard that provides hardware-based security functions like encryption.",
+    "crumbs": [
+      "Appendices",
+      "Appendix B: Glossary"
+    ]
+  },
+  {
+    "objectID": "chapters/appendix-glossary.html#u",
+    "href": "chapters/appendix-glossary.html#u",
+    "title": "Appendix B: Glossary",
+    "section": "U",
+    "text": "U\n\nUEFI (Unified Extensible Firmware Interface)\n\nModern replacement for traditional BIOS. Provides the firmware that runs when a server first powers on.\n\nUPS (Uninterruptible Power Supply)\n\nA battery backup system that provides power during electrical outages. Gives time to safely shut down or switch to generator power.",
+    "crumbs": [
+      "Appendices",
+      "Appendix B: Glossary"
+    ]
+  },
+  {
+    "objectID": "chapters/appendix-glossary.html#v",
+    "href": "chapters/appendix-glossary.html#v",
+    "title": "Appendix B: Glossary",
+    "section": "V",
+    "text": "V\n\nVLAN (Virtual Local Area Network)\n\nA way to logically separate network traffic on the same physical network. Used to isolate management, production, and storage traffic.\n\nVT-x / AMD-V\n\nCPU virtualization technologies from Intel (VT-x) and AMD (AMD-V). Must be enabled in BIOS for running virtual machines.",
+    "crumbs": [
+      "Appendices",
+      "Appendix B: Glossary"
+    ]
+  },
+  {
+    "objectID": "chapters/appendix-glossary.html#y",
+    "href": "chapters/appendix-glossary.html#y",
+    "title": "Appendix B: Glossary",
+    "section": "Y",
+    "text": "Y\n\nYAML\n\nA human-readable data format used in Namma DSL. Uses indentation to show structure. Example:\nserver:\n  id: SRV001\n  model: HP DL385\n\n\n\n\n\n\n\n\n\nCan’t Find a Term?\n\n\n\nIf you encounter a term not in this glossary:\n\nAsk AI: “What does [term] mean in the context of data centers?”\nVerify the AI answer with a teammate or Team Lead\nRequest it be added to this glossary (file a ticket!)",
+    "crumbs": [
+      "Appendices",
+      "Appendix B: Glossary"
+    ]
+  }
+]

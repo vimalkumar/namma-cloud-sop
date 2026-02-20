@@ -1,0 +1,325 @@
+# Root Cause Analysis (RCA) Module {#sec-rca}
+
+## Purpose
+
+The RCA Module defines how the Namma Cloud team investigates incidents, identifies root causes, implements corrective actions, and prevents recurrence. Every incident — no matter how small — is an opportunity to improve.
+
+::: {.callout-important}
+## Our RCA Philosophy
+We don't do RCA to assign blame. We do RCA to **understand systems, improve processes, and grow as a team**.
+:::
+
+## When to Trigger an RCA
+
+An RCA **must** be initiated for:
+
+| Trigger | Example | Timeline |
+|---------|---------|----------|
+| Hardware damage | Server damaged during transport | RCA within 24 hours |
+| Installation failure | Server doesn't fit in rack | RCA within 48 hours |
+| Configuration error | Wrong network port connected | RCA within 48 hours |
+| Safety incident | Near-miss or actual injury | RCA within 12 hours |
+| Repeat issue | Same problem occurs twice | RCA within 24 hours |
+| Process deviation | SOP not followed | RCA within 48 hours |
+| Unexpected downtime | Server fails after installation | RCA within 24 hours |
+
+: RCA Trigger Events {.striped}
+
+An RCA **should** be considered for:
+
+- Maker-Checker failures (task rejected by Checker)
+- Near-misses that could have become incidents
+- Process inefficiencies discovered during work
+- New learnings that reveal gaps in SOPs
+
+## The RCA Process
+
+```{mermaid}
+%%| label: fig-rca-process
+%%| fig-cap: "RCA Process Flow"
+flowchart TD
+    A[Incident Occurs] --> B[Immediate Response]
+    B --> C[Document: What happened?]
+    C --> D[File Incident Ticket]
+    D --> E[Assemble RCA Team]
+    E --> F[Gather Evidence]
+    F --> G[Timeline Analysis]
+    G --> H[Root Cause Identification — 5 Whys]
+    H --> I[Contributing Factors]
+    I --> J[Corrective Actions — CAPA]
+    J --> K[Preventive Actions]
+    K --> L[Update SOPs & Checklists]
+    L --> M[Share Learnings with Team]
+    M --> N[Track Action Completion]
+    N --> O[Verify Effectiveness]
+    O --> P[Close RCA]
+```
+
+## Step-by-Step RCA Guide
+
+### Step 1: Immediate Response (Within 1 Hour)
+
+When an incident occurs:
+
+1. **Ensure safety** — If anyone is at risk, address safety first
+2. **Stop the activity** — Don't continue with the task
+3. **Preserve evidence** — Take photographs, don't clean up or fix anything yet
+4. **Document immediately:**
+   - What happened?
+   - When did it happen?
+   - Where did it happen?
+   - Who was involved?
+   - What was being done at the time?
+5. **Notify the Team Lead**
+6. **File an incident ticket**
+
+::: {.callout-tip}
+## Quick Documentation
+Use your phone to:
+
+1. Take photos of the incident
+2. Record a voice note describing what happened (in any language)
+3. Note the exact time
+
+This can be formalized later, but capture it NOW while it's fresh.
+:::
+
+### Step 2: Gather Evidence (Within 24 Hours)
+
+Collect all relevant information:
+
+- Photographs (before, during, after)
+- Checklists (were they completed? any items missed?)
+- SOP version that was being followed
+- Statements from team members involved
+- Environmental conditions (temperature, humidity, lighting)
+- Equipment specifications
+- Any prior similar incidents
+- Maker-Checker sign-off forms (if applicable)
+
+### Step 3: Build a Timeline
+
+Create a chronological timeline of events:
+
+| Time | Event | Who | Notes |
+|------|-------|-----|-------|
+| _____ | _____ | _____ | _____ |
+| _____ | _____ | _____ | _____ |
+| _____ | _____ | _____ | _____ |
+
+**Focus on:** What happened just before the incident? What changed?
+
+### Step 4: The 5 Whys
+
+The 5 Whys technique helps us dig deeper than the surface-level cause:
+
+```{mermaid}
+%%| label: fig-5whys-example
+%%| fig-cap: "5 Whys Example — Server Damaged During Transport"
+flowchart TD
+    P["Problem: Server slightly damaged during transport"] --> W1
+    W1["Why 1: Why was it damaged?\n→ It shifted inside the packaging"] --> W2
+    W2["Why 2: Why did it shift?\n→ Packaging did not fit the server tightly"] --> W3
+    W3["Why 3: Why didn't the packaging fit?\n→ Generic packaging was used, not custom-fit"] --> W4
+    W4["Why 4: Why was generic packaging used?\n→ No standard packaging specification existed"] --> W5
+    W5["Why 5: Why was there no specification?\n→ Packaging was not included in the SOP"]
+
+    W5 --> RC["ROOT CAUSE:\nSOP did not include packaging specifications\nfor different server types"]
+```
+
+::: {.callout-note}
+## 5 Whys Guidelines
+- Keep asking "Why?" until you reach a **systemic cause** (process, training, tool gap)
+- If you find yourself blaming a person, ask "Why?" again — there's always a system behind the human action
+- Sometimes you need more than 5 Whys, sometimes fewer. The number is a guide, not a rule.
+- Multiple root causes are possible — investigate all branches
+:::
+
+### Step 5: Identify Contributing Factors
+
+Beyond the root cause, identify factors that contributed:
+
+| Category | Contributing Factor | Present? |
+|----------|-------------------|----------|
+| **Process** | SOP missing or incomplete | ☐ |
+| **Process** | Checklist not followed | ☐ |
+| **Training** | Team member not trained on this task | ☐ |
+| **Training** | Training was insufficient | ☐ |
+| **Equipment** | Wrong tools or materials used | ☐ |
+| **Equipment** | Equipment was faulty | ☐ |
+| **Environment** | Lighting, space, or temperature issues | ☐ |
+| **Communication** | Instructions unclear or misunderstood | ☐ |
+| **Communication** | Language barrier | ☐ |
+| **Time pressure** | Rushing to meet a deadline | ☐ |
+| **Verification** | Maker-Checker not performed | ☐ |
+| **Documentation** | Specifications not available | ☐ |
+
+: Contributing Factor Analysis {.striped}
+
+### Step 6: Define Corrective & Preventive Actions (CAPA)
+
+For each root cause and contributing factor, define:
+
+#### Corrective Actions (Fix the immediate problem)
+
+| # | Action | Owner | Deadline | Status |
+|---|--------|-------|----------|--------|
+| 1 | _______ | _______ | _______ | ☐ |
+| 2 | _______ | _______ | _______ | ☐ |
+| 3 | _______ | _______ | _______ | ☐ |
+
+#### Preventive Actions (Prevent recurrence)
+
+| # | Action | Owner | Deadline | Status |
+|---|--------|-------|----------|--------|
+| 1 | _______ | _______ | _______ | ☐ |
+| 2 | _______ | _______ | _______ | ☐ |
+| 3 | _______ | _______ | _______ | ☐ |
+
+**Examples of CAPA:**
+
+| Type | Example |
+|------|---------|
+| Corrective | Replace damaged server component |
+| Corrective | Re-pack remaining servers with proper materials |
+| Preventive | Update transportation SOP with packaging specifications |
+| Preventive | Create a packaging checklist for each server type |
+| Preventive | Add "packaging inspection" to Maker-Checker process |
+| Preventive | Training session on proper packaging techniques |
+
+: Example CAPA Actions {.striped}
+
+### Step 7: Update SOPs & Checklists
+
+If the RCA reveals an SOP gap:
+
+1. Draft the SOP update
+2. Review with Team Lead
+3. Get approval
+4. Publish the updated SOP
+5. Brief the team on the change
+6. Record the change with version number
+
+### Step 8: Share Learnings
+
+Every RCA culminates in a **learning session**:
+
+1. Present the incident (what happened)
+2. Walk through the 5 Whys
+3. Explain the root cause
+4. Describe the CAPA
+5. Show the updated SOP/checklist
+6. Open for questions and discussion
+7. **Key message:** "This is how we get better, together"
+
+## RCA Report Template
+
+---
+
+### Namma Cloud — RCA Report
+
+| Field | Details |
+|-------|---------|
+| **Incident ID** | _______ |
+| **Date of Incident** | _______ |
+| **Date of RCA** | _______ |
+| **RCA Led By** | _______ |
+| **Team Members Involved** | _______ |
+
+**1. Incident Summary**
+_Describe what happened in 2-3 sentences._
+
+**2. Timeline of Events**
+| Time | Event |
+|------|-------|
+| | |
+
+**3. 5 Whys Analysis**
+| # | Why? | Answer |
+|---|------|--------|
+| 1 | | |
+| 2 | | |
+| 3 | | |
+| 4 | | |
+| 5 | | |
+
+**Root Cause:** ________________________________________________
+
+**4. Contributing Factors**
+_List all contributing factors identified._
+
+**5. Corrective Actions**
+| # | Action | Owner | Deadline |
+|---|--------|-------|----------|
+| | | | |
+
+**6. Preventive Actions**
+| # | Action | Owner | Deadline |
+|---|--------|-------|----------|
+| | | | |
+
+**7. SOP/Checklist Updates**
+_List any SOPs or checklists that were updated as a result._
+
+**8. Lessons Learned**
+_What did we learn? What should the whole team know?_
+
+**9. Sign-Off**
+| Role | Name | Signature | Date |
+|------|------|-----------|------|
+| RCA Lead | | | |
+| Team Lead | | | |
+| Project Lead | | | |
+
+---
+
+## RCA Tracking Dashboard
+
+Maintain a running tracker of all RCAs:
+
+| ID | Incident | Date | Root Cause | CAPA Count | Status | Days Open |
+|----|----------|------|-----------|------------|--------|-----------|
+| RCA-001 | Server damaged in transport | _______ | Packaging spec missing | 4 | _______ | _______ |
+| RCA-002 | _______ | _______ | _______ | _______ | _______ | _______ |
+
+**Targets:**
+
+- RCA initiated within **24 hours** of incident
+- RCA completed within **72 hours**
+- All CAPA items completed within **2 weeks**
+- Zero **repeat incidents** (same root cause)
+
+## Real-World Example: Server Damaged During Transport
+
+::: {.callout-note}
+## Case Study: RCA-001
+**Incident:** During transportation from the guest house to the data center, one HP server was found to have slight physical damage upon arrival.
+
+**5 Whys:**
+
+1. **Why was the server damaged?** → It shifted during transport
+2. **Why did it shift?** → Packaging was not snug around the server
+3. **Why wasn't packaging snug?** → Generic padding was used instead of custom-fit packaging
+4. **Why was generic padding used?** → No packaging standard existed for this type of transport
+5. **Why was there no standard?** → The transportation SOP did not include packaging specifications
+
+**Root Cause:** Transportation SOP lacked specific packaging requirements for different server types and transport scenarios.
+
+**CAPA:**
+
+- ✅ Created detailed packaging specifications (see [Transportation SOP](#sec-sop-transport))
+- ✅ Added shock and moisture indicators to packaging checklist
+- ✅ Added Maker-Checker process for packaging verification
+- ✅ Created separate packaging guidelines for branded vs assembled servers
+- ✅ Conducted training session on proper server packaging
+
+**Result:** No further transport damage incidents after implementing these changes.
+:::
+
+---
+
+::: {.callout-tip}
+## Remember
+*"Every incident we investigate and learn from makes our next operation better. RCA is not punishment — it's our most powerful learning tool."*
+:::
+

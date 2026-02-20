@@ -1,0 +1,250 @@
+# SOP: Server Transportation {#sec-sop-transport}
+
+## Purpose
+
+This SOP defines the standard procedure for safely transporting servers from the source location (vendor, guest house, or staging area) to the data center. It ensures that all servers arrive undamaged, properly documented, and ready for installation.
+
+::: {.callout-warning}
+## Lesson Learned
+During our initial transportation from the guest house to the data center, one server was slightly damaged due to inadequate packaging. This SOP was created to prevent such incidents from ever recurring.
+:::
+
+## Scope
+
+This procedure covers:
+
+- Transportation of **HP DL385** branded servers
+- Transportation of **assembled (non-branded)** servers
+- Any movement of servers between locations (vendor → guest house → data center)
+- Both short-distance (within city) and long-distance (inter-city) transport
+
+## Roles
+
+| Role | Responsibility |
+|------|---------------|
+| **Maker** | Prepares, packs, and supervises transportation |
+| **Checker** | Verifies packing quality, documentation, and condition on arrival |
+| **Team Lead** | Approves transportation plan, reviews completion |
+
+## Pre-Transportation Checklist
+
+Before any server is moved, the following MUST be completed:
+
+### Step 1: Inventory & Documentation
+
+- [ ] Record the server's serial number, model, and configuration
+- [ ] Take **photographs** of the server from all 4 sides + top + bottom (6 photos minimum)
+- [ ] Record the server's weight (important for transport vehicle selection)
+- [ ] Update Namma DSL with transportation event (if applicable)
+- [ ] Create a transportation ticket in the issue tracker
+
+### Step 2: Packaging Assessment
+
+Different server types require different packaging:
+
+#### HP DL385 (Branded Servers)
+
+| Item | Requirement | ✅ Check |
+|------|------------|----------|
+| Original HP packaging | Must use if available | ☐ |
+| Anti-static bags | Each server wrapped individually | ☐ |
+| Foam padding | Minimum 2 inches on all sides | ☐ |
+| Cardboard box | Double-wall corrugated, rated for weight | ☐ |
+| Fragile labels | Applied on all 4 sides + top | ☐ |
+| "This Side Up" labels | Applied on 2 opposite sides | ☐ |
+| Shock indicators | Attached to outside of package | ☐ |
+| Moisture indicators | Placed inside package | ☐ |
+
+: HP DL385 Packaging Requirements {.striped}
+
+#### Assembled (Non-Branded) Servers
+
+::: {.callout-important}
+## Special Attention Required
+Assembled servers are more fragile than branded servers. Components may not be as securely fastened. Extra care is essential.
+:::
+
+| Item | Requirement | ✅ Check |
+|------|------------|----------|
+| Internal component check | Verify all components are firmly seated (RAM, GPU, cables) | ☐ |
+| Anti-static bags | Full server wrap | ☐ |
+| Custom foam inserts | Cut to fit server dimensions exactly | ☐ |
+| Rigid outer container | Wooden crate or heavy-duty plastic case | ☐ |
+| Internal bracing | Server must not move inside container | ☐ |
+| Fragile + shock labels | All sides | ☐ |
+| Component list | Taped inside the box lid | ☐ |
+
+: Assembled Server Packaging Requirements {.striped}
+
+### Step 3: Transport Vehicle Preparation
+
+- [ ] Vehicle is clean and dry
+- [ ] Vehicle has **suspension suitable for fragile cargo** (avoid open trucks with poor suspension)
+- [ ] Climate control available (if temperature > 35°C or < 10°C)
+- [ ] Tie-down straps or cargo nets available
+- [ ] Non-slip mats placed on vehicle floor
+- [ ] Vehicle has adequate space — servers must **not be stacked unless packaging is designed for it**
+
+### Step 4: Maker-Checker Sign-Off — Pre-Transport
+
+| Item | Maker Sign | Checker Sign | Date/Time |
+|------|-----------|-------------|-----------|
+| Inventory recorded | _______ | _______ | _______ |
+| Photos taken | _______ | _______ | _______ |
+| Packaging complete | _______ | _______ | _______ |
+| Vehicle prepared | _______ | _______ | _______ |
+| Shock indicators attached | _______ | _______ | _______ |
+
+## During Transportation
+
+### Loading Procedure
+
+1. **Minimum 2 people** for lifting any server (even small form factors)
+2. Lift from the bottom — **never** grab by handles, faceplates, or cables
+3. Place on vehicle floor, never on seats or unsecured surfaces
+4. Secure with tie-down straps — snug but not compressing the packaging
+5. Place **"Fragile" side facing up** as marked
+6. Leave space between packages — no crushing
+7. Take a **photograph** of the loaded vehicle interior
+
+### Transit Rules
+
+- Driver must be informed that cargo is fragile electronics
+- **Maximum speed: 40 km/h on rough roads, 80 km/h on highways**
+- Avoid sudden braking and sharp turns
+- If journey > 2 hours, check cargo at rest stop
+- No smoking in or near the vehicle
+- At least **one team member rides with the cargo**
+- Contact Team Lead if any incident occurs during transit
+
+### Route Planning
+
+| Factor | Consideration |
+|--------|-------------- |
+| Road quality | Prefer paved, smooth roads even if longer |
+| Distance | Minimize total transport time |
+| Weather | Avoid transport during heavy rain or extreme heat |
+| Time of day | Prefer early morning (less traffic, cooler temperature) |
+| Rest stops | Plan stops every 2 hours for cargo check |
+
+: Route Planning Considerations {.striped}
+
+## Post-Transportation — Receiving at Data Center
+
+### Step 1: Unloading
+
+1. Open vehicle carefully — check if anything shifted during transit
+2. **Photograph** the cargo as-is before touching
+3. Unload one package at a time — **2 people minimum**
+4. Place on a clean, flat, dry surface in the receiving area
+5. Never drag packages — always lift
+
+### Step 2: Inspection
+
+For **each** server, perform the following:
+
+- [ ] Check shock indicator — was threshold exceeded?
+- [ ] Check moisture indicator — any moisture ingress?
+- [ ] Visually inspect packaging — any dents, tears, or damage?
+- [ ] Open packaging carefully — photograph contents before removing
+- [ ] Visually inspect server exterior — any dents, scratches, loose parts?
+- [ ] Check all ports and connectors — nothing bent or broken?
+- [ ] For assembled servers: open chassis and check component seating
+- [ ] Compare against pre-transport photos — any differences?
+
+### Step 3: Condition Classification
+
+After inspection, classify each server:
+
+| Classification | Description | Action |
+|---------------|-------------|--------|
+| ✅ **Green — No Issues** | Server matches pre-transport condition exactly | Proceed to rack installation |
+| 🟡 **Yellow — Minor Issue** | Cosmetic damage, no functional concern | Document, proceed with monitoring |
+| 🔴 **Red — Significant Issue** | Functional damage suspected or confirmed | STOP. File ticket. Begin RCA. Do not install. |
+
+: Server Condition Classification {.striped}
+
+### Step 4: Maker-Checker Sign-Off — Post-Transport
+
+| Item | Maker Sign | Checker Sign | Date/Time |
+|------|-----------|-------------|-----------|
+| Shock indicator OK | _______ | _______ | _______ |
+| Moisture indicator OK | _______ | _______ | _______ |
+| Packaging intact | _______ | _______ | _______ |
+| Server visual inspection OK | _______ | _______ | _______ |
+| Internal inspection OK (assembled) | _______ | _______ | _______ |
+| Photos match pre-transport | _______ | _______ | _______ |
+| Condition classification assigned | _______ | _______ | _______ |
+
+## Issue Handling During Transportation
+
+If any issue is discovered:
+
+```{mermaid}
+%%| label: fig-transport-issue
+%%| fig-cap: "Transportation Issue Handling Flow"
+flowchart TD
+    A[Issue Discovered] --> B[STOP — Do not proceed]
+    B --> C[Take photographs immediately]
+    C --> D[Document: What, When, Where, Who]
+    D --> E[File a ticket in issue tracker]
+    E --> F[Notify Team Lead]
+    F --> G{Severity?}
+    G -->|Minor| H[Continue with caution, monitor]
+    G -->|Major| I[Isolate server, do NOT install]
+    I --> J[Begin RCA within 24 hours]
+    H --> K[Complete RCA within 72 hours]
+    J --> L[Determine corrective action]
+    K --> L
+    L --> M[Update SOP if needed]
+```
+
+## Server Type Reference
+
+### HP ProLiant DL385
+
+- **Form Factor:** 2U rack server
+- **Weight:** ~22-30 kg depending on configuration
+- **Handling:** Use original HP packaging when available
+- **Key Vulnerability:** Front bezel clips, drive bays
+- **Special Note:** iLO port is fragile — protect during transport
+
+### Assembled Servers
+
+- **Form Factor:** Varies (typically 2U-4U)
+- **Weight:** Varies (15-35 kg typical)
+- **Handling:** Requires custom packaging — original packaging unlikely to exist
+- **Key Vulnerability:** PCIe cards (GPU, NIC), unsecured drive cages, loose cables
+- **Special Note:** May not conform to standard rack dimensions — verify **before** transport if it will fit the destination rack
+
+::: {.callout-caution}
+## Critical Reminder — Assembled Servers
+We experienced fitting issues with assembled servers in our racks. Before transporting assembled servers, **confirm rack compatibility** by checking:
+
+1. Server width, depth, and height match rack specifications
+2. Rail kits (if any) are compatible
+3. If no rail kits, shelf dimensions are verified
+:::
+
+## Record Keeping
+
+All transportation records must include:
+
+1. Transportation ticket number
+2. Pre-transport photos (all 6 angles)
+3. Post-transport photos (all 6 angles + packaging state)
+4. Shock and moisture indicator readings
+5. Maker-Checker sign-off sheets (pre and post)
+6. Condition classification
+7. Any issue tickets filed
+8. RCA reports (if applicable)
+
+**Retention:** All records must be kept for **minimum 2 years**.
+
+---
+
+::: {.callout-tip}
+## Quick Reference
+Print the checklists from [Appendix A — Checklists](#sec-appendix-checklists) and keep them with the transportation kit.
+:::
+

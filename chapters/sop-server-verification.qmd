@@ -1,0 +1,196 @@
+# SOP: Server Hardware Verification {#sec-sop-verify}
+
+## Purpose
+
+This SOP defines the procedure for verifying that a newly installed server is fully functional, all components are detected and healthy, firmware is up to date, and the server is ready for operating system provisioning.
+
+## Scope
+
+- POST (Power-On Self-Test) verification
+- BIOS/UEFI configuration check
+- Hardware component detection and health check
+- Firmware version audit
+- Burn-in / stress test
+- Documentation and sign-off
+
+## Pre-Verification Requirements
+
+Before starting this SOP, ensure:
+
+- [ ] Server is physically installed per [Rack Fitting SOP](#sec-sop-rack)
+- [ ] Power and network are connected per [Power & Network SOP](#sec-sop-power-network)
+- [ ] iLO/BMC management access is confirmed
+- [ ] Server has completed initial POST successfully
+
+## Verification Procedure
+
+### Step 1: BIOS/UEFI Verification
+
+Access the BIOS/UEFI setup (typically F9 or F11 during boot on HP servers):
+
+| Setting | Expected Value | Actual Value | Status |
+|---------|---------------|--------------|--------|
+| Boot mode | UEFI | _______ | ☐ |
+| Processor(s) detected | [expected count & model] | _______ | ☐ |
+| Total RAM detected | [expected GB] | _______ | ☐ |
+| RAM speed | [expected MHz] | _______ | ☐ |
+| Storage controllers | [expected] | _______ | ☐ |
+| Network adapters | [expected count] | _______ | ☐ |
+| TPM module | Enabled | _______ | ☐ |
+| Virtualization (VT-x/AMD-V) | Enabled | _______ | ☐ |
+| SR-IOV | Enabled | _______ | ☐ |
+| Boot order | PXE / Disk as required | _______ | ☐ |
+
+: BIOS/UEFI Verification Checklist {.striped}
+
+### Step 2: iLO/BMC Health Check
+
+Using the management web interface:
+
+- [ ] Overall server health: **OK** (no amber/red indicators)
+- [ ] All fans detected and running at normal speed
+- [ ] Temperature sensors within normal range
+- [ ] Power supply status: both PSUs reporting OK
+- [ ] Storage status: all drives detected and healthy
+- [ ] Memory status: all DIMMs detected and healthy
+- [ ] Network adapter status: all NICs detected
+- [ ] Event log: no critical or warning events
+
+### Step 3: Component Inventory Verification
+
+Cross-reference detected hardware against the **purchase order / bill of materials**:
+
+| Component | Expected | Detected (from iLO) | Match? |
+|-----------|----------|---------------------|--------|
+| CPU Model | _______ | _______ | ☐ |
+| CPU Count | _______ | _______ | ☐ |
+| CPU Cores (total) | _______ | _______ | ☐ |
+| RAM Total (GB) | _______ | _______ | ☐ |
+| RAM DIMM Count | _______ | _______ | ☐ |
+| RAM Speed (MHz) | _______ | _______ | ☐ |
+| Disk Count | _______ | _______ | ☐ |
+| Disk Size (each) | _______ | _______ | ☐ |
+| Disk Type (SSD/HDD/NVMe) | _______ | _______ | ☐ |
+| NIC Count | _______ | _______ | ☐ |
+| NIC Speed | _______ | _______ | ☐ |
+| GPU (if any) | _______ | _______ | ☐ |
+| RAID Controller | _______ | _______ | ☐ |
+
+: Component Inventory Verification {.striped}
+
+::: {.callout-important}
+## Mismatch Found?
+If any component doesn't match the expected configuration:
+
+1. **STOP** further provisioning
+2. Document the mismatch with screenshots
+3. File a ticket
+4. Notify the Team Lead
+5. Do not proceed until resolved
+:::
+
+### Step 4: Firmware Audit
+
+Record current firmware versions:
+
+| Component | Current Version | Latest Available | Action Needed? |
+|-----------|----------------|-----------------|----------------|
+| iLO/BMC Firmware | _______ | _______ | ☐ |
+| System BIOS/UEFI | _______ | _______ | ☐ |
+| Storage Controller | _______ | _______ | ☐ |
+| Network Adapter | _______ | _______ | ☐ |
+| Drive Firmware | _______ | _______ | ☐ |
+| GPU Firmware (if any) | _______ | _______ | ☐ |
+
+: Firmware Audit {.striped}
+
+::: {.callout-note}
+Firmware updates should be planned and executed as a separate activity with proper change management. Do not update firmware without Team Lead approval.
+:::
+
+### Step 5: Basic Stress Test (Burn-In)
+
+Run a short stress test to verify stability:
+
+1. Boot a Linux live USB or PXE environment
+2. Run memory test: `memtest86+` for at least 1 full pass
+3. Run CPU stress test: `stress-ng --cpu $(nproc) --timeout 30m`
+4. Run disk test: `fio` basic read/write test on all drives
+5. Run network test: `iperf3` to verify NIC throughput
+6. Monitor temperatures during stress test (via iLO)
+
+| Test | Duration | Result | Max Temp (°C) |
+|------|----------|--------|---------------|
+| Memory (memtest86+) | 1 pass | _______ | _______ |
+| CPU (stress-ng) | 30 min | _______ | _______ |
+| Disk (fio) | Per drive | _______ | _______ |
+| Network (iperf3) | 5 min | _______ | _______ |
+
+: Stress Test Results {.striped}
+
+**Pass Criteria:**
+
+- Zero memory errors
+- CPU stress completes without throttling or errors
+- Disk I/O matches expected specifications (±10%)
+- Network throughput matches NIC speed (±5%)
+- Temperatures stay within safe range (CPU < 85°C, ambient < 35°C)
+
+### Step 6: Update Namma DSL
+
+After successful verification:
+
+1. Update the server entry in Namma DSL with:
+   - Actual hardware specifications (as detected)
+   - Firmware versions
+   - Rack position
+   - Network port mappings
+   - IP addresses
+   - Verification date and status
+2. Commit the DSL changes with a descriptive message
+3. Link the DSL commit to the verification ticket
+
+## Maker-Checker Sign-Off
+
+| Item | Maker Sign | Checker Sign | Date/Time |
+|------|-----------|-------------|-----------|
+| BIOS/UEFI verified | _______ | _______ | _______ |
+| iLO health check passed | _______ | _______ | _______ |
+| Component inventory matches BOM | _______ | _______ | _______ |
+| Firmware versions recorded | _______ | _______ | _______ |
+| Stress test passed | _______ | _______ | _______ |
+| Namma DSL updated | _______ | _______ | _______ |
+| Server ready for OS provisioning | _______ | _______ | _______ |
+
+## Server Status Classification
+
+After verification, classify the server:
+
+| Status | Meaning | Next Step |
+|--------|---------|-----------|
+| ✅ **Ready** | All checks passed, server is healthy | Proceed to OS provisioning |
+| 🟡 **Conditional** | Minor non-critical issue (e.g., old firmware) | Document and plan remediation |
+| 🔴 **Not Ready** | Critical issue found (missing component, failure) | File ticket, escalate, do not provision |
+
+: Server Status Classification {.striped}
+
+## Record Keeping
+
+Archive the following for each server:
+
+1. Verification ticket number
+2. All checklist tables (filled in)
+3. iLO health report screenshot/export
+4. Stress test output logs
+5. Firmware version report
+6. Maker-Checker sign-off form
+7. Namma DSL commit reference
+8. Server status classification
+
+---
+
+::: {.callout-tip}
+## Pro Tip
+Export the iLO/BMC health report as a PDF or JSON file and attach it to the verification ticket. This creates an automatic baseline for future comparison.
+:::
+

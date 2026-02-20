@@ -1,0 +1,199 @@
+# Maker-Checker Process {#sec-maker-checker}
+
+## Purpose
+
+The Maker-Checker process is our primary quality assurance mechanism. It ensures that no single person completes and validates their own work. Every critical task requires **independent verification** by a second person before it is considered complete.
+
+## Why Maker-Checker?
+
+```{mermaid}
+%%| label: fig-why-maker-checker
+%%| fig-cap: "Why Maker-Checker Matters"
+%%{init: {'theme': 'base', 'themeVariables': { 'clusterBkg': '#ffffff', 'clusterBorder': '#dee2e6' }}}%%
+flowchart LR
+    subgraph Without["Without Maker-Checker"]
+        A1[Person does task] --> A2[Same person says 'done']
+        A2 --> A3[Errors go unnoticed]
+        A3 --> A4[Issues found later — costly]
+    end
+
+    subgraph With["With Maker-Checker"]
+        B1[Maker does task] --> B2[Checker independently verifies]
+        B2 --> B3{Passes?}
+        B3 -->|Yes| B4[Confirmed complete — high quality]
+        B3 -->|No| B5[Issues caught early — low cost]
+        B5 --> B1
+    end
+```
+
+**Benefits:**
+
+- **Catches errors early** — before they become incidents
+- **Knowledge transfer** — Checker learns by reviewing
+- **Shared responsibility** — Quality is everyone's job
+- **Builds trust** — In the process and in each other
+- **Creates audit trail** — Clear record of who did what and who verified
+
+## Roles & Responsibilities
+
+### The Maker
+
+| Responsibility | Details |
+|---------------|---------|
+| **Performs the task** | Following the relevant SOP step by step |
+| **Self-checks first** | Reviews their own work before calling the Checker |
+| **Documents their work** | Takes photos, fills checklists, records observations |
+| **Hands off cleanly** | Provides all documentation to the Checker |
+| **Accepts feedback** | If Checker finds issues, Maker fixes them without ego |
+
+### The Checker
+
+| Responsibility | Details |
+|---------------|---------|
+| **Independently verifies** | Does NOT assume the Maker got it right |
+| **Uses the checklist** | Goes through every item on the SOP checklist |
+| **Physically inspects** | Doesn't just look at the Maker's photos — checks in person |
+| **Documents findings** | Records any discrepancies |
+| **Signs off only when satisfied** | Does NOT sign off under pressure |
+
+::: {.callout-important}
+## Critical Rule
+The Checker must **never** be pressured to sign off. If they are not satisfied, the task goes back to the Maker. This is non-negotiable.
+:::
+
+## Process Flow
+
+```{mermaid}
+%%| label: fig-maker-checker-flow
+%%| fig-cap: "Maker-Checker Process Flow"
+flowchart TD
+    A[Task Assigned] --> B[Maker receives SOP & checklist]
+    B --> C[Maker performs task step-by-step]
+    C --> D[Maker self-reviews using checklist]
+    D --> E[Maker documents work — photos, notes]
+    E --> F[Maker signals: Ready for Check]
+    F --> G[Checker receives documentation]
+    G --> H[Checker independently verifies each item]
+    H --> I{All items pass?}
+    I -->|Yes| J[Checker signs off]
+    I -->|No| K[Checker documents issues]
+    K --> L[Maker reviews and fixes issues]
+    L --> D
+    J --> M[Both Maker & Checker sign the form]
+    M --> N[Task marked COMPLETE in tracker]
+    N --> O[Records archived]
+```
+
+## What Tasks Require Maker-Checker?
+
+| Task Category | Maker-Checker Required? | Reason |
+|--------------|------------------------|--------|
+| Server transportation (packing) | ✅ Yes | Prevent damage |
+| Server transportation (receiving/inspection) | ✅ Yes | Verify condition |
+| Rack installation | ✅ Yes | Alignment and safety |
+| Power connection | ✅ Yes | Electrical safety |
+| Network connection | ✅ Yes | Connectivity correctness |
+| Cable labeling | ✅ Yes | Accuracy |
+| Server verification (hardware) | ✅ Yes | Component correctness |
+| Power redundancy test | ✅ Yes | Critical reliability test |
+| Firmware update | ✅ Yes | Risk of bricking |
+| Namma DSL update | ✅ Yes | Data accuracy |
+| Daily learning documentation | ☐ Optional | Encouraged but not mandatory |
+| Taking photographs | ☐ Optional | But photos should be reviewed |
+
+: Maker-Checker Applicability {.striped}
+
+## Maker-Checker Sign-Off Form Template
+
+Every Maker-Checker task uses a standard form:
+
+---
+
+### Sign-Off Form
+
+**Task:** ________________________________
+**SOP Reference:** ________________________________
+**Date:** ________________________________
+
+| # | Checklist Item | Maker Status | Checker Status | Notes |
+|---|---------------|-------------|---------------|-------|
+| 1 | _____________ | ☐ Done | ☐ Verified | _____ |
+| 2 | _____________ | ☐ Done | ☐ Verified | _____ |
+| 3 | _____________ | ☐ Done | ☐ Verified | _____ |
+| ... | ... | ... | ... | ... |
+
+**Maker Name:** __________________ **Signature:** __________________ **Date/Time:** __________
+
+**Checker Name:** __________________ **Signature:** __________________ **Date/Time:** __________
+
+**Result:** ☐ PASS — Task complete  |  ☐ FAIL — Issues found (see notes)
+
+---
+
+## Rotation Policy
+
+To maximize learning and prevent dependency:
+
+- **Rotate Maker and Checker roles** regularly
+- The person who was Maker for server #1 should be Checker for server #2
+- This ensures:
+  - Everyone learns both doing and verifying
+  - No one becomes a bottleneck
+  - Fresh eyes catch different things
+
+```{mermaid}
+%%| label: fig-rotation
+%%| fig-cap: "Role Rotation Example"
+%%{init: {'theme': 'base', 'themeVariables': { 'clusterBkg': '#ffffff', 'clusterBorder': '#dee2e6' }}}%%
+flowchart LR
+    subgraph Server1["Server 1"]
+        A1[Person A: Maker] --> A2[Person B: Checker]
+    end
+    subgraph Server2["Server 2"]
+        B1[Person B: Maker] --> B2[Person C: Checker]
+    end
+    subgraph Server3["Server 3"]
+        C1[Person C: Maker] --> C2[Person A: Checker]
+    end
+```
+
+## Handling Disagreements
+
+If the Maker and Checker disagree:
+
+1. **Discuss** the specific concern calmly
+2. **Refer to the SOP** — what does the documented standard say?
+3. **If still unclear**, escalate to the Team Lead
+4. **Document the disagreement** — it may reveal an SOP gap
+5. **Never** proceed without resolution
+
+## Metrics & Tracking
+
+Track the following metrics to improve the process:
+
+| Metric | What It Tells Us |
+|--------|-----------------|
+| First-pass success rate | % of tasks that pass Checker on first attempt |
+| Average issues per check | How many items fail per Checker review |
+| Time to complete Maker-Checker | Is the process efficient? |
+| Issues caught by Checker vs. found later | Is the Checker process effective? |
+| Role rotation compliance | Are we rotating as planned? |
+
+: Maker-Checker Metrics {.striped}
+
+**Target:** Achieve **≥ 90% first-pass success rate** within 3 months.
+
+## Integration with Other Processes
+
+- **Issue Tracking:** If a Checker finds an issue, it's logged as a ticket
+- **RCA:** If the same issue recurs across multiple Maker-Checker cycles, trigger an RCA
+- **Learning Module:** Common Maker-Checker findings become learning topics
+- **Namma DSL:** Sign-off data can be recorded in the DSL for auditability
+
+---
+
+::: {.callout-note}
+## Remember
+Maker-Checker is not about distrust. It's about **building a culture of quality** where everyone takes pride in getting things right the first time.
+:::
+

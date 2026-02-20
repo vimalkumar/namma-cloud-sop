@@ -1,0 +1,47 @@
+{
+  "index.qmd": {
+    "index.html": "6da5c9e3"
+  },
+  "chapters/vision.qmd": {
+    "vision.html": "ebbea53b"
+  },
+  "chapters/principles.qmd": {
+    "principles.html": "415c97e4"
+  },
+  "chapters/team-structure.qmd": {
+    "team-structure.html": "23afee7a"
+  },
+  "chapters/sop-transportation.qmd": {
+    "sop-transportation.html": "811a5c4c"
+  },
+  "chapters/sop-rack-fitting.qmd": {
+    "sop-rack-fitting.html": "5024c7b3"
+  },
+  "chapters/sop-power-network.qmd": {
+    "sop-power-network.html": "8e9b75f1"
+  },
+  "chapters/sop-server-verification.qmd": {
+    "sop-server-verification.html": "ea97f8fd"
+  },
+  "chapters/maker-checker.qmd": {
+    "maker-checker.html": "c85431dc"
+  },
+  "chapters/rca-module.qmd": {
+    "rca-module.html": "27d5428b"
+  },
+  "chapters/issue-tracking.qmd": {
+    "issue-tracking.html": "f0c00145"
+  },
+  "chapters/learning-module.qmd": {
+    "learning-module.html": "d1568822"
+  },
+  "chapters/namma-dsl.qmd": {
+    "namma-dsl.html": "626eee28"
+  },
+  "chapters/appendix-checklists.qmd": {
+    "appendix-checklists.html": "2edf3b3f"
+  },
+  "chapters/appendix-glossary.qmd": {
+    "appendix-glossary.html": "c921793b"
+  }
+}

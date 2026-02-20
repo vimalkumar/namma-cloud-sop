@@ -1,0 +1,330 @@
+# Namma DSL Integration {#sec-namma-dsl}
+
+## What is Namma DSL?
+
+**Namma DSL** (Domain-Specific Language) is the specification language that describes our entire data center — from physical hardware to application workloads. Think of it as the **digital twin** of our infrastructure: everything that exists physically in the data center has a corresponding description in Namma DSL.
+
+```{mermaid}
+%%| label: fig-dsl-overview
+%%| fig-cap: "Namma DSL — Digital Twin of the Data Center"
+%%{init: {'theme': 'base', 'themeVariables': { 'clusterBkg': '#ffffff', 'clusterBorder': '#dee2e6' }}}%%
+flowchart TB
+    subgraph Physical["Physical Data Center"]
+        P1[Servers]
+        P2[Racks]
+        P3[Network]
+        P4[Power]
+    end
+
+    subgraph DSL["Namma DSL (Digital Twin)"]
+        D1[Server Specs]
+        D2[Rack Layouts]
+        D3[Network Topology]
+        D4[Power Maps]
+        D5[OpenStack Config]
+        D6[Kubernetes Config]
+        D7[App Definitions]
+        D8[Pricing & Capacity]
+        D9[Test Specs]
+    end
+
+    P1 <-->|mirrors| D1
+    P2 <-->|mirrors| D2
+    P3 <-->|mirrors| D3
+    P4 <-->|mirrors| D4
+
+    subgraph Tools["Tools & Interfaces"]
+        T1[Web UI]
+        T2[File Check-in]
+        T3[Validation Engine]
+        T4[Reports & Dashboards]
+    end
+
+    DSL <--> Tools
+```
+
+## Why Namma DSL Matters for the Admin Team
+
+Even though DSL sounds like a "software thing," it directly affects the admin team:
+
+| What You Do Physically | What Changes in DSL |
+|----------------------|-------------------|
+| Install a new server | Server entry added with specs, rack position, network config |
+| Move a server to a different rack position | Rack layout updated |
+| Connect a server to network | Network topology updated with port mappings |
+| Replace a faulty drive | Hardware spec updated, incident linked |
+| Complete a verification checklist | Server status changed to "verified" |
+| RCA leads to SOP change | SOP version reference updated |
+
+: Physical Actions ↔ DSL Updates {.striped}
+
+## DSL Structure Overview
+
+The Namma DSL is organized in layers:
+
+```
+namma-cloud/
+├── hardware/
+│   ├── servers/
+│   │   ├── srv001.yaml          # Individual server spec
+│   │   ├── srv002.yaml
+│   │   └── ...
+│   ├── racks/
+│   │   ├── rack-a.yaml          # Rack layout and capacity
+│   │   └── ...
+│   ├── network/
+│   │   ├── topology.yaml        # Network topology
+│   │   ├── switches.yaml        # Switch configurations
+│   │   └── ip-plan.yaml         # IP address plan
+│   └── power/
+│       ├── pdu-layout.yaml      # PDU assignments
+│       └── ups-config.yaml      # UPS configuration
+├── platform/
+│   ├── openstack/               # OpenStack configurations
+│   └── kubernetes/              # Kubernetes configurations
+├── applications/                # Application definitions
+├── monitoring/                  # Monitoring & alerting rules
+├── pricing/                     # Cost and capacity data
+├── testing/                     # Test specifications
+└── compatibility/               # Hardware/software compatibility matrix
+```
+
+## How the Admin Team Interacts with DSL
+
+### Option 1: Web UI (Coming Soon)
+
+A web-based interface where team members can:
+
+- View the current state of the data center
+- Update server details through a form
+- See the rack layout visually
+- Track verification status
+- Generate reports
+
+### Option 2: File Check-in (Current Method)
+
+For now, the team interacts with DSL through file editing:
+
+#### Step-by-Step: Updating a Server Entry
+
+1. **Check out** the latest DSL files:
+   ```bash
+   git pull origin main
+   ```
+
+2. **Navigate** to the server file:
+   ```bash
+   cd namma-cloud/hardware/servers/
+   ```
+
+3. **Edit** the server file (e.g., `srv001.yaml`):
+   ```yaml
+   # Server: SRV001
+   # Last Updated: 2026-02-20
+   # Updated By: [Your Name]
+
+   server:
+     id: SRV001
+     model: HP ProLiant DL385 Gen10 Plus
+     serial_number: HP-DL385-XXXXX
+     status: verified  # Options: received, installed, verified, active, maintenance
+
+     location:
+       data_center: NC-DC-01
+       rack: Rack-A
+       position: 15U-16U
+
+     hardware:
+       cpu:
+         model: AMD EPYC 7313
+         count: 2
+         cores_per_cpu: 16
+         total_cores: 32
+       memory:
+         total_gb: 256
+         dimm_count: 16
+         speed_mhz: 3200
+       storage:
+         - type: NVMe SSD
+           size_gb: 960
+           count: 4
+         - type: HDD
+           size_gb: 4000
+           count: 8
+       network:
+         - port: iLO
+           ip: 10.0.1.101
+           switch: MGMT-SW1
+           switch_port: 48
+         - port: ETH0
+           ip: 10.0.10.101
+           switch: PROD-SW1
+           switch_port: 24
+         - port: ETH1
+           ip: 10.0.10.102
+           switch: PROD-SW1
+           switch_port: 25
+
+     power:
+       psu_a:
+         pdu: PDU-A
+         port: 12
+       psu_b:
+         pdu: PDU-B
+         port: 12
+
+     verification:
+       date: 2026-02-20
+       verified_by: [Name]
+       checker: [Name]
+       stress_test: passed
+       firmware_audit: completed
+
+     incidents: []
+     notes: []
+   ```
+
+4. **Review your changes** (self-check):
+   ```bash
+   git diff
+   ```
+
+5. **Commit** with a descriptive message:
+   ```bash
+   git add srv001.yaml
+   git commit -m "SRV001: Updated verification status after hardware check"
+   ```
+
+6. **Push** for review:
+   ```bash
+   git push origin main
+   ```
+
+7. **Checker reviews** the change (part of Maker-Checker process)
+
+::: {.callout-tip}
+## Don't Worry About Mistakes
+The DSL is version-controlled. Every change is tracked, and any change can be reverted. Focus on accuracy, and don't fear making updates.
+:::
+
+## DSL-Driven Validation
+
+Namma DSL includes validation rules that automatically check:
+
+| Validation | What It Checks |
+|-----------|---------------|
+| Server exists in rack | Is the server position recorded and valid? |
+| Network consistency | Do all IP addresses match the IP plan? |
+| Power redundancy | Are both PSUs connected to different PDUs? |
+| Capacity limits | Is the rack over its weight/power limit? |
+| Naming standards | Do server IDs follow the naming convention? |
+| Completeness | Are all required fields filled in? |
+
+: DSL Validation Rules {.striped}
+
+When you commit a change, the validation engine runs automatically and reports:
+
+- ✅ All checks passed → Change is accepted
+- ⚠️ Warning → Change is accepted but review recommended
+- ❌ Error → Change is rejected, must fix before re-committing
+
+## DSL and the Bigger Picture
+
+```{mermaid}
+%%| label: fig-dsl-ecosystem
+%%| fig-cap: "Namma DSL in the Ecosystem"
+%%{init: {'theme': 'base', 'themeVariables': { 'clusterBkg': '#ffffff', 'clusterBorder': '#dee2e6' }}}%%
+flowchart LR
+    subgraph Admin["Admin Team Activities"]
+        A1[Install Server]
+        A2[Connect Power/Network]
+        A3[Verify Hardware]
+        A4[Report Issue]
+    end
+
+    subgraph DSL["Namma DSL"]
+        D1[Hardware Specs]
+        D2[Network Topology]
+        D3[Status Tracking]
+        D4[Incident Log]
+    end
+
+    subgraph Automation["Automation Layer"]
+        AU1[OS Provisioning]
+        AU2[OpenStack Deployment]
+        AU3[K8s Configuration]
+        AU4[Monitoring Setup]
+    end
+
+    A1 --> D1
+    A2 --> D2
+    A3 --> D3
+    A4 --> D4
+
+    D1 --> AU1
+    D2 --> AU2
+    D3 --> AU3
+    D4 --> AU4
+```
+
+The admin team's updates to DSL **directly feed** the automation layer:
+
+- When a server is marked "verified" in DSL → OS provisioning can begin automatically
+- When network details are updated → Network configuration is auto-generated
+- When an incident is logged → Monitoring alerts are adjusted
+
+## Learning DSL: Getting Started
+
+### For Beginners
+
+1. **Week 1:** Understand YAML format (simple key-value pairs)
+2. **Week 2:** Read existing server files — understand the structure
+3. **Week 3:** Make your first edit (with Checker oversight)
+4. **Week 4:** Commit your first change independently
+
+### Practice Exercise
+
+Try reading this and answering the questions:
+
+```yaml
+server:
+  id: SRV005
+  model: Assembled Custom
+  status: installed
+  location:
+    rack: Rack-B
+    position: 7U-10U
+  hardware:
+    cpu:
+      count: 2
+      total_cores: 24
+    memory:
+      total_gb: 128
+```
+
+**Questions:**
+
+1. What is this server's ID?
+2. What rack is it in?
+3. How many CPU cores does it have?
+4. How much RAM does it have?
+5. What is its current status?
+6. Is it a branded or assembled server?
+
+*(Answers: SRV005, Rack-B, 24, 128 GB, installed, assembled)*
+
+---
+
+::: {.callout-note}
+## Future Vision
+As Namma DSL matures, the admin team will have a full web UI with:
+
+- Visual rack layout editor
+- Drag-and-drop server placement
+- Automated checklist integration
+- Real-time validation feedback
+- Mobile app for on-the-floor updates
+
+The current file-based workflow is the foundation. Every file you update today is building the digital twin that will power tomorrow's automation.
+:::
+

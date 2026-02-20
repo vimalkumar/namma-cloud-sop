@@ -1,0 +1,244 @@
+# Issue Tracking & Ticketing {#sec-issue-tracking}
+
+## Purpose
+
+Every issue, deviation, or improvement opportunity must be captured in a ticket. Our ticketing system is the **single source of truth** for what happened, what's being done about it, and what was learned.
+
+## Why Track Issues?
+
+- **Nothing falls through the cracks** — Every issue gets attention
+- **Accountability** — Every ticket has an owner
+- **Transparency** — Anyone can see the status of any issue
+- **Trends** — We can spot patterns and systemic problems
+- **Audit trail** — Full history of actions taken
+- **Learning** — Issues become training material
+
+## When to Create a Ticket
+
+| Situation | Create Ticket? | Priority |
+|-----------|---------------|----------|
+| Hardware damage discovered | ✅ Yes | High |
+| Server doesn't fit in rack | ✅ Yes | High |
+| Maker-Checker rejection | ✅ Yes | Medium |
+| SOP step unclear or missing | ✅ Yes | Medium |
+| Cable label incorrect | ✅ Yes | Low |
+| Near-miss safety incident | ✅ Yes | High |
+| New idea for improvement | ✅ Yes | Low |
+| Learning gap identified | ✅ Yes | Medium |
+| Equipment/tool needed | ✅ Yes | Medium |
+| Question about a procedure | ✅ Yes | Low |
+
+: When to Create Tickets {.striped}
+
+::: {.callout-tip}
+## Rule of Thumb
+**When in doubt, create a ticket.** It's always better to have a ticket that gets closed quickly than to have an issue that goes untracked.
+:::
+
+## Ticket Structure
+
+Every ticket must include:
+
+### Required Fields
+
+| Field | Description | Example |
+|-------|------------|---------|
+| **Title** | Clear, concise summary | "Server SRV03 — alignment issue during rack installation" |
+| **Type** | Category of the issue | Incident / Defect / Improvement / Question |
+| **Priority** | Urgency level | Critical / High / Medium / Low |
+| **Reporter** | Who found the issue | Team member name |
+| **Assignee** | Who is responsible for resolution | Team member or Team Lead |
+| **Date/Time** | When the issue was found | 2026-02-20 10:30 AM |
+| **Location** | Where the issue occurred | Rack A, 15U-16U |
+| **Server ID** | Which server (if applicable) | SRV03 / Serial: HP-DL385-xxxxx |
+| **Description** | Detailed description | What happened, what was expected, what actually happened |
+| **Evidence** | Supporting materials | Photos, logs, checklist copies |
+
+: Required Ticket Fields {.striped}
+
+### Ticket Types
+
+```{mermaid}
+%%| label: fig-ticket-types
+%%| fig-cap: "Ticket Type Classification"
+flowchart TD
+    A[New Issue] --> B{What type?}
+    B --> C["🔴 Incident\nSomething went wrong"]
+    B --> D["🟡 Defect\nSomething doesn't work as expected"]
+    B --> E["🔵 Improvement\nSomething could be better"]
+    B --> F["⚪ Question\nNeed clarification"]
+
+    C --> G[Requires RCA]
+    D --> H[Requires investigation]
+    E --> I[Added to backlog]
+    F --> J[Answered and documented]
+```
+
+## Ticket Lifecycle
+
+```{mermaid}
+%%| label: fig-ticket-lifecycle
+%%| fig-cap: "Ticket Lifecycle"
+stateDiagram-v2
+    [*] --> Open: Ticket Created
+    Open --> InProgress: Assigned & Work Started
+    InProgress --> UnderReview: Fix/Action Completed
+    UnderReview --> Resolved: Verified by Checker
+    UnderReview --> InProgress: Checker Rejected
+    Resolved --> Closed: No Further Action
+    Resolved --> RCATriggered: Needs RCA
+    RCATriggered --> Closed: RCA Complete & CAPA Done
+
+    Open --> Duplicate: Already Reported
+    Open --> WontFix: Accepted Risk
+```
+
+### Status Definitions
+
+| Status | Meaning | Who Updates |
+|--------|---------|------------|
+| **Open** | Issue reported, not yet started | Reporter |
+| **In Progress** | Being worked on | Assignee |
+| **Under Review** | Work done, needs verification | Assignee |
+| **Resolved** | Verified and fixed | Checker / Team Lead |
+| **RCA Triggered** | Needs root cause analysis | Team Lead |
+| **Closed** | Fully complete, all actions done | Team Lead |
+| **Duplicate** | Same as an existing ticket | Anyone |
+| **Won't Fix** | Accepted risk, documented reason | Team Lead |
+
+: Ticket Status Definitions {.striped}
+
+## Priority Definitions & SLAs
+
+| Priority | Definition | Response Time | Resolution Time |
+|----------|-----------|---------------|-----------------|
+| **Critical** | Safety hazard or infrastructure at risk | Immediate | 4 hours |
+| **High** | Blocking installation or operation | 1 hour | 24 hours |
+| **Medium** | Needs attention, not blocking | 4 hours | 72 hours |
+| **Low** | Minor issue or improvement idea | Next standup | 1 week |
+
+: Priority SLAs {.striped}
+
+## Ticket Templates
+
+### Template: Hardware Damage
+
+```
+Title: [Server ID] — Hardware damage during [activity]
+Type: Incident
+Priority: High
+
+Description:
+- Server: [ID and model]
+- Activity during which damage occurred: [transport/installation/etc.]
+- Description of damage: [detailed description]
+- Severity of damage: [cosmetic/functional/severe]
+- Photos attached: [yes/no — attach below]
+
+Impact:
+- Is the server usable? [yes/no/unknown]
+- Does this block other work? [yes/no]
+
+Immediate Actions Taken:
+- [What was done immediately]
+
+RCA Required: [Yes/No]
+```
+
+### Template: Installation Issue
+
+```
+Title: [Server ID] — [Issue] during rack installation
+Type: Defect
+Priority: [High/Medium]
+
+Description:
+- Server: [ID and model]
+- Rack: [Rack ID and U position]
+- Issue: [detailed description of the problem]
+- Expected: [what should have happened]
+- Actual: [what actually happened]
+- Photos attached: [yes/no]
+
+Root Cause (if known):
+- [Initial assessment]
+
+Workaround Applied:
+- [Any temporary fix]
+
+SOP Update Needed: [Yes/No — which SOP?]
+```
+
+### Template: SOP Improvement
+
+```
+Title: SOP Improvement — [SOP Name] — [Brief description]
+Type: Improvement
+Priority: Low
+
+Description:
+- SOP affected: [name and version]
+- Section: [which section]
+- Current issue: [what's unclear/missing/wrong]
+- Suggested improvement: [your suggestion]
+- Discovered during: [what task/activity]
+
+Impact of Not Fixing:
+- [What could go wrong if we don't improve this]
+```
+
+## Ticket Management Best Practices
+
+### For Reporters
+
+1. **Create tickets immediately** — don't wait until end of day
+2. **Be specific** — "Server damaged" is not enough; describe the damage
+3. **Attach photos** — A picture is worth a thousand words
+4. **Use the template** — It ensures you don't forget important details
+5. **Follow up** — Check your tickets regularly
+
+### For Assignees
+
+1. **Acknowledge quickly** — Move to "In Progress" when you start
+2. **Update regularly** — Add comments as you work on it
+3. **Don't close silently** — Add a resolution comment before closing
+4. **Link related tickets** — If issues are connected, link them
+5. **Trigger RCA if needed** — Don't wait to be told
+
+### For Team Lead
+
+1. **Review all new tickets daily** — During or before standup
+2. **Ensure proper prioritization** — Adjust if needed
+3. **Track SLAs** — Are we responding and resolving on time?
+4. **Spot trends** — Are the same types of issues recurring?
+5. **Close the loop** — Ensure RCA actions are completed
+
+## Metrics & Reporting
+
+### Weekly Ticket Dashboard
+
+| Metric | This Week | Last Week | Trend |
+|--------|-----------|-----------|-------|
+| Tickets opened | _______ | _______ | _______ |
+| Tickets resolved | _______ | _______ | _______ |
+| Tickets overdue | _______ | _______ | _______ |
+| Average resolution time | _______ | _______ | _______ |
+| RCAs triggered | _______ | _______ | _______ |
+| SOP updates from tickets | _______ | _______ | _______ |
+
+### Monthly Trends
+
+Track and review monthly:
+
+- **Top 3 issue categories** — Where are most issues coming from?
+- **Repeat issues** — Any root causes not fully addressed?
+- **SLA compliance** — Are we meeting response/resolution targets?
+- **Improvement ideas implemented** — Are we acting on suggestions?
+
+---
+
+::: {.callout-note}
+## Integration Note
+As Namma DSL matures, ticket metadata will be integrated into the DSL for automated tracking and reporting. For now, maintain tickets in our designated tracking tool and reference DSL entries where applicable.
+:::
+
