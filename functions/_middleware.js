@@ -1,57 +1,63 @@
 /**
- * Cloudflare Pages Middleware — HTTP Basic Auth Password Protection
- *
- * Set these environment variables in Cloudflare Pages dashboard:
- *   SITE_PASSWORD  — the password to access the site
- *   SITE_USER      — (optional) username, defaults to "admin"
+ * Cloudflare Pages Middleware for HTTP Basic Authentication
+ * 
+ * Protects the entire site with a password stored in the CFP_PASSWORD environment variable.
+ * 
+ * Setup:
+ * 1. Place this file at: /functions/_middleware.js (protects entire site)
+ *    OR: /functions/admin/_middleware.js (protects only /admin/*)
+ * 2. Set CFP_PASSWORD in Cloudflare Dashboard:
+ *    Workers & Pages > [Your Project] > Settings > Environment variables
  */
 
-const REALM = "Namma Cloud SOP — Enter credentials to continue";
+export async function onRequest(context) {
+  const { request, env } = context;
 
-function unauthorizedResponse() {
-  return new Response("🔒 Unauthorized — Please provide valid credentials.", {
+  // Get the password from environment variable
+  const VALID_PASSWORD = env.CFP_PASSWORD;
+
+  // If no password is configured, allow access (for development)
+  if (!VALID_PASSWORD) {
+    console.warn("CFP_PASSWORD not set - authentication disabled");
+    return context.next();
+  }
+
+  // Check for Authorization header
+  const authHeader = request.headers.get("Authorization");
+
+  if (!authHeader || !authHeader.startsWith("Basic ")) {
+    return unauthorizedResponse("Authentication required");
+  }
+
+  // Decode and validate credentials
+  try {
+    const base64Credentials = authHeader.slice("Basic ".length);
+    const credentials = atob(base64Credentials);
+    const [username, password] = credentials.split(":");
+
+    // Check password (username can be anything)
+    if (password === VALID_PASSWORD) {
+      // Authentication successful - serve the page
+      return context.next();
+    }
+  } catch (e) {
+    // Invalid base64 or format
+    console.error("Auth error:", e.message);
+  }
+
+  return unauthorizedResponse("Invalid credentials");
+}
+
+/**
+ * Returns a 401 Unauthorized response with WWW-Authenticate header
+ */
+function unauthorizedResponse(message) {
+  return new Response(message, {
     status: 401,
+    statusText: "Unauthorized",
     headers: {
-      "WWW-Authenticate": `Basic realm="${REALM}", charset="UTF-8"`,
+      "WWW-Authenticate": 'Basic realm="Namma Cloud SOP", charset="UTF-8"',
       "Content-Type": "text/plain",
     },
   });
 }
-
-function parseBasicAuth(header) {
-  if (!header || !header.startsWith("Basic ")) return null;
-  const encoded = header.slice(6);
-  const decoded = atob(encoded);
-  const sep = decoded.indexOf(":");
-  if (sep === -1) return null;
-  return {
-    user: decoded.slice(0, sep),
-    pass: decoded.slice(sep + 1),
-  };
-}
-
-export async function onRequest(context) {
-  const { env, request } = context;
-
-  const sitePassword = env.SITE_PASSWORD;
-
-  // If no password is configured, allow access (useful for local dev)
-  if (!sitePassword) {
-    return context.next();
-  }
-
-  const expectedUser = env.SITE_USER || "admin";
-  const authHeader = request.headers.get("Authorization");
-  const credentials = parseBasicAuth(authHeader);
-
-  if (
-    credentials &&
-    credentials.user === expectedUser &&
-    credentials.pass === sitePassword
-  ) {
-    return context.next();
-  }
-
-  return unauthorizedResponse();
-}
-
